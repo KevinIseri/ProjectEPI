@@ -47,7 +47,6 @@
             label1.Size = new Size(120, 24);
             label1.TabIndex = 0;
             label1.Text = "Bem-vindo";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -89,6 +88,7 @@
             button_login.TabIndex = 5;
             button_login.Text = "Entrar";
             button_login.UseVisualStyleBackColor = true;
+            button_login.Click += button_login_Click;
             // 
             // button_login_clear
             // 
@@ -98,6 +98,7 @@
             button_login_clear.TabIndex = 6;
             button_login_clear.Text = "Limpar";
             button_login_clear.UseVisualStyleBackColor = true;
+            button_login_clear.Click += button_login_clear_Click;
             // 
             // button_login_exit
             // 
@@ -107,6 +108,7 @@
             button_login_exit.TabIndex = 7;
             button_login_exit.Text = "Sair";
             button_login_exit.UseVisualStyleBackColor = true;
+            button_login_exit.Click += button_login_exit_Click;
             // 
             // Form1
             // 
@@ -123,6 +125,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Login";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
