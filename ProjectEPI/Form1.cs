@@ -1,7 +1,6 @@
-using Microsoft.Data.SqlClient;
+using Npgsql;
 using System.Configuration;
 using System.Data;
-using System.Windows.Forms;
 
 namespace ProjectEPI
 {
@@ -12,8 +11,6 @@ namespace ProjectEPI
             InitializeComponent();
         }
 
-        //SqlConnection con = new SqlConnection(@"Server=localhost;Database=postgres;User id=postgres;Password=root;TrustServerCertificate=True");
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -21,55 +18,58 @@ namespace ProjectEPI
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            //String username, userPassword;
+            String username, userPassword;
 
-            //username = txt_user.Text;
-            //userPassword = txt_password.Text;
+            username = txt_user.Text;
+            userPassword = txt_password.Text;
 
-            //try
-            //{
-            //    String query = "SELECT * FROM Users WHERE UserName = '" + txt_user.Text + "' AND Password = '" + txt_password.Text + "'";
-            //    SqlDataAdapter sda = new SqlDataAdapter(query, con);
+            NpgsqlConnection conn = new (ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
 
-            //    DataTable dataTable = new DataTable();
-            //    sda.Fill(dataTable);
+            try
+            {
+                conn.Open();
 
-            //    if (dataTable.Rows.Count > 0)
-            //    {
-            //        username = txt_user.Text;
-            //        userPassword = txt_password.Text;
+                String query = "SELECT * FROM users WHERE username = '"+txt_user.Text+"' AND password = '"+txt_password.Text+"'";
 
-            //        // add page that needed to be load next
-            //        MessageBox.Show("Login success", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                NpgsqlCommand comn = new()
+                {
+                    Connection = conn,
+                    CommandType = CommandType.Text,
+                    CommandText = query
+                };
 
-            //        //Menuform form2 = new Menuform();
-            //        //form2.show();
-            //        this.Hide();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Invalid login details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        txt_user.Clear();
-            //        txt_password.Clear();
+                NpgsqlDataReader dr = comn.ExecuteReader();
 
-            //        txt_user.Focus();
-            //    }
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Error");
-            //}
-            //finally
-            //{
-            //    con.Close();
-            //}
-            //@"Host=localhost;Database=postgres;Password=***********;Persist Security Info=True;Username=postgres"
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
-            con.Open();
-            MessageBox.Show("OPEN");
-            con.Close();
+                if (dr.HasRows)
+                {
+                    username = txt_user.Text;
+                    userPassword = txt_password.Text;
 
+                    // add page that needed to be load next
+                    MessageBox.Show("Login success", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //Menuform form2 = new Menuform();
+                    //form2.show();
+                    this.Hide();
+
+                }
+                else
+                {
+                    MessageBox.Show("Invalid login details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txt_user.Clear();
+                    txt_password.Clear();
+
+                    txt_user.Focus();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void button_login_exit_Click(object sender, EventArgs e)
