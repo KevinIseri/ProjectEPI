@@ -1,6 +1,6 @@
 ﻿namespace ProjectEPI
 {
-    partial class Form1
+    partial class LoginPage
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            txt_user = new TextBox();
-            txt_password = new TextBox();
+            labelUser = new Label();
+            labelPass = new Label();
+            txtUser = new TextBox();
+            txtPassword = new TextBox();
             button_login = new Button();
             button_login_clear = new Button();
             button_login_exit = new Button();
@@ -48,37 +48,38 @@
             label1.TabIndex = 0;
             label1.Text = "Bem-vindo";
             // 
-            // label2
+            // labelUser
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(225, 108);
-            label2.Name = "label2";
-            label2.Size = new Size(47, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Usuário";
+            labelUser.AutoSize = true;
+            labelUser.Location = new Point(225, 108);
+            labelUser.Name = "labelUser";
+            labelUser.Size = new Size(47, 15);
+            labelUser.TabIndex = 1;
+            labelUser.Text = "Usuário";
             // 
-            // label3
+            // labelPass
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(225, 149);
-            label3.Name = "label3";
-            label3.Size = new Size(39, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Senha";
+            labelPass.AutoSize = true;
+            labelPass.Location = new Point(225, 149);
+            labelPass.Name = "labelPass";
+            labelPass.Size = new Size(39, 15);
+            labelPass.TabIndex = 2;
+            labelPass.Text = "Senha";
             // 
-            // txt_user
+            // txtUser
             // 
-            txt_user.Location = new Point(310, 108);
-            txt_user.Name = "txt_user";
-            txt_user.Size = new Size(221, 23);
-            txt_user.TabIndex = 3;
+            txtUser.Location = new Point(310, 108);
+            txtUser.Name = "txtUser";
+            txtUser.Size = new Size(221, 23);
+            txtUser.TabIndex = 3;
+            txtUser.TextChanged += txtUser_TextChanged;
             // 
-            // txt_password
+            // txtPassword
             // 
-            txt_password.Location = new Point(310, 146);
-            txt_password.Name = "txt_password";
-            txt_password.Size = new Size(221, 23);
-            txt_password.TabIndex = 4;
+            txtPassword.Location = new Point(310, 146);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(221, 23);
+            txtPassword.TabIndex = 4;
             // 
             // button_login
             // 
@@ -110,7 +111,7 @@
             button_login_exit.UseVisualStyleBackColor = true;
             button_login_exit.Click += button_login_exit_Click;
             // 
-            // Form1
+            // LoginPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -118,12 +119,12 @@
             Controls.Add(button_login_exit);
             Controls.Add(button_login_clear);
             Controls.Add(button_login);
-            Controls.Add(txt_password);
-            Controls.Add(txt_user);
-            Controls.Add(label3);
-            Controls.Add(label2);
+            Controls.Add(txtPassword);
+            Controls.Add(txtUser);
+            Controls.Add(labelPass);
+            Controls.Add(labelUser);
             Controls.Add(label1);
-            Name = "Form1";
+            Name = "LoginPage";
             Text = "Login";
             Load += Form1_Load;
             ResumeLayout(false);
@@ -133,10 +134,10 @@
         #endregion
 
         private Label label1;
-        private Label label2;
-        private Label label3;
-        private TextBox txt_user;
-        private TextBox txt_password;
+        private Label labelUser;
+        private Label labelPass;
+        private TextBox txtUser;
+        private TextBox txtPassword;
         private Button button_login;
         private Button button_login_clear;
         private Button button_login_exit;

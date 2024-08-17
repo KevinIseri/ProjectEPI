@@ -4,9 +4,9 @@ using System.Data;
 
 namespace ProjectEPI
 {
-    public partial class Form1 : Form
+    public partial class LoginPage : Form
     {
-        public Form1()
+        public LoginPage()
         {
             InitializeComponent();
         }
@@ -18,32 +18,29 @@ namespace ProjectEPI
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            String username, userPassword;
+            string username, userPassword;
 
-            username = txt_user.Text;
-            userPassword = txt_password.Text;
-
-            NpgsqlConnection conn = new (ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
+            NpgsqlConnection conn = new(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
 
             try
             {
                 conn.Open();
 
-                String query = "SELECT * FROM users WHERE username = '"+txt_user.Text+"' AND password = '"+txt_password.Text+"'";
+                string query = "SELECT * FROM users WHERE username = '" + txtUser.Text + "' AND password = '" + txtPassword.Text + "'";
 
-                NpgsqlCommand comn = new()
+                NpgsqlCommand cmd = new()
                 {
                     Connection = conn,
                     CommandType = CommandType.Text,
                     CommandText = query
                 };
 
-                NpgsqlDataReader dr = comn.ExecuteReader();
+                NpgsqlDataReader dr = cmd.ExecuteReader();
 
                 if (dr.HasRows)
                 {
-                    username = txt_user.Text;
-                    userPassword = txt_password.Text;
+                    username = txtUser.Text;
+                    userPassword = txtPassword.Text;
 
                     // add page that needed to be load next
                     MessageBox.Show("Login success", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -56,10 +53,10 @@ namespace ProjectEPI
                 else
                 {
                     MessageBox.Show("Invalid login details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt_user.Clear();
-                    txt_password.Clear();
+                    txtUser.Clear();
+                    txtPassword.Clear();
 
-                    txt_user.Focus();
+                    txtUser.Focus();
                 }
             }
             catch
@@ -77,7 +74,7 @@ namespace ProjectEPI
             DialogResult res;
 
             res = MessageBox.Show("Deseja sair do aplicativo?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-          
+
             if (res == DialogResult.Yes)
             {
                 Application.Exit();
@@ -90,10 +87,15 @@ namespace ProjectEPI
 
         private void button_login_clear_Click(object sender, EventArgs e)
         {
-            txt_user.Clear();
-            txt_password.Clear();
+            txtUser.Clear();
+            txtPassword.Clear();
 
-            txt_user.Focus();
+            txtUser.Focus();
+        }
+
+        private void txtUser_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
