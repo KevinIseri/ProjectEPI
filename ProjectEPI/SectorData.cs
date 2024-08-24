@@ -47,7 +47,6 @@ namespace ProjectEPI
                 {
                     conn.Close();
                 }
-
             }
 
             return sectors;
