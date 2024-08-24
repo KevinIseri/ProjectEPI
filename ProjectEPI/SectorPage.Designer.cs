@@ -29,36 +29,45 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            dataGridViewSectors = new DataGridView();
+            DataGridViewSectors = new DataGridView();
             labelGridTitle = new Label();
             panel2 = new Panel();
-            buttonDelete = new Button();
-            buttonUpdate = new Button();
-            buttonAdd = new Button();
+            ButtonClear = new Button();
+            TextBoxId = new TextBox();
+            labelId = new Label();
+            ButtonDelete = new Button();
+            ButtonUpdate = new Button();
+            ButtonAdd = new Button();
             labelSectorName = new Label();
-            textBoxName = new TextBox();
+            TextBoxName = new TextBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewSectors).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewSectors).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
-            panel1.Controls.Add(dataGridViewSectors);
+            panel1.Controls.Add(DataGridViewSectors);
             panel1.Controls.Add(labelGridTitle);
             panel1.Location = new Point(21, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(753, 192);
             panel1.TabIndex = 0;
             // 
-            // dataGridViewSectors
+            // DataGridViewSectors
             // 
-            dataGridViewSectors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSectors.Location = new Point(26, 60);
-            dataGridViewSectors.Name = "dataGridViewSectors";
-            dataGridViewSectors.Size = new Size(703, 110);
-            dataGridViewSectors.TabIndex = 1;
+            DataGridViewSectors.AllowUserToAddRows = false;
+            DataGridViewSectors.AllowUserToDeleteRows = false;
+            DataGridViewSectors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewSectors.EnableHeadersVisualStyles = false;
+            DataGridViewSectors.Location = new Point(26, 60);
+            DataGridViewSectors.Name = "DataGridViewSectors";
+            DataGridViewSectors.ReadOnly = true;
+            DataGridViewSectors.RowHeadersVisible = false;
+            DataGridViewSectors.Size = new Size(703, 110);
+            DataGridViewSectors.TabIndex = 1;
+            DataGridViewSectors.CellClick += DataGridViewSectorsCellClick;
             // 
             // labelGridTitle
             // 
@@ -73,59 +82,89 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonHighlight;
-            panel2.Controls.Add(buttonDelete);
-            panel2.Controls.Add(buttonUpdate);
-            panel2.Controls.Add(buttonAdd);
+            panel2.Controls.Add(ButtonClear);
+            panel2.Controls.Add(TextBoxId);
+            panel2.Controls.Add(labelId);
+            panel2.Controls.Add(ButtonDelete);
+            panel2.Controls.Add(ButtonUpdate);
+            panel2.Controls.Add(ButtonAdd);
             panel2.Controls.Add(labelSectorName);
-            panel2.Controls.Add(textBoxName);
+            panel2.Controls.Add(TextBoxName);
             panel2.Location = new Point(21, 233);
             panel2.Name = "panel2";
             panel2.Size = new Size(753, 205);
             panel2.TabIndex = 1;
             // 
-            // buttonDelete
+            // ButtonClear
             // 
-            buttonDelete.Location = new Point(365, 161);
-            buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(75, 23);
-            buttonDelete.TabIndex = 6;
-            buttonDelete.Text = "Deletar";
-            buttonDelete.UseVisualStyleBackColor = true;
+            ButtonClear.Location = new Point(491, 161);
+            ButtonClear.Name = "ButtonClear";
+            ButtonClear.Size = new Size(75, 23);
+            ButtonClear.TabIndex = 9;
+            ButtonClear.Text = "Limpar";
+            ButtonClear.UseVisualStyleBackColor = true;
+            ButtonClear.Click += ButtonClearClick;
             // 
-            // buttonUpdate
+            // TextBoxId
             // 
-            buttonUpdate.Location = new Point(229, 161);
-            buttonUpdate.Name = "buttonUpdate";
-            buttonUpdate.Size = new Size(75, 23);
-            buttonUpdate.TabIndex = 5;
-            buttonUpdate.Text = "Atualizar";
-            buttonUpdate.UseVisualStyleBackColor = true;
+            TextBoxId.Location = new Point(52, 20);
+            TextBoxId.Name = "TextBoxId";
+            TextBoxId.ReadOnly = true;
+            TextBoxId.Size = new Size(127, 23);
+            TextBoxId.TabIndex = 8;
             // 
-            // buttonAdd
+            // labelId
             // 
-            buttonAdd.Location = new Point(96, 161);
-            buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(75, 23);
-            buttonAdd.TabIndex = 4;
-            buttonAdd.Text = "Adicionar";
-            buttonAdd.UseVisualStyleBackColor = true;
-            buttonAdd.Click += buttonAdd_Click;
+            labelId.AutoSize = true;
+            labelId.Location = new Point(26, 23);
+            labelId.Name = "labelId";
+            labelId.Size = new Size(20, 15);
+            labelId.TabIndex = 7;
+            labelId.Text = "Id:";
+            // 
+            // ButtonDelete
+            // 
+            ButtonDelete.Location = new Point(365, 161);
+            ButtonDelete.Name = "ButtonDelete";
+            ButtonDelete.Size = new Size(75, 23);
+            ButtonDelete.TabIndex = 6;
+            ButtonDelete.Text = "Deletar";
+            ButtonDelete.UseVisualStyleBackColor = true;
+            // 
+            // ButtonUpdate
+            // 
+            ButtonUpdate.Location = new Point(229, 161);
+            ButtonUpdate.Name = "ButtonUpdate";
+            ButtonUpdate.Size = new Size(75, 23);
+            ButtonUpdate.TabIndex = 5;
+            ButtonUpdate.Text = "Atualizar";
+            ButtonUpdate.UseVisualStyleBackColor = true;
+            // 
+            // ButtonAdd
+            // 
+            ButtonAdd.Location = new Point(96, 161);
+            ButtonAdd.Name = "ButtonAdd";
+            ButtonAdd.Size = new Size(75, 23);
+            ButtonAdd.TabIndex = 4;
+            ButtonAdd.Text = "Adicionar";
+            ButtonAdd.UseVisualStyleBackColor = true;
+            ButtonAdd.Click += ButtonAddClick;
             // 
             // labelSectorName
             // 
             labelSectorName.AutoSize = true;
-            labelSectorName.Location = new Point(26, 24);
+            labelSectorName.Location = new Point(183, 23);
             labelSectorName.Name = "labelSectorName";
-            labelSectorName.Size = new Size(40, 15);
+            labelSectorName.Size = new Size(43, 15);
             labelSectorName.TabIndex = 3;
-            labelSectorName.Text = "Nome";
+            labelSectorName.Text = "Nome:";
             // 
-            // textBoxName
+            // TextBoxName
             // 
-            textBoxName.Location = new Point(72, 21);
-            textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(127, 23);
-            textBoxName.TabIndex = 2;
+            TextBoxName.Location = new Point(229, 20);
+            TextBoxName.Name = "TextBoxName";
+            TextBoxName.Size = new Size(127, 23);
+            TextBoxName.TabIndex = 2;
             // 
             // SectorPage
             // 
@@ -138,7 +177,7 @@
             Text = "SectorPage";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewSectors).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewSectors).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -149,11 +188,14 @@
         private Panel panel1;
         private Label labelGridTitle;
         private Panel panel2;
-        private DataGridView dataGridViewSectors;
-        private TextBox textBoxName;
+        private DataGridView DataGridViewSectors;
+        private TextBox TextBoxName;
         private Label labelSectorName;
-        private Button buttonAdd;
-        private Button buttonDelete;
-        private Button buttonUpdate;
+        private Button ButtonAdd;
+        private Button ButtonDelete;
+        private Button ButtonUpdate;
+        private Label labelId;
+        private TextBox TextBoxId;
+        private Button ButtonClear;
     }
 }

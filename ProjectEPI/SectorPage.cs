@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Microsoft.IdentityModel.Tokens;
+using Npgsql;
 using System.Configuration;
 using System.Data;
 
@@ -20,12 +21,29 @@ namespace ProjectEPI
             SectorData sd = new();
             List<SectorData> sectors = sd.GetSectors();
 
-            dataGridViewSectors.DataSource = sectors;
+            DataGridViewSectors.DataSource = sectors;
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void DataGridViewSectorsCellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (textBoxName.Text == "")
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow row = DataGridViewSectors.Rows[e.RowIndex];
+
+                TextBoxId.Text = row.Cells[0].Value.ToString();
+                TextBoxName.Text = row.Cells[1].Value.ToString();
+            }
+        }
+
+        public void ClearFields()
+        {
+            TextBoxId.Text = "";
+            TextBoxName.Text = "";
+        }
+
+        private void ButtonAddClick(object sender, EventArgs e)
+        {
+            if (TextBoxName.Text.IsNullOrEmpty())
             {
                 MessageBox.Show("Por favor, preencha o campo antes de salvar.",
                     "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -43,17 +61,19 @@ namespace ProjectEPI
 
                         using (NpgsqlCommand cmd = new() { Connection = conn, CommandText = queryInsert })
                         {
-                            cmd.Parameters.AddWithValue("@name", textBoxName.Text.Trim());
+                            cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
                             cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
 
                             cmd.ExecuteNonQuery();
 
                             ShowSectorsGrid();
 
+                            ClearFields();
+
                             MessageBox.Show("Setor adicionado com sucesso!",
                                 "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                    } 
+                    }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Erro: " + ex,
@@ -63,9 +83,14 @@ namespace ProjectEPI
                     {
                         conn.Close();
                     }
-                }  
+                }
 
             }
+        }
+
+        private void ButtonClearClick(object sender, EventArgs e)
+        {
+            ClearFields();
         }
     }
 }
