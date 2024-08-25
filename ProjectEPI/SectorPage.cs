@@ -4,8 +4,6 @@ namespace ProjectEPI
 {
     public partial class SectorPage : Form
     {
-        //NpgsqlConnection conn = new(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
-        //private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
         private readonly DatabaseService _databaseService;
 
         public SectorPage()
@@ -118,26 +116,5 @@ namespace ProjectEPI
             var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             return confirmation == DialogResult.Yes;
         }
-
-        //private void ExecuteNonQuery(string query, Action<NpgsqlCommand> parameterize)
-        //{
-        //    using (var conn = new NpgsqlConnection(connectionString))
-        //    {
-        //        try
-        //        {
-        //            conn.Open();
-        //            using (var cmd = new NpgsqlCommand(query, conn))
-        //            {
-        //                parameterize(cmd);
-        //                cmd.ExecuteNonQuery();
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Erro: " + ex, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //    }
-        //}
-
     }
 }

@@ -27,7 +27,6 @@ namespace ProjectEPI
                 }
                 catch (Exception ex)
                 {
-                    // Aqui você pode lançar uma exceção customizada ou registrar o erro
                     throw new Exception("Erro ao executar a query.", ex);
                 }
             }

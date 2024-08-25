@@ -26,7 +26,7 @@ namespace ProjectEPI
             {
                 conn.Open();
 
-                string query = "SELECT * FROM users WHERE username = '" + txtUser.Text + "' AND password = '" + txtPassword.Text + "'";
+                string query = $"SELECT * FROM users WHERE username = '{txtUser.Text}' AND password = '{txtPassword.Text}'";
 
                 NpgsqlCommand cmd = new()
                 {
