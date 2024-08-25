@@ -1,23 +1,26 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using ProjectEPI.Services;
 
 namespace ProjectEPI
 {
     public partial class SectorPage : Form
     {
-        private readonly DatabaseService _databaseService;
+        private readonly DatabaseManager _databaseService;
+        private readonly SectorService _sectorService;
 
         public SectorPage()
         {
             InitializeComponent();
-            _databaseService = new DatabaseService();
+
+            _databaseService = new DatabaseManager();
+            _sectorService = new SectorService();
+
             ShowSectorsGrid();
         }
 
         public void ShowSectorsGrid()
         {
-            SectorData sd = new();
-            List<SectorData> sectors = sd.GetSectors();
-
+            List<SectorData> sectors = _sectorService.GetSectors();
             DataGridViewSectors.DataSource = sectors;
         }
 

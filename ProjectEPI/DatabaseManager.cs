@@ -3,11 +3,11 @@ using System.Configuration;
 
 namespace ProjectEPI
 {
-    public class DatabaseService
+    public class DatabaseManager
     {
         private readonly string _connectionString;
 
-        public DatabaseService()
+        public DatabaseManager()
         {
             _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
         }
@@ -27,8 +27,28 @@ namespace ProjectEPI
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Erro ao executar a query.", ex);
+                    throw new Exception("Error executing query.", ex);
                 }
+            }
+        }
+
+        public T ExecuteScalar<T>(string query, Func<NpgsqlCommand, T> execute)
+        {
+            using (var conn = new NpgsqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand(query, conn))
+                    {
+                        return execute(cmd);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error executing command: ", ex);
+                }
+
             }
         }
     }
