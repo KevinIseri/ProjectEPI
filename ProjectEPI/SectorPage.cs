@@ -7,7 +7,8 @@ namespace ProjectEPI
 {
     public partial class SectorPage : Form
     {
-        NpgsqlConnection conn = new(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
+        //NpgsqlConnection conn = new(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
 
         public SectorPage()
         {
@@ -43,125 +44,56 @@ namespace ProjectEPI
 
         private void ButtonAddClick(object sender, EventArgs e)
         {
-            if (ValidadeFilledFields() && conn.State == ConnectionState.Closed)
+            if (ValidadeFilledFields())
             {
-                try
+                var queryInsert = "INSERT INTO public.sectors (id, \"name\", created_date, updated_date) " +
+                                  "VALUES(nextval('sectors_id_seq'::regclass), @name, @createdDate, NULL);";
+
+                ExecuteNonQuery(queryInsert, cmd =>
                 {
-                    conn.Open();
+                    cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
+                });
 
-                    var queryInsert = "INSERT INTO public.sectors (id, \"name\", created_date, updated_date) " +
-                        "VALUES(nextval('sectors_id_seq'::regclass), @name, @createdDate, NULL);";
-
-                    using (NpgsqlCommand cmd = new() { Connection = conn, CommandText = queryInsert })
-                    {
-                        cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
-
-                        cmd.ExecuteNonQuery();
-
-                        ShowSectorsGrid();
-
-                        ClearFields();
-
-                        MessageBox.Show("Setor adicionado com sucesso!",
-                            "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro: " + ex,
-                    "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                ShowSectorsGrid();
+                ClearFields();
+                MessageBox.Show("Setor adicionado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void ButtonUpdateClick(object sender, EventArgs e)
         {
-            if (ValidadeFilledFields() && conn.State == ConnectionState.Closed)
+            if (ValidadeFilledFields() && ConfirmAction("atualizar", TextBoxId.Text))
             {
-                var confimation = MessageBox.Show($"Tem certeza que deseja atualizar o Id {TextBoxId.Text} ?",
-                    "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                var queryUpdate = "UPDATE public.sectors SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
 
-                if (confimation == DialogResult.Yes)
+                ExecuteNonQuery(queryUpdate, cmd =>
                 {
-                    try
-                    {
-                        conn.Open();
+                    cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@id", int.Parse(TextBoxId.Text));
+                    cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
+                });
 
-                        var queryInsert = "UPDATE public.sectors SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
-
-                        using (NpgsqlCommand cmd = new() { Connection = conn, CommandText = queryInsert })
-                        {
-                            cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
-                            cmd.Parameters.AddWithValue("@id", int.Parse(TextBoxId.Text));
-                            cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
-
-                            cmd.ExecuteNonQuery();
-
-                            ShowSectorsGrid();
-
-                            ClearFields();
-
-                            MessageBox.Show("Setor atualizado com sucesso!",
-                                "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erro: " + ex,
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        conn.Close();
-                    }
-                }
+                ShowSectorsGrid();
+                ClearFields();
+                MessageBox.Show("Setor atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void ButtonDeleteClick(object sender, EventArgs e)
         {
-            if (ValidadeFilledFields() && conn.State == ConnectionState.Closed)
+            if (ValidadeFilledFields() && ConfirmAction("deletar", TextBoxId.Text))
             {
-                var confimation = MessageBox.Show($"Tem certeza que deseja deletar o Id {TextBoxId.Text} ?",
-                    "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                var queryDelete = "DELETE FROM public.sectors WHERE id=@id;";
 
-                if (confimation == DialogResult.Yes)
+                ExecuteNonQuery(queryDelete, cmd =>
                 {
-                    try
-                    {
-                        conn.Open();
+                    cmd.Parameters.AddWithValue("@id", int.Parse(TextBoxId.Text));
+                });
 
-                        var queryInsert = "DELETE FROM public.sectors WHERE id=@id;";
-
-                        using (NpgsqlCommand cmd = new() { Connection = conn, CommandText = queryInsert })
-                        {
-                            cmd.Parameters.AddWithValue("@id", int.Parse(TextBoxId.Text));
-
-                            cmd.ExecuteNonQuery();
-
-                            ShowSectorsGrid();
-
-                            ClearFields();
-
-                            MessageBox.Show("Setor deletado com sucesso!",
-                                "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erro: " + ex,
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        conn.Close();
-                    }
-                }
+                ShowSectorsGrid();
+                ClearFields();
+                MessageBox.Show("Setor deletado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -183,6 +115,31 @@ namespace ProjectEPI
             return true;
         }
 
+        private static bool ConfirmAction(string action, string id)
+        {
+            var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            return confirmation == DialogResult.Yes;
+        }
+
+        private void ExecuteNonQuery(string query, Action<NpgsqlCommand> parameterize)
+        {
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand(query, conn))
+                    {
+                        parameterize(cmd);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: " + ex, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
     }
 }
