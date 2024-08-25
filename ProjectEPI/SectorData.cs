@@ -21,7 +21,7 @@ namespace ProjectEPI
                 {
                     conn.Open();
 
-                    string querySelect = "SELECT * FROM sectors";
+                    string querySelect = "SELECT * FROM sectors order by id asc";
 
                     using (NpgsqlCommand cmd = new() { Connection = conn, CommandText = querySelect })
                     {

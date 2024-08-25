@@ -43,26 +43,62 @@ namespace ProjectEPI
 
         private void ButtonAddClick(object sender, EventArgs e)
         {
-            if (TextBoxName.Text.IsNullOrEmpty())
+            if (ValidadeFilledFields() && conn.State == ConnectionState.Closed)
             {
-                MessageBox.Show("Por favor, preencha o campo antes de salvar.",
+                try
+                {
+                    conn.Open();
+
+                    var queryInsert = "INSERT INTO public.sectors (id, \"name\", created_date, updated_date) " +
+                        "VALUES(nextval('sectors_id_seq'::regclass), @name, @createdDate, NULL);";
+
+                    using (NpgsqlCommand cmd = new() { Connection = conn, CommandText = queryInsert })
+                    {
+                        cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
+
+                        cmd.ExecuteNonQuery();
+
+                        ShowSectorsGrid();
+
+                        ClearFields();
+
+                        MessageBox.Show("Setor adicionado com sucesso!",
+                            "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: " + ex,
                     "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
-            else
+        }
+
+        private void ButtonUpdateClick(object sender, EventArgs e)
+        {
+            if (ValidadeFilledFields() && conn.State == ConnectionState.Closed)
             {
-                if (conn.State == ConnectionState.Closed)
+                var confimation = MessageBox.Show($"Tem certeza que deseja atualizar o Id {TextBoxId.Text} ?",
+                    "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (confimation == DialogResult.Yes)
                 {
                     try
                     {
                         conn.Open();
 
-                        var queryInsert = "INSERT INTO public.sectors (id, \"name\", created_date, updated_date) " +
-                            "VALUES(nextval('sectors_id_seq'::regclass), @name, @createdDate, NULL);";
+                        var queryInsert = "UPDATE public.sectors SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
 
                         using (NpgsqlCommand cmd = new() { Connection = conn, CommandText = queryInsert })
                         {
                             cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
-                            cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@id", int.Parse(TextBoxId.Text));
+                            cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
 
                             cmd.ExecuteNonQuery();
 
@@ -70,21 +106,62 @@ namespace ProjectEPI
 
                             ClearFields();
 
-                            MessageBox.Show("Setor adicionado com sucesso!",
+                            MessageBox.Show("Setor atualizado com sucesso!",
                                 "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Erro: " + ex,
-                        "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {
                         conn.Close();
                     }
                 }
+            }
+        }
 
+        private void ButtonDeleteClick(object sender, EventArgs e)
+        {
+            if (ValidadeFilledFields() && conn.State == ConnectionState.Closed)
+            {
+                var confimation = MessageBox.Show($"Tem certeza que deseja deletar o Id {TextBoxId.Text} ?",
+                    "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (confimation == DialogResult.Yes)
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        var queryInsert = "DELETE FROM public.sectors WHERE id=@id;";
+
+                        using (NpgsqlCommand cmd = new() { Connection = conn, CommandText = queryInsert })
+                        {
+                            cmd.Parameters.AddWithValue("@id", int.Parse(TextBoxId.Text));
+
+                            cmd.ExecuteNonQuery();
+
+                            ShowSectorsGrid();
+
+                            ClearFields();
+
+                            MessageBox.Show("Setor deletado com sucesso!",
+                                "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro: " + ex,
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
             }
         }
 
@@ -92,5 +169,20 @@ namespace ProjectEPI
         {
             ClearFields();
         }
+
+        private bool ValidadeFilledFields()
+        {
+            if (TextBoxName.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("Por favor, preencha o campo antes de salvar.",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return true;
+        }
+
+
     }
 }

@@ -130,6 +130,7 @@
             ButtonDelete.TabIndex = 6;
             ButtonDelete.Text = "Deletar";
             ButtonDelete.UseVisualStyleBackColor = true;
+            ButtonDelete.Click += ButtonDeleteClick;
             // 
             // ButtonUpdate
             // 
@@ -139,6 +140,7 @@
             ButtonUpdate.TabIndex = 5;
             ButtonUpdate.Text = "Atualizar";
             ButtonUpdate.UseVisualStyleBackColor = true;
+            ButtonUpdate.Click += ButtonUpdateClick;
             // 
             // ButtonAdd
             // 
