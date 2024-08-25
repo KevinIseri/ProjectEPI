@@ -1,7 +1,7 @@
 ﻿using Npgsql;
 using System.Configuration;
 
-namespace ProjectEPI
+namespace ProjectEPI.Data
 {
     public class DatabaseManager
     {

@@ -1,4 +1,4 @@
-﻿namespace ProjectEPI
+﻿namespace ProjectEPI.Data
 {
     public class SectorData
     {
