@@ -45,7 +45,7 @@ namespace ProjectEPI.Controls
             TextBoxName.Text = "";
         }
 
-        private void ButtonAdd_Click(object sender, EventArgs e)
+        private void ButtonAddClick(object sender, EventArgs e)
         {
             if (ValidadeFilledFields())
             {
@@ -64,7 +64,7 @@ namespace ProjectEPI.Controls
             }
         }
 
-        private void ButtonUpdate_Click(object sender, EventArgs e)
+        private void ButtonUpdateClick(object sender, EventArgs e)
         {
             if (ValidadeFilledFields() && ConfirmAction("atualizar", TextBoxId.Text))
             {
@@ -83,7 +83,7 @@ namespace ProjectEPI.Controls
             }
         }
 
-        private void ButtonDelete_Click(object sender, EventArgs e)
+        private void ButtonDeleteClick(object sender, EventArgs e)
         {
             if (ValidadeFilledFields() && ConfirmAction("deletar", TextBoxId.Text))
             {
@@ -100,7 +100,7 @@ namespace ProjectEPI.Controls
             }
         }
 
-        private void ButtonClear_Click(object sender, EventArgs e)
+        private void ButtonClearClick(object sender, EventArgs e)
         {
             ClearFields();
         }

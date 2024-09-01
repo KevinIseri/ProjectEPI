@@ -134,7 +134,7 @@
             ButtonClear.TabIndex = 13;
             ButtonClear.Text = "Limpar";
             ButtonClear.UseVisualStyleBackColor = true;
-            ButtonClear.Click += ButtonClear_Click;
+            ButtonClear.Click += ButtonClearClick;
             // 
             // ButtonAdd
             // 
@@ -144,7 +144,7 @@
             ButtonAdd.TabIndex = 10;
             ButtonAdd.Text = "Adicionar";
             ButtonAdd.UseVisualStyleBackColor = true;
-            ButtonAdd.Click += ButtonAdd_Click;
+            ButtonAdd.Click += ButtonAddClick;
             // 
             // ButtonDelete
             // 
@@ -154,7 +154,7 @@
             ButtonDelete.TabIndex = 12;
             ButtonDelete.Text = "Deletar";
             ButtonDelete.UseVisualStyleBackColor = true;
-            ButtonDelete.Click += ButtonDelete_Click;
+            ButtonDelete.Click += ButtonDeleteClick;
             // 
             // ButtonUpdate
             // 
@@ -164,7 +164,7 @@
             ButtonUpdate.TabIndex = 11;
             ButtonUpdate.Text = "Atualizar";
             ButtonUpdate.UseVisualStyleBackColor = true;
-            ButtonUpdate.Click += ButtonUpdate_Click;
+            ButtonUpdate.Click += ButtonUpdateClick;
             // 
             // SectorControl
             // 
