@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProjectEPI.Data;
+﻿using ProjectEPI.Data;
 
 namespace ProjectEPI.Services
 {
@@ -11,9 +6,9 @@ namespace ProjectEPI.Services
     {
         private readonly DatabaseManager _databaseManager;
 
-        public SectorService()
+        public SectorService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager;
         }
 
         public List<SectorData> GetSectors()

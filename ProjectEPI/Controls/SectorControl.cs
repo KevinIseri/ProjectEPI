@@ -2,19 +2,22 @@
 using ProjectEPI.Data;
 using ProjectEPI.Services;
 
-namespace ProjectEPI
+namespace ProjectEPI.Controls
 {
-    public partial class SectorPage : Form
+    public partial class SectorControl : UserControl
     {
-        private readonly DatabaseManager _databaseService;
-        private readonly SectorService _sectorService;
+        private DatabaseManager _databaseService;
+        private SectorService _sectorService;
 
-        public SectorPage()
+        public SectorControl()
         {
             InitializeComponent();
+        }
 
-            _databaseService = new DatabaseManager();
-            //_sectorService = new SectorService();
+        public void InitializeServices(DatabaseManager databaseService, SectorService sectorService)
+        {
+            _databaseService = databaseService;
+            _sectorService = sectorService;
 
             ShowSectorsGrid();
         }
@@ -22,14 +25,14 @@ namespace ProjectEPI
         public void ShowSectorsGrid()
         {
             List<SectorData> sectors = _sectorService.GetSectors();
-            DataGridViewSectors.DataSource = sectors;
+            dataGridView1.DataSource = sectors;
         }
 
-        private void DataGridViewSectorsCellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             {
-                DataGridViewRow row = DataGridViewSectors.Rows[e.RowIndex];
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
                 TextBoxId.Text = row.Cells[0].Value.ToString();
                 TextBoxName.Text = row.Cells[1].Value.ToString();
@@ -42,7 +45,7 @@ namespace ProjectEPI
             TextBoxName.Text = "";
         }
 
-        private void ButtonAddClick(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
             if (ValidadeFilledFields())
             {
@@ -61,7 +64,7 @@ namespace ProjectEPI
             }
         }
 
-        private void ButtonUpdateClick(object sender, EventArgs e)
+        private void ButtonUpdate_Click(object sender, EventArgs e)
         {
             if (ValidadeFilledFields() && ConfirmAction("atualizar", TextBoxId.Text))
             {
@@ -80,7 +83,7 @@ namespace ProjectEPI
             }
         }
 
-        private void ButtonDeleteClick(object sender, EventArgs e)
+        private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (ValidadeFilledFields() && ConfirmAction("deletar", TextBoxId.Text))
             {
@@ -97,7 +100,7 @@ namespace ProjectEPI
             }
         }
 
-        private void ButtonClearClick(object sender, EventArgs e)
+        private void ButtonClear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }

@@ -42,13 +42,11 @@ namespace ProjectEPI
                     username = txtUser.Text;
                     userPassword = txtPassword.Text;
 
-                    // add page that needed to be load next
                     MessageBox.Show("Login success", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //Menuform form2 = new Menuform();
-                    //form2.show();
+                    MainPage mainPage = new();
+                    mainPage.Show();
                     this.Hide();
-
                 }
                 else
                 {
