@@ -37,6 +37,7 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
+            equipmentControl1 = new Controls.EquipmentControl();
             sectorControl1 = new Controls.SectorControl();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -52,6 +53,7 @@
             button4.TabIndex = 3;
             button4.Text = "Equipamentos";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += EquipmentsButtonClick;
             // 
             // button3
             // 
@@ -72,7 +74,7 @@
             SectorButton.TabIndex = 2;
             SectorButton.Text = "Setores";
             SectorButton.UseVisualStyleBackColor = true;
-            SectorButton.Click += SectorButtonClick;
+            SectorButton.Click += SectorsButtonClick;
             // 
             // button1
             // 
@@ -119,12 +121,20 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(equipmentControl1);
             panel3.Controls.Add(sectorControl1);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(200, 25);
             panel3.Name = "panel3";
             panel3.Size = new Size(900, 575);
             panel3.TabIndex = 6;
+            // 
+            // equipmentControl1
+            // 
+            equipmentControl1.Location = new Point(0, 0);
+            equipmentControl1.Name = "equipmentControl1";
+            equipmentControl1.Size = new Size(900, 575);
+            equipmentControl1.TabIndex = 1;
             // 
             // sectorControl1
             // 
@@ -160,5 +170,6 @@
         private Panel panel2;
         private Panel panel3;
         private Controls.SectorControl sectorControl1;
+        private Controls.EquipmentControl equipmentControl1;
     }
 }

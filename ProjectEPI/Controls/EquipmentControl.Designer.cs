@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
+            FieldEquipmentStatus = new ComboBox();
             FieldEquipmentMaturityDate = new DateTimePicker();
             LabelEquipmentMaturityDate = new Label();
             FieldEquipmentSector = new ComboBox();
             LabelEquipmentoSector = new Label();
             FieldEquipmentIsActive = new CheckBox();
             LabelEquipmentStatus = new Label();
-            FieldEquipmentStatus = new TextBox();
             LabelEquipmentDescription = new Label();
             FieldEquipmentDescription = new TextBox();
             LabelEquipmentCA = new Label();
@@ -59,13 +59,13 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonHighlight;
+            panel2.Controls.Add(FieldEquipmentStatus);
             panel2.Controls.Add(FieldEquipmentMaturityDate);
             panel2.Controls.Add(LabelEquipmentMaturityDate);
             panel2.Controls.Add(FieldEquipmentSector);
             panel2.Controls.Add(LabelEquipmentoSector);
             panel2.Controls.Add(FieldEquipmentIsActive);
             panel2.Controls.Add(LabelEquipmentStatus);
-            panel2.Controls.Add(FieldEquipmentStatus);
             panel2.Controls.Add(LabelEquipmentDescription);
             panel2.Controls.Add(FieldEquipmentDescription);
             panel2.Controls.Add(LabelEquipmentCA);
@@ -82,6 +82,15 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(745, 202);
             panel2.TabIndex = 6;
+            // 
+            // FieldEquipmentStatus
+            // 
+            FieldEquipmentStatus.FormattingEnabled = true;
+            FieldEquipmentStatus.Items.AddRange(new object[] { "Em conformidade", "A vencer", "Vencido" });
+            FieldEquipmentStatus.Location = new Point(82, 64);
+            FieldEquipmentStatus.Name = "FieldEquipmentStatus";
+            FieldEquipmentStatus.Size = new Size(121, 23);
+            FieldEquipmentStatus.TabIndex = 29;
             // 
             // FieldEquipmentMaturityDate
             // 
@@ -134,16 +143,9 @@
             LabelEquipmentStatus.AutoSize = true;
             LabelEquipmentStatus.Location = new Point(21, 67);
             LabelEquipmentStatus.Name = "LabelEquipmentStatus";
-            LabelEquipmentStatus.Size = new Size(55, 15);
+            LabelEquipmentStatus.Size = new Size(42, 15);
             LabelEquipmentStatus.TabIndex = 21;
-            LabelEquipmentStatus.Text = "Situação:";
-            // 
-            // FieldEquipmentStatus
-            // 
-            FieldEquipmentStatus.Location = new Point(77, 64);
-            FieldEquipmentStatus.Name = "FieldEquipmentStatus";
-            FieldEquipmentStatus.Size = new Size(127, 23);
-            FieldEquipmentStatus.TabIndex = 20;
+            LabelEquipmentStatus.Text = "Status:";
             // 
             // LabelEquipmentDescription
             // 
@@ -227,6 +229,7 @@
             ButtonAdd.TabIndex = 10;
             ButtonAdd.Text = "Adicionar";
             ButtonAdd.UseVisualStyleBackColor = true;
+            ButtonAdd.Click += ButtonAdd_Click;
             // 
             // ButtonDelete
             // 
@@ -302,7 +305,6 @@
         private Label LabelEquipmentoSector;
         private CheckBox FieldEquipmentIsActive;
         private Label LabelEquipmentStatus;
-        private TextBox FieldEquipmentStatus;
         private Label LabelEquipmentDescription;
         private TextBox FieldEquipmentDescription;
         private Label LabelEquipmentCA;
@@ -318,5 +320,6 @@
         private Panel panel1;
         private Label LabelGridEquipmentTitle;
         private DataGridView EquipmentDataGridView;
+        private ComboBox FieldEquipmentStatus;
     }
 }
