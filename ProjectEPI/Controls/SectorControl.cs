@@ -25,24 +25,24 @@ namespace ProjectEPI.Controls
         public void ShowSectorsGrid()
         {
             List<SectorData> sectors = _sectorService.GetSectors();
-            dataGridView1.DataSource = sectors;
+            SectorDataGridView.DataSource = sectors;
         }
 
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             {
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = SectorDataGridView.Rows[e.RowIndex];
 
-                TextBoxId.Text = row.Cells[0].Value.ToString();
-                TextBoxName.Text = row.Cells[1].Value.ToString();
+                FieldSectorId.Text = row.Cells[0].Value.ToString();
+                FieldTextName.Text = row.Cells[1].Value.ToString();
             }
         }
 
         public void ClearFields()
         {
-            TextBoxId.Text = "";
-            TextBoxName.Text = "";
+            FieldSectorId.Text = "";
+            FieldTextName.Text = "";
         }
 
         private void ButtonAddClick(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace ProjectEPI.Controls
 
                 _databaseService.ExecuteNonQuery(queryInsert, cmd =>
                 {
-                    cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@name", FieldTextName.Text.Trim());
                     cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
                 });
 
@@ -66,14 +66,14 @@ namespace ProjectEPI.Controls
 
         private void ButtonUpdateClick(object sender, EventArgs e)
         {
-            if (ValidadeFilledFields() && ConfirmAction("atualizar", TextBoxId.Text))
+            if (ValidadeFilledFields() && ConfirmAction("atualizar", FieldSectorId.Text))
             {
                 var queryUpdate = "UPDATE public.sectors SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
 
                 _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
                 {
-                    cmd.Parameters.AddWithValue("@name", TextBoxName.Text.Trim());
-                    cmd.Parameters.AddWithValue("@id", int.Parse(TextBoxId.Text));
+                    cmd.Parameters.AddWithValue("@name", FieldTextName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@id", int.Parse(FieldSectorId.Text));
                     cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
                 });
 
@@ -85,13 +85,13 @@ namespace ProjectEPI.Controls
 
         private void ButtonDeleteClick(object sender, EventArgs e)
         {
-            if (ValidadeFilledFields() && ConfirmAction("deletar", TextBoxId.Text))
+            if (ValidadeFilledFields() && ConfirmAction("deletar", FieldSectorId.Text))
             {
                 var queryDelete = "DELETE FROM public.sectors WHERE id=@id;";
 
                 _databaseService.ExecuteNonQuery(queryDelete, cmd =>
                 {
-                    cmd.Parameters.AddWithValue("@id", int.Parse(TextBoxId.Text));
+                    cmd.Parameters.AddWithValue("@id", int.Parse(FieldSectorId.Text));
                 });
 
                 ShowSectorsGrid();
@@ -107,7 +107,7 @@ namespace ProjectEPI.Controls
 
         private bool ValidadeFilledFields()
         {
-            if (TextBoxName.Text.IsNullOrEmpty())
+            if (FieldTextName.Text.IsNullOrEmpty())
             {
                 MessageBox.Show("Por favor, preencha o campo antes de salvar.",
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);

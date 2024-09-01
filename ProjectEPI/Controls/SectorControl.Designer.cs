@@ -29,61 +29,61 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            labelGridTitle = new Label();
-            dataGridView1 = new DataGridView();
+            LabelGridSectorTitle = new Label();
+            SectorDataGridView = new DataGridView();
             panel2 = new Panel();
-            TextBoxId = new TextBox();
-            labelId = new Label();
-            labelSectorName = new Label();
-            TextBoxName = new TextBox();
+            FieldSectorId = new TextBox();
+            LabelSectorId = new Label();
+            LabelSectorName = new Label();
+            FieldTextName = new TextBox();
             ButtonClear = new Button();
             ButtonAdd = new Button();
             ButtonDelete = new Button();
             ButtonUpdate = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SectorDataGridView).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
-            panel1.Controls.Add(labelGridTitle);
-            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(LabelGridSectorTitle);
+            panel1.Controls.Add(SectorDataGridView);
             panel1.Location = new Point(40, 37);
             panel1.Name = "panel1";
             panel1.Size = new Size(745, 202);
             panel1.TabIndex = 0;
             // 
-            // labelGridTitle
+            // LabelGridSectorTitle
             // 
-            labelGridTitle.AutoSize = true;
-            labelGridTitle.Font = new Font("Tahoma", 14F);
-            labelGridTitle.Location = new Point(21, 20);
-            labelGridTitle.Name = "labelGridTitle";
-            labelGridTitle.Size = new Size(72, 23);
-            labelGridTitle.TabIndex = 2;
-            labelGridTitle.Text = "Setores";
+            LabelGridSectorTitle.AutoSize = true;
+            LabelGridSectorTitle.Font = new Font("Tahoma", 14F);
+            LabelGridSectorTitle.Location = new Point(21, 20);
+            LabelGridSectorTitle.Name = "LabelGridSectorTitle";
+            LabelGridSectorTitle.Size = new Size(72, 23);
+            LabelGridSectorTitle.TabIndex = 2;
+            LabelGridSectorTitle.Text = "Setores";
             // 
-            // dataGridView1
+            // SectorDataGridView
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(21, 60);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(691, 111);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellClick += DataGridView1CellClick;
+            SectorDataGridView.AllowUserToAddRows = false;
+            SectorDataGridView.AllowUserToDeleteRows = false;
+            SectorDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            SectorDataGridView.Location = new Point(21, 60);
+            SectorDataGridView.Name = "SectorDataGridView";
+            SectorDataGridView.ReadOnly = true;
+            SectorDataGridView.Size = new Size(691, 111);
+            SectorDataGridView.TabIndex = 0;
+            SectorDataGridView.CellClick += DataGridView1CellClick;
             // 
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonHighlight;
-            panel2.Controls.Add(TextBoxId);
-            panel2.Controls.Add(labelId);
-            panel2.Controls.Add(labelSectorName);
-            panel2.Controls.Add(TextBoxName);
+            panel2.Controls.Add(FieldSectorId);
+            panel2.Controls.Add(LabelSectorId);
+            panel2.Controls.Add(LabelSectorName);
+            panel2.Controls.Add(FieldTextName);
             panel2.Controls.Add(ButtonClear);
             panel2.Controls.Add(ButtonAdd);
             panel2.Controls.Add(ButtonDelete);
@@ -93,38 +93,38 @@
             panel2.Size = new Size(745, 202);
             panel2.TabIndex = 1;
             // 
-            // TextBoxId
+            // FieldSectorId
             // 
-            TextBoxId.Location = new Point(48, 22);
-            TextBoxId.Name = "TextBoxId";
-            TextBoxId.ReadOnly = true;
-            TextBoxId.Size = new Size(127, 23);
-            TextBoxId.TabIndex = 17;
+            FieldSectorId.Location = new Point(48, 22);
+            FieldSectorId.Name = "FieldSectorId";
+            FieldSectorId.ReadOnly = true;
+            FieldSectorId.Size = new Size(127, 23);
+            FieldSectorId.TabIndex = 17;
             // 
-            // labelId
+            // LabelSectorId
             // 
-            labelId.AutoSize = true;
-            labelId.Location = new Point(22, 25);
-            labelId.Name = "labelId";
-            labelId.Size = new Size(20, 15);
-            labelId.TabIndex = 16;
-            labelId.Text = "Id:";
+            LabelSectorId.AutoSize = true;
+            LabelSectorId.Location = new Point(22, 25);
+            LabelSectorId.Name = "LabelSectorId";
+            LabelSectorId.Size = new Size(20, 15);
+            LabelSectorId.TabIndex = 16;
+            LabelSectorId.Text = "Id:";
             // 
-            // labelSectorName
+            // LabelSectorName
             // 
-            labelSectorName.AutoSize = true;
-            labelSectorName.Location = new Point(179, 25);
-            labelSectorName.Name = "labelSectorName";
-            labelSectorName.Size = new Size(43, 15);
-            labelSectorName.TabIndex = 15;
-            labelSectorName.Text = "Nome:";
+            LabelSectorName.AutoSize = true;
+            LabelSectorName.Location = new Point(179, 25);
+            LabelSectorName.Name = "LabelSectorName";
+            LabelSectorName.Size = new Size(43, 15);
+            LabelSectorName.TabIndex = 15;
+            LabelSectorName.Text = "Nome:";
             // 
-            // TextBoxName
+            // FieldTextName
             // 
-            TextBoxName.Location = new Point(225, 22);
-            TextBoxName.Name = "TextBoxName";
-            TextBoxName.Size = new Size(127, 23);
-            TextBoxName.TabIndex = 14;
+            FieldTextName.Location = new Point(225, 22);
+            FieldTextName.Name = "FieldTextName";
+            FieldTextName.Size = new Size(127, 23);
+            FieldTextName.TabIndex = 14;
             // 
             // ButtonClear
             // 
@@ -176,7 +176,7 @@
             Size = new Size(900, 575);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SectorDataGridView).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -186,15 +186,15 @@
 
         private Panel panel1;
         private Panel panel2;
-        private DataGridView dataGridView1;
+        private DataGridView SectorDataGridView;
         private Button ButtonClear;
         private Button ButtonAdd;
         private Button ButtonDelete;
         private Button ButtonUpdate;
-        private TextBox TextBoxId;
-        private Label labelId;
-        private Label labelSectorName;
-        private TextBox TextBoxName;
-        private Label labelGridTitle;
+        private TextBox FieldSectorId;
+        private Label LabelSectorId;
+        private Label LabelSectorName;
+        private TextBox FieldTextName;
+        private Label LabelGridSectorTitle;
     }
 }
