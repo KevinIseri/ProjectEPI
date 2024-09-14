@@ -2,36 +2,36 @@
 
 namespace ProjectEPI.Services
 {
-    public class SectorService
+    public class EquipmentService
     {
         private readonly DatabaseManager _databaseManager;
 
-        public SectorService(DatabaseManager databaseManager)
+        public EquipmentService(DatabaseManager databaseManager)
         {
             _databaseManager = databaseManager;
         }
 
-        public List<SectorData> GetSectors()
+        public List<EquipmentData> GetEquipments()
         {
-            var query = "SELECT * FROM sectors ORDER BY id ASC";
-           
+            var query = "SELECT * FROM equipments ORDER BY id ASC";
+
             return _databaseManager.ExecuteScalar(query, cmd =>
             {
-                var sectors = new List<SectorData>();
+                var equipments = new List<EquipmentData>();
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var sector = new SectorData
+                        var equipment = new EquipmentData
                         {
                             Id = (long)reader["id"],
                             Name = reader["name"].ToString()
                         };
-                        sectors.Add(sector);
+                        equipments.Add(equipment);
                     }
                 }
 
-                return sectors;
+                return equipments;
             });
         }
     }

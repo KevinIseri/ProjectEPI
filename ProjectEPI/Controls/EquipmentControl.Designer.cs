@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
+            FieldEquipmentSectors = new CheckedListBox();
             FieldEquipmentStatus = new ComboBox();
             FieldEquipmentMaturityDate = new DateTimePicker();
             LabelEquipmentMaturityDate = new Label();
-            FieldEquipmentSector = new ComboBox();
             LabelEquipmentoSector = new Label();
             FieldEquipmentIsActive = new CheckBox();
             LabelEquipmentStatus = new Label();
@@ -59,10 +59,10 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonHighlight;
+            panel2.Controls.Add(FieldEquipmentSectors);
             panel2.Controls.Add(FieldEquipmentStatus);
             panel2.Controls.Add(FieldEquipmentMaturityDate);
             panel2.Controls.Add(LabelEquipmentMaturityDate);
-            panel2.Controls.Add(FieldEquipmentSector);
             panel2.Controls.Add(LabelEquipmentoSector);
             panel2.Controls.Add(FieldEquipmentIsActive);
             panel2.Controls.Add(LabelEquipmentStatus);
@@ -82,6 +82,15 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(745, 202);
             panel2.TabIndex = 6;
+            // 
+            // FieldEquipmentSectors
+            // 
+            FieldEquipmentSectors.FormattingEnabled = true;
+            FieldEquipmentSectors.Location = new Point(300, 100);
+            FieldEquipmentSectors.Name = "FieldEquipmentSectors";
+            FieldEquipmentSectors.Size = new Size(303, 58);
+            FieldEquipmentSectors.TabIndex = 30;
+            FieldEquipmentSectors.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
             // 
             // FieldEquipmentStatus
             // 
@@ -107,14 +116,6 @@
             LabelEquipmentMaturityDate.Size = new Size(54, 15);
             LabelEquipmentMaturityDate.TabIndex = 27;
             LabelEquipmentMaturityDate.Text = "Validade:";
-            // 
-            // FieldEquipmentSector
-            // 
-            FieldEquipmentSector.FormattingEnabled = true;
-            FieldEquipmentSector.Location = new Point(343, 64);
-            FieldEquipmentSector.Name = "FieldEquipmentSector";
-            FieldEquipmentSector.Size = new Size(121, 23);
-            FieldEquipmentSector.TabIndex = 26;
             // 
             // LabelEquipmentoSector
             // 
@@ -214,7 +215,7 @@
             // 
             // ButtonClear
             // 
-            ButtonClear.Location = new Point(524, 137);
+            ButtonClear.Location = new Point(516, 164);
             ButtonClear.Name = "ButtonClear";
             ButtonClear.Size = new Size(75, 23);
             ButtonClear.TabIndex = 13;
@@ -223,17 +224,17 @@
             // 
             // ButtonAdd
             // 
-            ButtonAdd.Location = new Point(129, 137);
+            ButtonAdd.Location = new Point(121, 164);
             ButtonAdd.Name = "ButtonAdd";
             ButtonAdd.Size = new Size(75, 23);
             ButtonAdd.TabIndex = 10;
             ButtonAdd.Text = "Adicionar";
             ButtonAdd.UseVisualStyleBackColor = true;
-            ButtonAdd.Click += ButtonAdd_Click;
+            ButtonAdd.Click += ButtonAddClick;
             // 
             // ButtonDelete
             // 
-            ButtonDelete.Location = new Point(398, 137);
+            ButtonDelete.Location = new Point(390, 164);
             ButtonDelete.Name = "ButtonDelete";
             ButtonDelete.Size = new Size(75, 23);
             ButtonDelete.TabIndex = 12;
@@ -242,7 +243,7 @@
             // 
             // ButtonUpdate
             // 
-            ButtonUpdate.Location = new Point(262, 137);
+            ButtonUpdate.Location = new Point(254, 164);
             ButtonUpdate.Name = "ButtonUpdate";
             ButtonUpdate.Size = new Size(75, 23);
             ButtonUpdate.TabIndex = 11;
@@ -301,7 +302,6 @@
         private Panel panel2;
         private DateTimePicker FieldEquipmentMaturityDate;
         private Label LabelEquipmentMaturityDate;
-        private ComboBox FieldEquipmentSector;
         private Label LabelEquipmentoSector;
         private CheckBox FieldEquipmentIsActive;
         private Label LabelEquipmentStatus;
@@ -321,5 +321,6 @@
         private Label LabelGridEquipmentTitle;
         private DataGridView EquipmentDataGridView;
         private ComboBox FieldEquipmentStatus;
+        private CheckedListBox FieldEquipmentSectors;
     }
 }

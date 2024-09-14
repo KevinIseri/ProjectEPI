@@ -22,9 +22,9 @@ namespace ProjectEPI.Controls
             ShowSectorsGrid();
         }
 
-        public void ShowSectorsGrid()
+        private void ShowSectorsGrid()
         {
-            List<SectorData> sectors = _sectorService.GetSectors();
+            var sectors = _sectorService.GetSectors();
             SectorDataGridView.DataSource = sectors;
         }
 
@@ -39,7 +39,7 @@ namespace ProjectEPI.Controls
             }
         }
 
-        public void ClearFields()
+        private void ClearFields()
         {
             FieldSectorId.Text = "";
             FieldTextName.Text = "";

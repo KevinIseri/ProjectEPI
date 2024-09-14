@@ -2,8 +2,8 @@
 {
     public class SectorData
     {
-        public long Id { get; set; } // mudar pra long
-        public string? Name { get; set; }
-        //public List<EquipmentData>
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public List<EquipmentData>? Equipments {get; set;}
     }
 }
