@@ -10,7 +10,7 @@ namespace ProjectEPI.Controls
         private EquipmentService _equipmentService;
         private SectorService _sectorService;
 
-        private List<long> _selectedSectorIds = new List<long>();
+        private readonly List<long> _selectedSectorIds = new();
 
         public EquipmentControl()
         {
@@ -18,7 +18,7 @@ namespace ProjectEPI.Controls
             FieldEquipmentSectors.ItemCheck += FieldEquipmentSectorsItemCheck;
         }
 
-        public void InitializeServices(DatabaseManager databaseService, EquipmentService equipmentService,SectorService sectorService)
+        public void InitializeServices(DatabaseManager databaseService, EquipmentService equipmentService, SectorService sectorService)
         {
             _databaseService = databaseService;
             _equipmentService = equipmentService;
@@ -45,8 +45,23 @@ namespace ProjectEPI.Controls
 
         private void ShowEquipmentsGrid()
         {
-            var sectors = _equipmentService.GetEquipments();
-            EquipmentDataGridView.DataSource = sectors;
+            var equipments = _equipmentService.GetEquipments();
+
+            EquipmentDataGridView.DataSource = equipments;
+
+            if (!EquipmentDataGridView.Columns.Contains("SectorsDisplay"))
+            {
+                var sectorsColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "SectorsDisplay",
+                    HeaderText = "Setores",
+                    DataPropertyName = "SectorsDisplay"
+                };
+                EquipmentDataGridView.Columns.Add(sectorsColumn);
+            }
+
+            EquipmentDataGridView.Columns["MaturityDate"].HeaderText = "Vencimento";
+            EquipmentDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
         }
 
         private void ButtonAddClick(object sender, EventArgs e)
@@ -85,10 +100,52 @@ namespace ProjectEPI.Controls
             }
         }
 
+        private void ButtonUpdateClick(object sender, EventArgs e)
+        {
+            if (ValidadeFilledFields() && ConfirmAction("atualizar", FieldEquipmentId.Text))
+            {
+                var queryUpdate = "UPDATE public.equipments SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
+
+                _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
+                {
+                    cmd.Parameters.AddWithValue("@name", FieldEquipmentName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@id", int.Parse(FieldEquipmentId.Text));
+                    cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
+                });
+
+                ShowEquipmentsGrid();
+                ClearFields();
+                MessageBox.Show("Setor atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void ClearFields()
         {
             FieldEquipmentName.Text = "";
-            _selectedSectorIds.Clear();
+            FieldEquipmentCA.Text = "";
+            FieldEquipmentDescription.Text = "";
+            FieldEquipmentIsActive.Text = "";
+            FieldEquipmentName.Text = "";
+            FieldEquipmentStatus.Text = "";
+            _selectedSectorIds.Clear(); // nao esta removendo
+        }
+
+        private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
+        {  
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow row = EquipmentDataGridView.Rows[e.RowIndex];
+
+                FieldEquipmentId.Text = row.Cells["id"].Value.ToString();
+                FieldEquipmentName.Text = row.Cells["name"].Value.ToString();
+                FieldEquipmentCA.Text = row.Cells["ca"].Value.ToString();
+                FieldEquipmentDescription.Text = row.Cells["description"].Value.ToString();
+                FieldEquipmentIsActive.Checked = (bool)row.Cells["isactive"].Value;
+                FieldEquipmentStatus.Text = row.Cells["status"].Value.ToString();
+                //FieldEquipmentSectors.Text = ;
+                FieldEquipmentMaturityDate.Value = (DateTime)row.Cells["maturitydate"].Value;
+
+            }
         }
 
         private void FieldEquipmentSectorsItemCheck(object sender, ItemCheckEventArgs e)
@@ -131,5 +188,11 @@ namespace ProjectEPI.Controls
             return true;
         }
 
+        // CommonService
+        private static bool ConfirmAction(string action, string id)
+        {
+            var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            return confirmation == DialogResult.Yes;
+        }
     }
 }

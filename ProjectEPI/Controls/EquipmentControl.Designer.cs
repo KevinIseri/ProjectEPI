@@ -248,6 +248,7 @@
             ButtonUpdate.TabIndex = 11;
             ButtonUpdate.Text = "Atualizar";
             ButtonUpdate.UseVisualStyleBackColor = true;
+            ButtonUpdate.Click += ButtonUpdateClick;
             // 
             // panel1
             // 
@@ -279,6 +280,7 @@
             EquipmentDataGridView.ReadOnly = true;
             EquipmentDataGridView.Size = new Size(691, 111);
             EquipmentDataGridView.TabIndex = 0;
+            EquipmentDataGridView.CellClick += DataGridView1CellClick;
             // 
             // EquipmentControl
             // 

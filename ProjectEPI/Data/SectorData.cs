@@ -4,6 +4,6 @@
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public List<EquipmentData>? Equipments {get; set;}
+        public virtual List<EquipmentData>? Equipments {get; set;}
     }
 }

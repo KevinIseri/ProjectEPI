@@ -34,8 +34,8 @@ namespace ProjectEPI.Controls
             {
                 DataGridViewRow row = SectorDataGridView.Rows[e.RowIndex];
 
-                FieldSectorId.Text = row.Cells[0].Value.ToString();
-                FieldTextName.Text = row.Cells[1].Value.ToString();
+                FieldSectorId.Text = row.Cells["id"].Value.ToString();
+                FieldTextName.Text = row.Cells["name"].Value.ToString();
             }
         }
 
