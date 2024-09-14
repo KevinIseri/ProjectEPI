@@ -10,6 +10,8 @@ namespace ProjectEPI.Controls
         private EquipmentService _equipmentService;
         private SectorService _sectorService;
 
+        private List<long> _selectedSectorIds = new List<long>();
+
         public EquipmentControl()
         {
             InitializeComponent();
@@ -29,17 +31,16 @@ namespace ProjectEPI.Controls
         private void ShowSectorsButton()
         {
             FieldEquipmentSectors.Items.Clear();
+            FieldEquipmentSectors.Tag = new Dictionary<string, SectorData>();
 
             var sectors = _sectorService.GetSectors();
-
-            var sectorDictionary = new Dictionary<string, SectorData>();
+            var sectorDictionary = (Dictionary<string, SectorData>)FieldEquipmentSectors.Tag;
 
             foreach (var sector in sectors)
             {
                 FieldEquipmentSectors.Items.Add(sector.Name);
                 sectorDictionary[sector.Name] = sector;
             }
-
         }
 
         private void ShowEquipmentsGrid()
@@ -50,21 +51,33 @@ namespace ProjectEPI.Controls
 
         private void ButtonAddClick(object sender, EventArgs e)
         {
-            foreach (var item in FieldEquipmentSectors.CheckedItems)
-            {
-                Console.WriteLine($"Item selecionado: {item}");
-            }
-
             if (ValidadeFilledFields())
             {
-                var queryInsert = "INSERT INTO public.equipments\r\n(id, ca, description, isactive, \"name\", status, maturity_date, created_date, updated_date) " +
-                        "VALUES(nextval('equipments_id_seq'::regclass), @ca, @description, true, @name, @status, @maturitydate, @created_date, NULL);";
+                var queryInsert = "INSERT INTO public.equipments\r\n(id, ca, description, isactive, \"name\", status, maturity_date,created_date, updated_date) " +
+                        "VALUES(nextval('equipments_id_seq'::regclass), @ca, @description, true, @name, @status, @maturitydate, @createdDate, NULL)" +
+                        "RETURNING id;";
 
-                _databaseService.ExecuteNonQuery(queryInsert, cmd =>
+                long equipmentId = _databaseService.ExecuteScalar<long>(queryInsert, cmd =>
                 {
-                    cmd.Parameters.AddWithValue("@name", FieldEquipmentName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@ca", FieldEquipmentCA.Text);
+                    cmd.Parameters.AddWithValue("@description", FieldEquipmentDescription.Text);
+                    cmd.Parameters.AddWithValue("@isactive", FieldEquipmentIsActive.Text);
+                    cmd.Parameters.AddWithValue("@name", FieldEquipmentName.Text);
+                    cmd.Parameters.AddWithValue("@status", FieldEquipmentStatus.Text);
+                    cmd.Parameters.AddWithValue("@maturitydate", FieldEquipmentMaturityDate.Value);
                     cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
                 });
+
+                foreach (var sectorId in _selectedSectorIds)
+                {
+                    var queryInsertEquipmentSector = "INSERT INTO EquipmentSector (EquipmentId, SectorId) VALUES (@equipmentId, @sectorId);";
+
+                    _databaseService.ExecuteNonQuery(queryInsertEquipmentSector, cmd =>
+                    {
+                        cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
+                        cmd.Parameters.AddWithValue("@sectorId", sectorId);
+                    });
+                }
 
                 ShowEquipmentsGrid();
                 ClearFields();
@@ -72,27 +85,36 @@ namespace ProjectEPI.Controls
             }
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void ClearFields()
         {
             FieldEquipmentName.Text = "";
+            _selectedSectorIds.Clear();
         }
 
         private void FieldEquipmentSectorsItemCheck(object sender, ItemCheckEventArgs e)
         {
-            string sectorName = FieldEquipmentSectors.Items[e.Index].ToString();
-            bool isChecked = e.NewValue == CheckState.Checked;
+            var sectorDictionary = (Dictionary<string, SectorData>)FieldEquipmentSectors.Tag;
+            var sectorName = FieldEquipmentSectors.Items[e.Index].ToString();
 
-            if (isChecked)
+            if (sectorDictionary.TryGetValue(sectorName, out var sector))
             {
-                Console.WriteLine($"Setor marcado: {sectorName}");
-            }
-            else
-            {
-                Console.WriteLine($"Setor desmarcado: {sectorName}");
+                long sectorId = sector.Id;
+                bool isChecked = e.NewValue == CheckState.Checked;
+
+                if (isChecked)
+                {
+                    if (!_selectedSectorIds.Contains(sectorId))
+                    {
+                        _selectedSectorIds.Add(sectorId);
+                    }
+                }
+                else
+                {
+                    if (_selectedSectorIds.Contains(sectorId))
+                    {
+                        _selectedSectorIds.Remove(sectorId);
+                    }
+                }
             }
         }
 

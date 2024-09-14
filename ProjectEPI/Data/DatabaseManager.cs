@@ -51,5 +51,32 @@ namespace ProjectEPI.Data
 
             }
         }
+
+        public T ExecuteScalar<T>(string query, Action<NpgsqlCommand> parameterize)
+        {
+            using (var conn = new NpgsqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand(query, conn))
+                    {
+                        // Aplica os parâmetros à query (passados como uma ação)
+                        parameterize(cmd);
+
+                        // Executa o comando e captura o valor retornado pela query
+                        object result = cmd.ExecuteScalar();
+
+                        // Converte o resultado para o tipo genérico T (por exemplo, long)
+                        return (T)Convert.ChangeType(result, typeof(T));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error executing scalar query: ", ex);
+                }
+            }
+        }
+
     }
 }

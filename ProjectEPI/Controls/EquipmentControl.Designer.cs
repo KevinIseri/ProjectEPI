@@ -90,7 +90,6 @@
             FieldEquipmentSectors.Name = "FieldEquipmentSectors";
             FieldEquipmentSectors.Size = new Size(303, 58);
             FieldEquipmentSectors.TabIndex = 30;
-            FieldEquipmentSectors.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
             // 
             // FieldEquipmentStatus
             // 
