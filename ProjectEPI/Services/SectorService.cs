@@ -24,7 +24,7 @@ namespace ProjectEPI.Services
                     {
                         var sector = new SectorData
                         {
-                            Id = (int)reader["id"],
+                            Id = (long)reader["id"],
                             Name = reader["name"].ToString()
                         };
                         sectors.Add(sector);

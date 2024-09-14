@@ -37,8 +37,8 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
-            equipmentControl1 = new Controls.EquipmentControl();
             sectorControl1 = new Controls.SectorControl();
+            equipmentControl1 = new Controls.EquipmentControl();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -129,19 +129,19 @@
             panel3.Size = new Size(900, 575);
             panel3.TabIndex = 6;
             // 
-            // equipmentControl1
-            // 
-            equipmentControl1.Location = new Point(0, 0);
-            equipmentControl1.Name = "equipmentControl1";
-            equipmentControl1.Size = new Size(900, 575);
-            equipmentControl1.TabIndex = 1;
-            // 
             // sectorControl1
             // 
             sectorControl1.Location = new Point(0, 0);
             sectorControl1.Name = "sectorControl1";
             sectorControl1.Size = new Size(900, 575);
             sectorControl1.TabIndex = 0;
+            // 
+            // equipmentControl1
+            // 
+            equipmentControl1.Location = new Point(0, -3);
+            equipmentControl1.Name = "equipmentControl1";
+            equipmentControl1.Size = new Size(900, 575);
+            equipmentControl1.TabIndex = 1;
             // 
             // MainPage
             // 
