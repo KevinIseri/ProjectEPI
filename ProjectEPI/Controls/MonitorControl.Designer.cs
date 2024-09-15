@@ -29,21 +29,32 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            MonitorDataGridView = new DataGridView();
             LabelGridMonitorTitle = new Label();
-            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)MonitorDataGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.Window;
-            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(MonitorDataGridView);
             panel1.Controls.Add(LabelGridMonitorTitle);
-            panel1.Location = new Point(77, 35);
+            panel1.Location = new Point(21, 35);
             panel1.Name = "panel1";
-            panel1.Size = new Size(748, 461);
+            panel1.Size = new Size(856, 461);
             panel1.TabIndex = 0;
+            // 
+            // MonitorDataGridView
+            // 
+            MonitorDataGridView.AllowUserToAddRows = false;
+            MonitorDataGridView.AllowUserToDeleteRows = false;
+            MonitorDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            MonitorDataGridView.Location = new Point(25, 77);
+            MonitorDataGridView.Name = "MonitorDataGridView";
+            MonitorDataGridView.ReadOnly = true;
+            MonitorDataGridView.Size = new Size(813, 343);
+            MonitorDataGridView.TabIndex = 1;
             // 
             // LabelGridMonitorTitle
             // 
@@ -55,17 +66,6 @@
             LabelGridMonitorTitle.TabIndex = 0;
             LabelGridMonitorTitle.Text = "Monitor";
             // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(25, 77);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(694, 343);
-            dataGridView1.TabIndex = 1;
-            // 
             // MonitorControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -75,7 +75,7 @@
             Size = new Size(900, 575);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)MonitorDataGridView).EndInit();
             ResumeLayout(false);
         }
 
@@ -83,6 +83,6 @@
 
         private Panel panel1;
         private Label LabelGridMonitorTitle;
-        private DataGridView dataGridView1;
+        private DataGridView MonitorDataGridView;
     }
 }
