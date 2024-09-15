@@ -45,6 +45,25 @@ namespace ProjectEPI.Controls
             FieldTextName.Text = "";
         }
 
+        private bool ValidadeFilledFields()
+        {
+            if (FieldTextName.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("Por favor, preencha o campo antes de salvar.",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool ConfirmAction(string action, string id)
+        {
+            var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            return confirmation == DialogResult.Yes;
+        }
+
         private void ButtonAddClick(object sender, EventArgs e)
         {
             if (ValidadeFilledFields())
@@ -103,25 +122,6 @@ namespace ProjectEPI.Controls
         private void ButtonClearClick(object sender, EventArgs e)
         {
             ClearFields();
-        }
-
-        private bool ValidadeFilledFields()
-        {
-            if (FieldTextName.Text.IsNullOrEmpty())
-            {
-                MessageBox.Show("Por favor, preencha o campo antes de salvar.",
-                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return false;
-            }
-
-            return true;
-        }
-
-        private static bool ConfirmAction(string action, string id)
-        {
-            var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            return confirmation == DialogResult.Yes;
         }
     }
 }

@@ -64,61 +64,6 @@ namespace ProjectEPI.Controls
             EquipmentDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
         }
 
-        private void ButtonAddClick(object sender, EventArgs e)
-        {
-            if (ValidadeFilledFields())
-            {
-                var queryInsert = "INSERT INTO public.equipments\r\n(id, ca, description, isactive, \"name\", status, maturity_date,created_date, updated_date) " +
-                        "VALUES(nextval('equipments_id_seq'::regclass), @ca, @description, true, @name, @status, @maturitydate, @createdDate, NULL)" +
-                        "RETURNING id;";
-
-                long equipmentId = _databaseService.ExecuteScalar<long>(queryInsert, cmd =>
-                {
-                    cmd.Parameters.AddWithValue("@ca", FieldEquipmentCA.Text);
-                    cmd.Parameters.AddWithValue("@description", FieldEquipmentDescription.Text);
-                    cmd.Parameters.AddWithValue("@isactive", FieldEquipmentIsActive.Text);
-                    cmd.Parameters.AddWithValue("@name", FieldEquipmentName.Text);
-                    cmd.Parameters.AddWithValue("@status", FieldEquipmentStatus.Text);
-                    cmd.Parameters.AddWithValue("@maturitydate", FieldEquipmentMaturityDate.Value);
-                    cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
-                });
-
-                foreach (var sectorId in _selectedSectorIds)
-                {
-                    var queryInsertEquipmentSector = "INSERT INTO EquipmentSector (EquipmentId, SectorId) VALUES (@equipmentId, @sectorId);";
-
-                    _databaseService.ExecuteNonQuery(queryInsertEquipmentSector, cmd =>
-                    {
-                        cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
-                        cmd.Parameters.AddWithValue("@sectorId", sectorId);
-                    });
-                }
-
-                ShowEquipmentsGrid();
-                ClearFields();
-                MessageBox.Show("Setor adicionado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void ButtonUpdateClick(object sender, EventArgs e)
-        {
-            if (ValidadeFilledFields() && ConfirmAction("atualizar", FieldEquipmentId.Text))
-            {
-                var queryUpdate = "UPDATE public.equipments SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
-
-                _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
-                {
-                    cmd.Parameters.AddWithValue("@name", FieldEquipmentName.Text.Trim());
-                    cmd.Parameters.AddWithValue("@id", int.Parse(FieldEquipmentId.Text));
-                    cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
-                });
-
-                ShowEquipmentsGrid();
-                ClearFields();
-                MessageBox.Show("Setor atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void ClearFields()
         {
             FieldEquipmentId.Text = "";
@@ -222,6 +167,61 @@ namespace ProjectEPI.Controls
         {
             var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             return confirmation == DialogResult.Yes;
+        }
+
+        private void ButtonAddClick(object sender, EventArgs e)
+        {
+            if (ValidadeFilledFields())
+            {
+                var queryInsert = "INSERT INTO public.equipments\r\n(id, ca, description, isactive, \"name\", status, maturity_date,created_date, updated_date) " +
+                        "VALUES(nextval('equipments_id_seq'::regclass), @ca, @description, true, @name, @status, @maturitydate, @createdDate, NULL)" +
+                        "RETURNING id;";
+
+                long equipmentId = _databaseService.ExecuteScalar<long>(queryInsert, cmd =>
+                {
+                    cmd.Parameters.AddWithValue("@ca", FieldEquipmentCA.Text);
+                    cmd.Parameters.AddWithValue("@description", FieldEquipmentDescription.Text);
+                    cmd.Parameters.AddWithValue("@isactive", FieldEquipmentIsActive.Text);
+                    cmd.Parameters.AddWithValue("@name", FieldEquipmentName.Text);
+                    cmd.Parameters.AddWithValue("@status", FieldEquipmentStatus.Text);
+                    cmd.Parameters.AddWithValue("@maturitydate", FieldEquipmentMaturityDate.Value);
+                    cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
+                });
+
+                foreach (var sectorId in _selectedSectorIds)
+                {
+                    var queryInsertEquipmentSector = "INSERT INTO EquipmentSector (EquipmentId, SectorId) VALUES (@equipmentId, @sectorId);";
+
+                    _databaseService.ExecuteNonQuery(queryInsertEquipmentSector, cmd =>
+                    {
+                        cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
+                        cmd.Parameters.AddWithValue("@sectorId", sectorId);
+                    });
+                }
+
+                ShowEquipmentsGrid();
+                ClearFields();
+                MessageBox.Show("Setor adicionado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ButtonUpdateClick(object sender, EventArgs e)
+        {
+            if (ValidadeFilledFields() && ConfirmAction("atualizar", FieldEquipmentId.Text))
+            {
+                var queryUpdate = "UPDATE public.equipments SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
+
+                _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
+                {
+                    cmd.Parameters.AddWithValue("@name", FieldEquipmentName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@id", int.Parse(FieldEquipmentId.Text));
+                    cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
+                });
+
+                ShowEquipmentsGrid();
+                ClearFields();
+                MessageBox.Show("Setor atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ButtonClearClick(object sender, EventArgs e)
