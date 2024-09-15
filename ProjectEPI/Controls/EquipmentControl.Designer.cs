@@ -152,15 +152,15 @@
             LabelEquipmentDescription.AutoSize = true;
             LabelEquipmentDescription.Location = new Point(530, 25);
             LabelEquipmentDescription.Name = "LabelEquipmentDescription";
-            LabelEquipmentDescription.Size = new Size(61, 15);
+            LabelEquipmentDescription.Size = new Size(120, 15);
             LabelEquipmentDescription.TabIndex = 19;
-            LabelEquipmentDescription.Text = "Descrição:";
+            LabelEquipmentDescription.Text = "Descrição (Opcional):";
             // 
             // FieldEquipmentDescription
             // 
-            FieldEquipmentDescription.Location = new Point(597, 22);
+            FieldEquipmentDescription.Location = new Point(656, 22);
             FieldEquipmentDescription.Name = "FieldEquipmentDescription";
-            FieldEquipmentDescription.Size = new Size(127, 23);
+            FieldEquipmentDescription.Size = new Size(68, 23);
             FieldEquipmentDescription.TabIndex = 18;
             // 
             // LabelEquipmentCA
@@ -240,6 +240,7 @@
             ButtonDelete.TabIndex = 12;
             ButtonDelete.Text = "Deletar";
             ButtonDelete.UseVisualStyleBackColor = true;
+            ButtonDelete.Click += ButtonDeleteClick;
             // 
             // ButtonUpdate
             // 

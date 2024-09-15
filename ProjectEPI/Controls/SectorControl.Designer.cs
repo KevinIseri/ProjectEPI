@@ -35,7 +35,7 @@
             FieldSectorId = new TextBox();
             LabelSectorId = new Label();
             LabelSectorName = new Label();
-            FieldTextName = new TextBox();
+            FieldSectorName = new TextBox();
             ButtonClear = new Button();
             ButtonAdd = new Button();
             ButtonDelete = new Button();
@@ -83,7 +83,7 @@
             panel2.Controls.Add(FieldSectorId);
             panel2.Controls.Add(LabelSectorId);
             panel2.Controls.Add(LabelSectorName);
-            panel2.Controls.Add(FieldTextName);
+            panel2.Controls.Add(FieldSectorName);
             panel2.Controls.Add(ButtonClear);
             panel2.Controls.Add(ButtonAdd);
             panel2.Controls.Add(ButtonDelete);
@@ -121,10 +121,10 @@
             // 
             // FieldTextName
             // 
-            FieldTextName.Location = new Point(225, 22);
-            FieldTextName.Name = "FieldTextName";
-            FieldTextName.Size = new Size(127, 23);
-            FieldTextName.TabIndex = 14;
+            FieldSectorName.Location = new Point(225, 22);
+            FieldSectorName.Name = "FieldTextName";
+            FieldSectorName.Size = new Size(127, 23);
+            FieldSectorName.TabIndex = 14;
             // 
             // ButtonClear
             // 
@@ -194,7 +194,7 @@
         private TextBox FieldSectorId;
         private Label LabelSectorId;
         private Label LabelSectorName;
-        private TextBox FieldTextName;
+        private TextBox FieldSectorName;
         private Label LabelGridSectorTitle;
     }
 }
