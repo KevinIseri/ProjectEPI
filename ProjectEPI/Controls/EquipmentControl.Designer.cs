@@ -220,6 +220,7 @@
             ButtonClear.TabIndex = 13;
             ButtonClear.Text = "Limpar";
             ButtonClear.UseVisualStyleBackColor = true;
+            ButtonClear.Click += ButtonClearClick;
             // 
             // ButtonAdd
             // 

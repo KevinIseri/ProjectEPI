@@ -54,7 +54,7 @@ namespace ProjectEPI.Controls
                 var sectorsColumn = new DataGridViewTextBoxColumn
                 {
                     Name = "SectorsDisplay",
-                    HeaderText = "Setores",
+                    HeaderText = "SectorsDisplay",
                     DataPropertyName = "SectorsDisplay"
                 };
                 EquipmentDataGridView.Columns.Add(sectorsColumn);
@@ -121,30 +121,58 @@ namespace ProjectEPI.Controls
 
         private void ClearFields()
         {
+            FieldEquipmentId.Text = "";
             FieldEquipmentName.Text = "";
             FieldEquipmentCA.Text = "";
             FieldEquipmentDescription.Text = "";
-            FieldEquipmentIsActive.Text = "";
+            FieldEquipmentIsActive.Checked = false;
             FieldEquipmentName.Text = "";
             FieldEquipmentStatus.Text = "";
-            _selectedSectorIds.Clear(); // nao esta removendo
+
+            ClearSelectedSectors();
+        }
+
+        private void ClearSelectedSectors()
+        {
+            _selectedSectorIds.Clear();
+
+            foreach (int index in FieldEquipmentSectors.CheckedIndices)
+            {
+                FieldEquipmentSectors.SetItemChecked(index, false);
+            }
         }
 
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
-        {  
+        {
             if (e.RowIndex != -1)
             {
                 DataGridViewRow row = EquipmentDataGridView.Rows[e.RowIndex];
-
                 FieldEquipmentId.Text = row.Cells["id"].Value.ToString();
                 FieldEquipmentName.Text = row.Cells["name"].Value.ToString();
                 FieldEquipmentCA.Text = row.Cells["ca"].Value.ToString();
                 FieldEquipmentDescription.Text = row.Cells["description"].Value.ToString();
                 FieldEquipmentIsActive.Checked = (bool)row.Cells["isactive"].Value;
                 FieldEquipmentStatus.Text = row.Cells["status"].Value.ToString();
-                //FieldEquipmentSectors.Text = ;
                 FieldEquipmentMaturityDate.Value = (DateTime)row.Cells["maturitydate"].Value;
 
+                var sectors = row.Cells["SectorsDisplay"].Value as string;
+
+                ClearSelectedSectors();
+
+                if (sectors != null)
+                {
+                    var sectorNames = sectors.Split(',');
+                    foreach (string sectorName in sectorNames)
+                    {
+                        for (int i = 0; i < FieldEquipmentSectors.Items.Count; i++)
+                        {
+                            if (FieldEquipmentSectors.Items[i].ToString() == sectorName.Trim())
+                            {
+                                FieldEquipmentSectors.SetItemChecked(i, true);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -175,7 +203,8 @@ namespace ProjectEPI.Controls
             }
         }
 
-        private bool ValidadeFilledFields()
+        // ValidationService
+        private bool ValidadeFilledFields() // acrescentar
         {
             if (FieldEquipmentName.Text.IsNullOrEmpty())
             {
@@ -193,6 +222,11 @@ namespace ProjectEPI.Controls
         {
             var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             return confirmation == DialogResult.Yes;
+        }
+
+        private void ButtonClearClick(object sender, EventArgs e)
+        {
+            ClearFields();
         }
     }
 }
