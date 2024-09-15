@@ -37,8 +37,9 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
-            sectorControl1 = new Controls.SectorControl();
+            monitorControl1 = new Controls.MonitorControl();
             equipmentControl1 = new Controls.EquipmentControl();
+            sectorControl1 = new Controls.SectorControl();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -85,6 +86,7 @@
             button1.TabIndex = 1;
             button1.Text = "Monitor";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += MonitorButtonClick;
             // 
             // pictureBox1
             // 
@@ -121,6 +123,7 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(monitorControl1);
             panel3.Controls.Add(equipmentControl1);
             panel3.Controls.Add(sectorControl1);
             panel3.Dock = DockStyle.Fill;
@@ -129,19 +132,26 @@
             panel3.Size = new Size(900, 575);
             panel3.TabIndex = 6;
             // 
+            // monitorControl1
+            // 
+            monitorControl1.Location = new Point(0, 0);
+            monitorControl1.Name = "monitorControl1";
+            monitorControl1.Size = new Size(900, 575);
+            monitorControl1.TabIndex = 2;
+            // 
+            // equipmentControl1
+            // 
+            equipmentControl1.Location = new Point(0, 0);
+            equipmentControl1.Name = "equipmentControl1";
+            equipmentControl1.Size = new Size(900, 575);
+            equipmentControl1.TabIndex = 1;
+            // 
             // sectorControl1
             // 
             sectorControl1.Location = new Point(0, 0);
             sectorControl1.Name = "sectorControl1";
             sectorControl1.Size = new Size(900, 575);
             sectorControl1.TabIndex = 0;
-            // 
-            // equipmentControl1
-            // 
-            equipmentControl1.Location = new Point(0, -3);
-            equipmentControl1.Name = "equipmentControl1";
-            equipmentControl1.Size = new Size(900, 575);
-            equipmentControl1.TabIndex = 1;
             // 
             // MainPage
             // 
@@ -171,5 +181,6 @@
         private Panel panel3;
         private Controls.SectorControl sectorControl1;
         private Controls.EquipmentControl equipmentControl1;
+        private Controls.MonitorControl monitorControl1;
     }
 }

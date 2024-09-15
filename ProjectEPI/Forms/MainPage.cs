@@ -17,23 +17,34 @@ namespace ProjectEPI
             _equipmentService = new EquipmentService(_databaseManager);
             _sectorService = new SectorService(_databaseManager);
 
-            sectorControl1.InitializeServices(_databaseManager, _sectorService);
             equipmentControl1.InitializeServices(_databaseManager, _equipmentService, _sectorService);
+            monitorControl1.InitializeServices(_databaseManager, _equipmentService);
+            sectorControl1.InitializeServices(_databaseManager, _sectorService);
 
-            sectorControl1.Visible = false;
             equipmentControl1.Visible = false;
+            monitorControl1.Visible = true;
+            sectorControl1.Visible = false;
         }
 
         private void SectorsButtonClick(object sender, EventArgs e)
         {
-            sectorControl1.Visible = true;
             equipmentControl1.Visible = false;
+            monitorControl1.Visible = false;
+            sectorControl1.Visible = true;
         }
 
         private void EquipmentsButtonClick(object sender, EventArgs e)
         {
-            sectorControl1.Visible = false;
             equipmentControl1.Visible = true;
+            monitorControl1.Visible = false;
+            sectorControl1.Visible = false;
+        }
+
+        private void MonitorButtonClick(object sender, EventArgs e)
+        {
+            equipmentControl1.Visible = false;
+            monitorControl1.Visible = true;
+            sectorControl1.Visible = false;
         }
     }
 }
