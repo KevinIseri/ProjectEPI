@@ -1,4 +1,5 @@
-﻿using ProjectEPI.Data;
+﻿using ProjectEPI.Controls;
+using ProjectEPI.Data;
 using ProjectEPI.Services;
 
 namespace ProjectEPI
@@ -28,6 +29,8 @@ namespace ProjectEPI
 
         private void SectorsButtonClick(object sender, EventArgs e)
         {
+            sectorControl1.ShowSectorsGrid();
+
             equipmentControl1.Visible = false;
             monitorControl1.Visible = false;
             sectorControl1.Visible = true;
@@ -35,6 +38,9 @@ namespace ProjectEPI
 
         private void EquipmentsButtonClick(object sender, EventArgs e)
         {
+            equipmentControl1.ShowSectorsButton();
+            sectorControl1.ShowSectorsGrid();
+
             equipmentControl1.Visible = true;
             monitorControl1.Visible = false;
             sectorControl1.Visible = false;
@@ -42,6 +48,8 @@ namespace ProjectEPI
 
         private void MonitorButtonClick(object sender, EventArgs e)
         {
+            monitorControl1.ShowMonitorGrid();
+
             equipmentControl1.Visible = false;
             monitorControl1.Visible = true;
             sectorControl1.Visible = false;

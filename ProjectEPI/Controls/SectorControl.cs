@@ -22,7 +22,7 @@ namespace ProjectEPI.Controls
             ShowSectorsGrid();
         }
 
-        private void ShowSectorsGrid()
+        public void ShowSectorsGrid()
         {
             var sectors = _sectorService.GetSectors();
             SectorDataGridView.DataSource = sectors;

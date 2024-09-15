@@ -21,7 +21,7 @@ namespace ProjectEPI.Controls
             ShowMonitorGrid();
         }
 
-        private void ShowMonitorGrid()
+        public void ShowMonitorGrid()
         {
             var equipments = _equipmentService.GetEquipments();
 

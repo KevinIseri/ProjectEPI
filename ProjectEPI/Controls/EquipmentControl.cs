@@ -28,7 +28,7 @@ namespace ProjectEPI.Controls
             ShowSectorsButton();
         }
 
-        private void ShowSectorsButton()
+        public void ShowSectorsButton()
         {
             FieldEquipmentSectors.Items.Clear();
             FieldEquipmentSectors.Tag = new Dictionary<string, SectorData>();
@@ -48,17 +48,6 @@ namespace ProjectEPI.Controls
             var equipments = _equipmentService.GetEquipments();
 
             EquipmentDataGridView.DataSource = equipments;
-
-            //if (!EquipmentDataGridView.Columns.Contains("SectorsDisplay"))
-            //{
-            //    var sectorsColumn = new DataGridViewTextBoxColumn
-            //    {
-            //        Name = "SectorsDisplay",
-            //        HeaderText = "Setores",
-            //        DataPropertyName = "SectorsDisplay"
-            //    };
-            //    EquipmentDataGridView.Columns.Add(sectorsColumn);
-            //}
 
             EquipmentDataGridView.Columns["Name"].HeaderText = "Nome";
             EquipmentDataGridView.Columns["Ca"].HeaderText = "CA";
