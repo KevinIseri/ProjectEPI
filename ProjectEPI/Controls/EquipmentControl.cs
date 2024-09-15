@@ -49,16 +49,16 @@ namespace ProjectEPI.Controls
 
             EquipmentDataGridView.DataSource = equipments;
 
-            if (!EquipmentDataGridView.Columns.Contains("SectorsDisplay"))
-            {
-                var sectorsColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "SectorsDisplay",
-                    HeaderText = "Setores",
-                    DataPropertyName = "SectorsDisplay"
-                };
-                EquipmentDataGridView.Columns.Add(sectorsColumn);
-            }
+            //if (!EquipmentDataGridView.Columns.Contains("SectorsDisplay"))
+            //{
+            //    var sectorsColumn = new DataGridViewTextBoxColumn
+            //    {
+            //        Name = "SectorsDisplay",
+            //        HeaderText = "Setores",
+            //        DataPropertyName = "SectorsDisplay"
+            //    };
+            //    EquipmentDataGridView.Columns.Add(sectorsColumn);
+            //}
 
             EquipmentDataGridView.Columns["Name"].HeaderText = "Nome";
             EquipmentDataGridView.Columns["Ca"].HeaderText = "CA";

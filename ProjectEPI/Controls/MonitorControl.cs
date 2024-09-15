@@ -27,16 +27,16 @@ namespace ProjectEPI.Controls
 
             MonitorDataGridView.DataSource = equipments;
 
-            if (!MonitorDataGridView.Columns.Contains("SectorsDisplay"))
-            {
-                var sectorsColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "SectorsDisplay",
-                    HeaderText = "Setores",
-                    DataPropertyName = "SectorsDisplay"
-                };
-                MonitorDataGridView.Columns.Add(sectorsColumn);
-            }
+            //MonitorDataGridView.Columns["Id"].DisplayIndex = 0;
+            //MonitorDataGridView.Columns["Name"].DisplayIndex = 1;
+            //MonitorDataGridView.Columns["Ca"].DisplayIndex = 2;
+            //MonitorDataGridView.Columns["Description"].DisplayIndex = 3;
+            //MonitorDataGridView.Columns["IsActive"].DisplayIndex = 4;
+            //MonitorDataGridView.Columns["Status"].DisplayIndex = 5;
+            //MonitorDataGridView.Columns["MaturityDate"].DisplayIndex = 6;
+            //MonitorDataGridView.Columns["HandlingStatus"].DisplayIndex = 7;
+            //MonitorDataGridView.Columns["SectorsDisplay"].DisplayIndex = 8;
+            MonitorDataGridView.Columns["Edit"].DisplayIndex = MonitorDataGridView.Columns.Count - 1;
 
             MonitorDataGridView.Columns["Name"].HeaderText = "Nome";
             MonitorDataGridView.Columns["Ca"].HeaderText = "CA";
@@ -45,8 +45,6 @@ namespace ProjectEPI.Controls
             MonitorDataGridView.Columns["MaturityDate"].HeaderText = "Vencimento";
             MonitorDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
             MonitorDataGridView.Columns["HandlingStatus"].HeaderText = "Tratativa";
-
-            MonitorDataGridView.Columns["Id"].DisplayIndex = 0;
         }
 
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
