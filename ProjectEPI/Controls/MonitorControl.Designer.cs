@@ -55,6 +55,7 @@
             MonitorDataGridView.ReadOnly = true;
             MonitorDataGridView.Size = new Size(813, 343);
             MonitorDataGridView.TabIndex = 1;
+            MonitorDataGridView.CellClick += DataGridView1CellClick;
             // 
             // LabelGridMonitorTitle
             // 

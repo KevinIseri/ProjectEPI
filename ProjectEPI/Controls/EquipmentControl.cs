@@ -54,14 +54,20 @@ namespace ProjectEPI.Controls
                 var sectorsColumn = new DataGridViewTextBoxColumn
                 {
                     Name = "SectorsDisplay",
-                    HeaderText = "SectorsDisplay",
+                    HeaderText = "Setores",
                     DataPropertyName = "SectorsDisplay"
                 };
                 EquipmentDataGridView.Columns.Add(sectorsColumn);
             }
 
+            EquipmentDataGridView.Columns["Name"].HeaderText = "Nome";
+            EquipmentDataGridView.Columns["Ca"].HeaderText = "CA";
+            EquipmentDataGridView.Columns["IsActive"].HeaderText = "Ativo";
+            EquipmentDataGridView.Columns["Description"].HeaderText = "Descrição";
             EquipmentDataGridView.Columns["MaturityDate"].HeaderText = "Vencimento";
             EquipmentDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
+
+            EquipmentDataGridView.Columns["HandlingStatus"].Visible = false;
         }
 
         private void ClearFields()

@@ -9,6 +9,7 @@
         public string Name { get; set; }
         public virtual List<SectorData> Sectors { get; set; }
         public string Status { get; set; }
+        public string? HandlingStatus { get; set; }
         public DateTime? MaturityDate { get; set; }
 
         public string SectorsDisplay

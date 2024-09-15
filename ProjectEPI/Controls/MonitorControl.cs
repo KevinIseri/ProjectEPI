@@ -32,14 +32,30 @@ namespace ProjectEPI.Controls
                 var sectorsColumn = new DataGridViewTextBoxColumn
                 {
                     Name = "SectorsDisplay",
-                    HeaderText = "SectorsDisplay",
+                    HeaderText = "Setores",
                     DataPropertyName = "SectorsDisplay"
                 };
                 MonitorDataGridView.Columns.Add(sectorsColumn);
             }
 
-            //MonitorDataGridView.Columns["MaturityDate"].HeaderText = "Vencimento";
-            //MonitorDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
+            MonitorDataGridView.Columns["Name"].HeaderText = "Nome";
+            MonitorDataGridView.Columns["Ca"].HeaderText = "CA";
+            MonitorDataGridView.Columns["IsActive"].HeaderText = "Ativo";
+            MonitorDataGridView.Columns["Description"].HeaderText = "Descrição";
+            MonitorDataGridView.Columns["MaturityDate"].HeaderText = "Vencimento";
+            MonitorDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
+            MonitorDataGridView.Columns["HandlingStatus"].HeaderText = "Tratativa";
+
+            MonitorDataGridView.Columns["Id"].DisplayIndex = 0;
+        }
+
+        private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow row = MonitorDataGridView.Rows[e.RowIndex];
+                //row.Cells["id"]
+            }
         }
     }
 }

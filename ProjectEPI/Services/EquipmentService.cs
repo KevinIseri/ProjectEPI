@@ -31,6 +31,7 @@ namespace ProjectEPI.Services
                             Name = reader["name"].ToString(),
                             MaturityDate = reader["maturity_date"] != DBNull.Value ? (DateTime?)reader["maturity_date"] : null,
                             Status = reader["status"].ToString(),
+                            HandlingStatus = reader["handling_status"] != DBNull.Value ? reader["handling_status"].ToString() : "-" ,
                             Sectors = new List<SectorData>()
                         };
                         equipments.Add(equipment);
