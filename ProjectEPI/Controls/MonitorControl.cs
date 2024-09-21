@@ -42,7 +42,6 @@ namespace ProjectEPI.Controls
 
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex >= 0 && MonitorDataGridView.Columns[e.ColumnIndex].Name == "Edit")
             {
                 DataGridViewRow row = MonitorDataGridView.Rows[e.RowIndex];
@@ -53,13 +52,15 @@ namespace ProjectEPI.Controls
                         Id = (long)row.Cells["Id"].Value,
                         Ca = row.Cells["Ca"].Value.ToString(),
                         Description = row.Cells["Description"].Value.ToString(),
+                        Name = row.Cells["Name"].Value.ToString(),
                         IsActive = (bool)row.Cells["IsActive"].Value,
                         HandlingStatus = row.Cells["HandlingStatus"].Value.ToString()
-                    }
+                    },
+                    _databaseService, 
+                    ShowMonitorGrid
                 );
 
                 editModal.ShowDialog();
-
             }
         }
     }

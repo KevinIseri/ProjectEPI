@@ -10,7 +10,7 @@ namespace ProjectEPI.Controls
         private EquipmentService _equipmentService;
         private SectorService _sectorService;
 
-        private readonly List<long> _selectedSectorIds = new();
+        private readonly List<long> _selectedSectorIds = [];
 
         public EquipmentControl()
         {
