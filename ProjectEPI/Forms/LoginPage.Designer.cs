@@ -89,7 +89,7 @@
             button_login.TabIndex = 5;
             button_login.Text = "Entrar";
             button_login.UseVisualStyleBackColor = true;
-            button_login.Click += button_login_Click;
+            button_login.Click += ButtonLoginClick;
             // 
             // button_login_clear
             // 
@@ -99,7 +99,7 @@
             button_login_clear.TabIndex = 6;
             button_login_clear.Text = "Limpar";
             button_login_clear.UseVisualStyleBackColor = true;
-            button_login_clear.Click += button_login_clear_Click;
+            button_login_clear.Click += ButtonLoginClearClick;
             // 
             // button_login_exit
             // 
@@ -109,7 +109,7 @@
             button_login_exit.TabIndex = 7;
             button_login_exit.Text = "Sair";
             button_login_exit.UseVisualStyleBackColor = true;
-            button_login_exit.Click += button_login_exit_Click;
+            button_login_exit.Click += ButtonLoginExitClick;
             // 
             // LoginPage
             // 

@@ -36,11 +36,14 @@
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             panel2 = new Panel();
+            LabelMainNotificationNumber = new Label();
+            LabelMainCurrentNotifications = new Label();
+            button2 = new Button();
             panel3 = new Panel();
+            notificationControl1 = new Controls.NotificationControl();
             monitorControl1 = new Controls.MonitorControl();
             equipmentControl1 = new Controls.EquipmentControl();
             sectorControl1 = new Controls.SectorControl();
-            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -112,6 +115,8 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.MenuHighlight;
+            panel2.Controls.Add(LabelMainNotificationNumber);
+            panel2.Controls.Add(LabelMainCurrentNotifications);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(button1);
@@ -124,8 +129,41 @@
             panel2.Size = new Size(200, 575);
             panel2.TabIndex = 5;
             // 
+            // LabelMainNotificationNumber
+            // 
+            LabelMainNotificationNumber.AutoSize = true;
+            LabelMainNotificationNumber.BackColor = SystemColors.HighlightText;
+            LabelMainNotificationNumber.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelMainNotificationNumber.Location = new Point(86, 165);
+            LabelMainNotificationNumber.Name = "LabelMainNotificationNumber";
+            LabelMainNotificationNumber.Size = new Size(19, 19);
+            LabelMainNotificationNumber.TabIndex = 6;
+            LabelMainNotificationNumber.Text = "0";
+            // 
+            // LabelMainCurrentNotifications
+            // 
+            LabelMainCurrentNotifications.AutoSize = true;
+            LabelMainCurrentNotifications.BackColor = SystemColors.HighlightText;
+            LabelMainCurrentNotifications.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelMainCurrentNotifications.Location = new Point(35, 139);
+            LabelMainCurrentNotifications.Name = "LabelMainCurrentNotifications";
+            LabelMainCurrentNotifications.Size = new Size(118, 16);
+            LabelMainCurrentNotifications.TabIndex = 5;
+            LabelMainCurrentNotifications.Text = "Notificações atuais:";
+            // 
+            // button2
+            // 
+            button2.Cursor = Cursors.Hand;
+            button2.Location = new Point(21, 382);
+            button2.Name = "button2";
+            button2.Size = new Size(150, 25);
+            button2.TabIndex = 4;
+            button2.Text = "Configurações";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // panel3
             // 
+            panel3.Controls.Add(notificationControl1);
             panel3.Controls.Add(monitorControl1);
             panel3.Controls.Add(equipmentControl1);
             panel3.Controls.Add(sectorControl1);
@@ -134,6 +172,13 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(900, 575);
             panel3.TabIndex = 6;
+            // 
+            // notificationControl1
+            // 
+            notificationControl1.Location = new Point(0, 0);
+            notificationControl1.Name = "notificationControl1";
+            notificationControl1.Size = new Size(900, 575);
+            notificationControl1.TabIndex = 3;
             // 
             // monitorControl1
             // 
@@ -156,16 +201,6 @@
             sectorControl1.Size = new Size(900, 575);
             sectorControl1.TabIndex = 0;
             // 
-            // button2
-            // 
-            button2.Cursor = Cursors.Hand;
-            button2.Location = new Point(21, 382);
-            button2.Name = "button2";
-            button2.Size = new Size(150, 25);
-            button2.TabIndex = 4;
-            button2.Text = "Configurações";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -179,6 +214,7 @@
             Text = "MainPage";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -196,5 +232,8 @@
         private Controls.EquipmentControl equipmentControl1;
         private Controls.MonitorControl monitorControl1;
         private Button button2;
+        private Controls.NotificationControl notificationControl1;
+        private Label LabelMainCurrentNotifications;
+        private Label LabelMainNotificationNumber;
     }
 }

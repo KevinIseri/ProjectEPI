@@ -19,15 +19,17 @@ namespace ProjectEPI
             _equipmentService = new EquipmentService(_databaseManager);
             _sectorService = new SectorService(_databaseManager);
             _settingService = new SettingService(_databaseManager);
-            _notificationService = new NotificationService(_databaseManager, _equipmentService, _settingService);
+            _notificationService = new NotificationService(_databaseManager, _equipmentService, _settingService, LabelMainNotificationNumber);
 
             equipmentControl1.InitializeServices(_databaseManager, _equipmentService, _sectorService);
-            monitorControl1.InitializeServices(_databaseManager, _equipmentService);
+            monitorControl1.InitializeServices(_databaseManager, _equipmentService, _notificationService);
             sectorControl1.InitializeServices(_databaseManager, _sectorService);
+            notificationControl1.InitializeServices(_notificationService);
 
             equipmentControl1.Visible = false;
             monitorControl1.Visible = true;
             sectorControl1.Visible = false;
+            notificationControl1.Visible = false;
 
             _notificationService.GenerateNotifications();
         }
@@ -39,6 +41,7 @@ namespace ProjectEPI
             equipmentControl1.Visible = false;
             monitorControl1.Visible = false;
             sectorControl1.Visible = true;
+            notificationControl1.Visible = false;
         }
 
         private void EquipmentsButtonClick(object sender, EventArgs e)
@@ -49,6 +52,7 @@ namespace ProjectEPI
             equipmentControl1.Visible = true;
             monitorControl1.Visible = false;
             sectorControl1.Visible = false;
+            notificationControl1.Visible = false;
         }
 
         private void MonitorButtonClick(object sender, EventArgs e)
@@ -58,16 +62,17 @@ namespace ProjectEPI
             equipmentControl1.Visible = false;
             monitorControl1.Visible = true;
             sectorControl1.Visible = false;
+            notificationControl1.Visible = false;
         }
 
         private void NotificationsButtonClick(object sender, EventArgs e)
         {
-            //monitorControl1.ShowMonitorGrid();
+            notificationControl1.ShowNotificationGrid();
 
             equipmentControl1.Visible = false;
             monitorControl1.Visible = false;
             sectorControl1.Visible = false;
-            // notificationControl1.Visible = true;
+            notificationControl1.Visible = true;
         }
     }
 }

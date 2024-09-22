@@ -8,53 +8,43 @@ namespace ProjectEPI.Services
         private readonly EquipmentService _equipmentService;
         private readonly DatabaseManager _databaseManager;
         private readonly SettingService _settingService;
+        private readonly Label _labelMainNotificationNumber;
 
         public NotificationService(
             DatabaseManager databaseManager , 
             EquipmentService equipmentService, 
-            SettingService settingService)
+            SettingService settingService,
+            Label labelMainNotificationNumber)
         {
             _equipmentService = equipmentService;
             _databaseManager = databaseManager;
             _settingService = settingService;
+            _labelMainNotificationNumber = labelMainNotificationNumber;
         }
-
-        /*
-         olhar status isactive, handlingStatus (pendente VERMELHO, em andamento LARANJA, finalizado VERDE)
-         e status(Em conformidade VERDE, A vencer LARANJA, Vencido VERMELHO)
-            no caso nao criar se estivar inative e nas tratativas como, concluído??
-
-        ao criar verificar se o equipamento ja existe uma notificação atrelada
-
-        ver sobre status em andamento
-
-        MATURITY_THRESHOLD deve criar para todos ativos e diferente de finalizado, 
-        caso nao exista alerta atrelado ao equipamento
-
-        handlingstatus como finalizado deve excluir uma notificação atrelada caso exista
-
-        criar modal de notificação no windows?
-         
-         */
 
         public void GenerateNotifications()
         {
-            var currentNotifications = GetExistingNotifications(); // fazer na inicialização do programa
+            var currentNotifications = GetExistingNotifications();
             var equipments = _equipmentService.GetEquipments();
 
-            var limitDate = DateTime.Now.AddDays(-_settingService.GetMaturityIntervalDays());
-            //var limitThreshold = DateTime.Now;
+            var daysLimit = _settingService.GetMaturityIntervalDays();
+
+            var incNotifications = 0;
 
             foreach (var equipment in equipments)
             {
-                if (ShouldCreateNotification(equipment, limitDate, currentNotifications))
+                if (ShouldCreateNotification(equipment, daysLimit, currentNotifications))
                 {
                     CreateNotification(equipment.Id);
+                    incNotifications += 1;
                 }
             }
+
+            var notificationNumberUpdated = currentNotifications.Count() + incNotifications;
+            _labelMainNotificationNumber.Text = notificationNumberUpdated.ToString();
         }
 
-        private static bool ShouldCreateNotification(EquipmentData equipment, DateTime limitDate, List<long> currentNotifications)
+        private static bool ShouldCreateNotification(EquipmentData equipment, int daysLimit, List<long> currentNotifications)
         {
             if (equipment.MaturityDate == null) throw new Exception($"Equipamento Id '{equipment.Id}' não possui data de vencimento");
 
@@ -65,30 +55,34 @@ namespace ProjectEPI.Services
                 return false;
             }
 
-            return equipment.MaturityDate.Value.Date <= limitDate.Date;
+            var remainingDays = (equipment.MaturityDate.Value.Date - DateTime.Today).Days;
+
+            return remainingDays <= daysLimit;
         }
 
         private void CreateNotification(long equipmentId)
         {
-            var query = "INSERT INTO public.notifications (equipment_id, created_date) VALUES (@equipmentId, @createdDate)";
+            var query = "INSERT INTO public.notifications (equipmentid, created_date) VALUES (@equipmentId, @createdDate)";
             _databaseManager.ExecuteNonQuery(query, cmd =>
             {
                 cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
                 cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
             });
 
-            var updateQuery = "UPDATE public.equipments SET handling_status = @handlingstatus, status = @status WHERE id = @equipmentId";
-            _databaseManager.ExecuteNonQuery(updateQuery, cmd =>
+            var queryUpdate = "UPDATE public.equipments SET handling_status = @handlingstatus, status = @status WHERE id = @equipmentId";
+            _databaseManager.ExecuteNonQuery(queryUpdate, cmd =>
             {
                 cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
                 cmd.Parameters.AddWithValue("@handlingstatus", HandlingStatus.PENDING);
                 cmd.Parameters.AddWithValue("@status", EquipmentStatus.EXPIRING);
             });
+
+
         }
 
         public List<long> GetExistingNotifications()
         {
-            var query = "SELECT equipment_id FROM notifications";
+            var query = "SELECT equipmentid FROM notifications";
 
             return _databaseManager.ExecuteScalar(query, cmd =>
             {
@@ -97,9 +91,11 @@ namespace ProjectEPI.Services
                 {
                     while (reader.Read())
                     {
-                        equipmentIdsWithNotifications.Add((long)reader["equipment_id"]);
+                        equipmentIdsWithNotifications.Add((long)reader["equipmentid"]);
                     }
                 }
+                _labelMainNotificationNumber.Text = equipmentIdsWithNotifications.Count().ToString();
+
                 return equipmentIdsWithNotifications;
             });
         }

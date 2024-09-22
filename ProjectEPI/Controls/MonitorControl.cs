@@ -9,16 +9,21 @@ namespace ProjectEPI.Controls
     {
         private DatabaseManager _databaseService;
         private EquipmentService _equipmentService;
+        private NotificationService _notificationService;
 
         public MonitorControl()
         {
             InitializeComponent();
         }
 
-        public void InitializeServices(DatabaseManager databaseService, EquipmentService equipmentService)
+        public void InitializeServices(
+            DatabaseManager databaseService, 
+            EquipmentService equipmentService,
+            NotificationService notificationService)
         {
             _databaseService = databaseService;
             _equipmentService = equipmentService;
+            _notificationService = notificationService;
 
             ShowMonitorGrid();
         }
@@ -59,7 +64,8 @@ namespace ProjectEPI.Controls
                         HandlingStatus = row.Cells["HandlingStatus"].Value.ToString()
                     },
                     _databaseService, 
-                    ShowMonitorGrid
+                    ShowMonitorGrid,
+                    _notificationService
                 );
 
                 editModal.ShowDialog();

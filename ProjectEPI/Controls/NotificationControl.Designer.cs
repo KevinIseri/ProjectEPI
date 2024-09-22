@@ -29,21 +29,33 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            NotificationDataGridView = new DataGridView();
             LabelGridMonitorTitle = new Label();
-            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NotificationDataGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLightLight;
-            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(NotificationDataGridView);
             panel1.Controls.Add(LabelGridMonitorTitle);
             panel1.Location = new Point(30, 28);
             panel1.Name = "panel1";
             panel1.Size = new Size(832, 495);
             panel1.TabIndex = 0;
+            // 
+            // NotificationDataGridView
+            // 
+            NotificationDataGridView.AllowUserToAddRows = false;
+            NotificationDataGridView.AllowUserToDeleteRows = false;
+            NotificationDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            NotificationDataGridView.Location = new Point(24, 69);
+            NotificationDataGridView.Name = "NotificationDataGridView";
+            NotificationDataGridView.ReadOnly = true;
+            NotificationDataGridView.Size = new Size(777, 364);
+            NotificationDataGridView.TabIndex = 2;
+            NotificationDataGridView.CellClick += DataGridView1CellClick;
             // 
             // LabelGridMonitorTitle
             // 
@@ -55,17 +67,6 @@
             LabelGridMonitorTitle.TabIndex = 1;
             LabelGridMonitorTitle.Text = "Notificações";
             // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(24, 69);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(777, 364);
-            dataGridView1.TabIndex = 2;
-            // 
             // NotificationControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -75,7 +76,7 @@
             Size = new Size(900, 575);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NotificationDataGridView).EndInit();
             ResumeLayout(false);
         }
 
@@ -83,6 +84,6 @@
 
         private Panel panel1;
         private Label LabelGridMonitorTitle;
-        private DataGridView dataGridView1;
+        private DataGridView NotificationDataGridView;
     }
 }

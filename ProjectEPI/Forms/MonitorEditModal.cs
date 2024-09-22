@@ -1,5 +1,6 @@
 ﻿using ProjectEPI.Data;
 using ProjectEPI.Data.Dtos;
+using ProjectEPI.Services;
 
 namespace ProjectEPI.Forms
 {
@@ -7,15 +8,21 @@ namespace ProjectEPI.Forms
     {
         private readonly EquipmentDto _equipment;
         private readonly DatabaseManager _databaseService;
+        private readonly NotificationService _notificationService;
         private readonly Action _refreshMonitorGrid;
 
-        public MonitorEditModal(EquipmentDto equipment, DatabaseManager databaseService, Action refreshMonitorGrid)
+        public MonitorEditModal(
+            EquipmentDto equipment, 
+            DatabaseManager databaseService, 
+            Action refreshMonitorGrid,
+            NotificationService notificationService)
         {
             InitializeComponent();
 
             _equipment = equipment;
             _databaseService = databaseService;
             _refreshMonitorGrid = refreshMonitorGrid;
+            _notificationService = notificationService;
 
             FieldMonitorEditModalId.Text = _equipment.Id.ToString();
             FieldMonitorEditModalName.Text = _equipment.Name;
@@ -37,6 +44,22 @@ namespace ProjectEPI.Forms
             {
                 try
                 {
+
+                    if (FieldMonitorEditModalHandlingStatus.Text == Constants.EquipmentConstants.HandlingStatus.FINISHED)
+                    {
+                        var currentNotifications = _notificationService.GetExistingNotifications();
+                        var equipmentId = long.Parse(FieldMonitorEditModalId.Text);
+                        if (currentNotifications.Contains(equipmentId))
+                        {
+                            var queryDelete = "DELETE from public.notifications WHERE equipmentid = @equipmentid";
+
+                            _databaseService.ExecuteNonQuery(queryDelete, cmd =>
+                            {
+                                cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
+                            });
+                        }
+                    }
+
                     var queryUpdate = "UPDATE public.equipments SET isactive = @isactive, handling_status = @handlingstatus, updated_date=@updateDate WHERE id=@id;";
 
                     _databaseService.ExecuteNonQuery(queryUpdate, cmd =>

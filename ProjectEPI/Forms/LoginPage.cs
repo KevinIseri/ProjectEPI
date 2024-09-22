@@ -16,7 +16,7 @@ namespace ProjectEPI
 
         }
 
-        private void button_login_Click(object sender, EventArgs e)
+        private void ButtonLoginClick(object sender, EventArgs e)
         {
             string username, userPassword;
 
@@ -67,7 +67,7 @@ namespace ProjectEPI
             }
         }
 
-        private void button_login_exit_Click(object sender, EventArgs e)
+        private void ButtonLoginExitClick(object sender, EventArgs e)
         {
             DialogResult res;
 
@@ -83,7 +83,7 @@ namespace ProjectEPI
             }
         }
 
-        private void button_login_clear_Click(object sender, EventArgs e)
+        private void ButtonLoginClearClick(object sender, EventArgs e)
         {
             txtUser.Clear();
             txtPassword.Clear();
