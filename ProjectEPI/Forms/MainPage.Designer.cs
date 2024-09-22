@@ -40,6 +40,7 @@
             monitorControl1 = new Controls.MonitorControl();
             equipmentControl1 = new Controls.EquipmentControl();
             sectorControl1 = new Controls.SectorControl();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -65,6 +66,7 @@
             button3.TabIndex = 2;
             button3.Text = "Notificações";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += NotificationsButtonClick;
             // 
             // SectorButton
             // 
@@ -110,6 +112,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.MenuHighlight;
+            panel2.Controls.Add(button2);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(button4);
@@ -153,6 +156,16 @@
             sectorControl1.Size = new Size(900, 575);
             sectorControl1.TabIndex = 0;
             // 
+            // button2
+            // 
+            button2.Cursor = Cursors.Hand;
+            button2.Location = new Point(21, 382);
+            button2.Name = "button2";
+            button2.Size = new Size(150, 25);
+            button2.TabIndex = 4;
+            button2.Text = "Configurações";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -182,5 +195,6 @@
         private Controls.SectorControl sectorControl1;
         private Controls.EquipmentControl equipmentControl1;
         private Controls.MonitorControl monitorControl1;
+        private Button button2;
     }
 }

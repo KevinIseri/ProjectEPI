@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using ProjectEPI.Data;
 using ProjectEPI.Services;
+using static ProjectEPI.Constants.EquipmentConstants;
 
 namespace ProjectEPI.Controls
 {
@@ -57,6 +58,8 @@ namespace ProjectEPI.Controls
             EquipmentDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
 
             EquipmentDataGridView.Columns["HandlingStatus"].Visible = false;
+
+            EquipmentDataGridView.Columns["MaturityDate"].DefaultCellStyle.Format = "d";
         }
 
         private void ClearFields()
@@ -95,9 +98,9 @@ namespace ProjectEPI.Controls
                 FieldEquipmentStatus.Text = row.Cells["status"].Value.ToString();
                 FieldEquipmentMaturityDate.Value = (DateTime)row.Cells["maturitydate"].Value;
 
-                var sectors = row.Cells["SectorsDisplay"].Value as string;
-
                 ClearSelectedSectors();
+                
+                var sectors = row.Cells["SectorsDisplay"].Value as string;
 
                 if (sectors != null)
                 {
@@ -165,7 +168,6 @@ namespace ProjectEPI.Controls
             return true;
         }
 
-        // CommonService
         private static bool ConfirmAction(string action, string id)
         {
             var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -177,8 +179,8 @@ namespace ProjectEPI.Controls
             if (ValidadeFilledFields())
             {
                 try { 
-                    var queryInsert = "INSERT INTO public.equipments\r\n(id, ca, description, isactive, \"name\", status, maturity_date,created_date, updated_date) " +
-                            "VALUES(nextval('equipments_id_seq'::regclass), @ca, @description, true, @name, @status, @maturitydate, @createdDate, NULL)" +
+                    var queryInsert = "INSERT INTO public.equipments\r\n(id, ca, description, isactive, \"name\", status, handling_status, maturity_date, created_date, updated_date) " +
+                            "VALUES(nextval('equipments_id_seq'::regclass), @ca, @description, true, @name, @status, @handling_status, @maturitydate, @createdDate, NULL)" +
                             "RETURNING id;";
 
                     long equipmentId = _databaseService.ExecuteScalar<long>(queryInsert, cmd =>
@@ -188,6 +190,7 @@ namespace ProjectEPI.Controls
                         cmd.Parameters.AddWithValue("@isactive", FieldEquipmentIsActive.Checked);
                         cmd.Parameters.AddWithValue("@name", FieldEquipmentName.Text);
                         cmd.Parameters.AddWithValue("@status", FieldEquipmentStatus.Text);
+                        cmd.Parameters.AddWithValue("@handling_status", HandlingStatus.NONE);
                         cmd.Parameters.AddWithValue("@maturitydate", FieldEquipmentMaturityDate.Value);
                         cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
                     });

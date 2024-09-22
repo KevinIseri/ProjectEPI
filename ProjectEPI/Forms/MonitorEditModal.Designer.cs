@@ -142,7 +142,7 @@
             // FieldMonitorEditModalHandlingStatus
             // 
             FieldMonitorEditModalHandlingStatus.FormattingEnabled = true;
-            FieldMonitorEditModalHandlingStatus.Items.AddRange(new object[] { "-", "Pendente", "Em andamento", "Finalizado" });
+            FieldMonitorEditModalHandlingStatus.Items.AddRange(new object[] { "Nenhuma", "Pendente", "Em andamento", "Finalizado" });
             FieldMonitorEditModalHandlingStatus.Location = new Point(72, 142);
             FieldMonitorEditModalHandlingStatus.Name = "FieldMonitorEditModalHandlingStatus";
             FieldMonitorEditModalHandlingStatus.Size = new Size(121, 23);

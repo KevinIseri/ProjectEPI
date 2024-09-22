@@ -38,6 +38,8 @@ namespace ProjectEPI.Controls
             MonitorDataGridView.Columns["MaturityDate"].HeaderText = "Vencimento";
             MonitorDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
             MonitorDataGridView.Columns["HandlingStatus"].HeaderText = "Tratativa";
+
+            MonitorDataGridView.Columns["MaturityDate"].DefaultCellStyle.Format = "d";
         }
 
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
