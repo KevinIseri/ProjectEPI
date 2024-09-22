@@ -30,7 +30,7 @@ namespace ProjectEPI.Controls
 
         public void ShowMonitorGrid()
         {
-            var equipments = _equipmentService.GetEquipments();
+            var equipments = _equipmentService.GetEquipments("maturity_date", "ASC", true);
 
             MonitorDataGridView.DataSource = equipments;
 
@@ -38,11 +38,12 @@ namespace ProjectEPI.Controls
 
             MonitorDataGridView.Columns["Name"].HeaderText = "Nome";
             MonitorDataGridView.Columns["Ca"].HeaderText = "CA";
-            MonitorDataGridView.Columns["IsActive"].HeaderText = "Ativo";
             MonitorDataGridView.Columns["Description"].HeaderText = "Descrição";
             MonitorDataGridView.Columns["MaturityDate"].HeaderText = "Vencimento";
             MonitorDataGridView.Columns["SectorsDisplay"].HeaderText = "Setores";
             MonitorDataGridView.Columns["HandlingStatus"].HeaderText = "Tratativa";
+
+            MonitorDataGridView.Columns["IsActive"].Visible = false;
 
             MonitorDataGridView.Columns["MaturityDate"].DefaultCellStyle.Format = "d";
         }

@@ -47,8 +47,10 @@ namespace ProjectEPI.Forms
 
                     if (FieldMonitorEditModalHandlingStatus.Text == Constants.EquipmentConstants.HandlingStatus.FINISHED)
                     {
-                        var currentNotifications = _notificationService.GetExistingNotifications();
+                        var currentNotifications = _notificationService.GetExistingNotificationsIds();
+
                         var equipmentId = long.Parse(FieldMonitorEditModalId.Text);
+
                         if (currentNotifications.Contains(equipmentId))
                         {
                             var queryDelete = "DELETE from public.notifications WHERE equipmentid = @equipmentid";

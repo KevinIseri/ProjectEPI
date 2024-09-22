@@ -57,9 +57,9 @@ namespace ProjectEPI
                     txtUser.Focus();
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"Error: {ex.InnerException?.Message}");
             }
             finally
             {

@@ -55,7 +55,6 @@
             NotificationDataGridView.ReadOnly = true;
             NotificationDataGridView.Size = new Size(777, 364);
             NotificationDataGridView.TabIndex = 2;
-            NotificationDataGridView.CellClick += DataGridView1CellClick;
             // 
             // LabelGridMonitorTitle
             // 

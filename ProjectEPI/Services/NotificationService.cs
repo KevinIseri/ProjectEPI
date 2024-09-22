@@ -24,7 +24,7 @@ namespace ProjectEPI.Services
 
         public void GenerateNotifications()
         {
-            var currentNotifications = GetExistingNotifications();
+            var currentNotifications = GetExistingNotificationsIds();
             var equipments = _equipmentService.GetEquipments();
 
             var daysLimit = _settingService.GetMaturityIntervalDays();
@@ -80,7 +80,7 @@ namespace ProjectEPI.Services
 
         }
 
-        public List<long> GetExistingNotifications()
+        public List<long> GetExistingNotificationsIds()
         {
             var query = "SELECT equipmentid FROM notifications";
 
@@ -94,9 +94,48 @@ namespace ProjectEPI.Services
                         equipmentIdsWithNotifications.Add((long)reader["equipmentid"]);
                     }
                 }
-                _labelMainNotificationNumber.Text = equipmentIdsWithNotifications.Count().ToString();
+                _labelMainNotificationNumber.Text = equipmentIdsWithNotifications.Count.ToString();
 
                 return equipmentIdsWithNotifications;
+            });
+        }
+
+        public List<NotificationData> GetExistingNotifications()
+        {
+
+            var query = "SELECT n.Id, n.EquipmentId, n.Created_Date, n.Updated_Date, e.Id as EquipmentId, e.Name, e.Ca, e.Description, e.IsActive, e.Maturity_Date, e.Status, e.Handling_Status " +
+                        "FROM notifications n " +
+                        "INNER JOIN equipments e ON n.EquipmentId = e.Id";
+
+            return _databaseManager.ExecuteScalar(query, cmd =>
+            {
+                var notifications = new List<NotificationData>();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var notification = new NotificationData
+                        {
+                            Id = (long)reader["Id"],
+                            Equipment = new EquipmentData
+                            {
+                                Id = (long)reader["EquipmentId"],
+                                Name = reader["Name"].ToString(),
+                                Ca = reader["Ca"].ToString(),
+                                Description = reader["Description"].ToString(),
+                                IsActive = (bool)reader["IsActive"],
+                                MaturityDate = reader["Maturity_Date"] != DBNull.Value ? (DateTime?)reader["Maturity_Date"] : null,
+                                Status = reader["Status"].ToString(),
+                                HandlingStatus = reader["Handling_Status"].ToString()
+                            }
+                        };
+                        notifications.Add(notification);
+                    }
+                }
+                _labelMainNotificationNumber.Text = notifications.Count.ToString();
+
+                return notifications;
             });
         }
     }

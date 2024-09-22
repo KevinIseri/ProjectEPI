@@ -1,5 +1,4 @@
-﻿using ProjectEPI.Data;
-using ProjectEPI.Services;
+﻿using ProjectEPI.Services;
 
 namespace ProjectEPI.Controls
 {
@@ -23,19 +22,30 @@ namespace ProjectEPI.Controls
         {
             var notifications = _notificationService.GetExistingNotifications();
 
-            NotificationDataGridView.DataSource = notifications;
-        }
+            NotificationDataGridView.Columns.Clear();
 
-        private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1)
+            NotificationDataGridView.Columns.Add("NotificationId", "ID da notificação");
+
+            NotificationDataGridView.Columns.Add("EquipmentId", "ID do equipamento");
+            NotificationDataGridView.Columns.Add("EquipmentCa", "CA");
+            NotificationDataGridView.Columns.Add("EquipmentName", "Nome do equipamento");
+            NotificationDataGridView.Columns.Add("EquipmentDescription", "Descrição do equipamento");
+            NotificationDataGridView.Columns.Add("EquipmentMaturityDate", "Data de vencimento");
+
+            foreach (var notification in notifications)
             {
-                //DataGridViewRow row = SectorDataGridView.Rows[e.RowIndex];
+                var rowIndex = NotificationDataGridView.Rows.Add();
+                var row = NotificationDataGridView.Rows[rowIndex];
 
-                //FieldSectorId.Text = row.Cells["id"].Value.ToString();
-                //FieldSectorName.Text = row.Cells["name"].Value.ToString();
+                row.Cells["NotificationId"].Value = notification.Id;
 
+                row.Cells["EquipmentId"].Value = notification.Equipment.Id;
+                row.Cells["EquipmentCa"].Value = notification.Equipment.Ca;
+                row.Cells["EquipmentName"].Value = notification.Equipment.Name;
+                row.Cells["EquipmentDescription"].Value = notification.Equipment.Description;
+                row.Cells["EquipmentMaturityDate"].Value = notification.Equipment.MaturityDate?.ToString("dd/MM/yyyy");
             }
+
         }
     }
 }

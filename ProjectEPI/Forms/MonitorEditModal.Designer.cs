@@ -60,12 +60,12 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(348, 278);
+            panel1.Size = new Size(333, 466);
             panel1.TabIndex = 0;
             // 
             // ButtonUpdate
             // 
-            ButtonUpdate.Location = new Point(72, 227);
+            ButtonUpdate.Location = new Point(63, 407);
             ButtonUpdate.Name = "ButtonUpdate";
             ButtonUpdate.Size = new Size(75, 23);
             ButtonUpdate.TabIndex = 10;
@@ -75,7 +75,7 @@
             // 
             // ButtonCancel
             // 
-            ButtonCancel.Location = new Point(207, 227);
+            ButtonCancel.Location = new Point(198, 407);
             ButtonCancel.Name = "ButtonCancel";
             ButtonCancel.Size = new Size(75, 23);
             ButtonCancel.TabIndex = 9;
@@ -170,7 +170,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(348, 278);
+            ClientSize = new Size(333, 466);
             Controls.Add(panel1);
             Name = "MonitorEditModal";
             Text = "MonitorEditModal";

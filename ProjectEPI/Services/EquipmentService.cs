@@ -12,9 +12,11 @@ namespace ProjectEPI.Services
             _databaseManager = databaseManager;
         }
 
-        public List<EquipmentData> GetEquipments()
+        public List<EquipmentData> GetEquipments(string orderByColumn = "id", string sortType = "ASC", bool onlyActives = false)
         {
-            var query = "SELECT * FROM equipments ORDER BY id ASC";
+            var quetyFilterActives = onlyActives ? "WHERE isactive = true" : "";
+
+            var query = $"SELECT * FROM equipments {quetyFilterActives} ORDER BY {orderByColumn} {sortType}";
 
             return _databaseManager.ExecuteScalar(query, cmd =>
             {

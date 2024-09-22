@@ -30,8 +30,8 @@
         {
             panel1 = new Panel();
             MonitorDataGridView = new DataGridView();
-            LabelGridMonitorTitle = new Label();
             Edit = new DataGridViewImageColumn();
+            LabelGridMonitorTitle = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MonitorDataGridView).BeginInit();
             SuspendLayout();
@@ -59,6 +59,15 @@
             MonitorDataGridView.TabIndex = 1;
             MonitorDataGridView.CellClick += DataGridView1CellClick;
             // 
+            // Edit
+            // 
+            Edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Edit.HeaderText = "";
+            Edit.Image = Properties.Resources.grid_edit_icon;
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            Edit.Width = 5;
+            // 
             // LabelGridMonitorTitle
             // 
             LabelGridMonitorTitle.AutoSize = true;
@@ -68,15 +77,6 @@
             LabelGridMonitorTitle.Size = new Size(73, 23);
             LabelGridMonitorTitle.TabIndex = 0;
             LabelGridMonitorTitle.Text = "Monitor";
-            // 
-            // Edit
-            // 
-            Edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Edit.HeaderText = "";
-            Edit.Image = Properties.Resources.grid_edit_icon;
-            Edit.Name = "Edit";
-            Edit.ReadOnly = true;
-            Edit.Width = 5;
             // 
             // MonitorControl
             // 
