@@ -25,11 +25,13 @@ namespace ProjectEPI
             monitorControl1.InitializeServices(_databaseManager, _equipmentService, _notificationService);
             sectorControl1.InitializeServices(_databaseManager, _sectorService);
             notificationControl1.InitializeServices(_notificationService);
+            settingControl1.InitializeServices(_settingService, _databaseManager);
 
             equipmentControl1.Visible = false;
             monitorControl1.Visible = true;
             sectorControl1.Visible = false;
             notificationControl1.Visible = false;
+            settingControl1.Visible = false;
 
             _notificationService.GenerateNotifications();
         }
@@ -42,6 +44,7 @@ namespace ProjectEPI
             monitorControl1.Visible = false;
             sectorControl1.Visible = true;
             notificationControl1.Visible = false;
+            settingControl1.Visible = false;
         }
 
         private void EquipmentsButtonClick(object sender, EventArgs e)
@@ -53,6 +56,7 @@ namespace ProjectEPI
             monitorControl1.Visible = false;
             sectorControl1.Visible = false;
             notificationControl1.Visible = false;
+            settingControl1.Visible = false;
         }
 
         private void MonitorButtonClick(object sender, EventArgs e)
@@ -63,6 +67,7 @@ namespace ProjectEPI
             monitorControl1.Visible = true;
             sectorControl1.Visible = false;
             notificationControl1.Visible = false;
+            settingControl1.Visible = false;
         }
 
         private void NotificationsButtonClick(object sender, EventArgs e)
@@ -73,6 +78,18 @@ namespace ProjectEPI
             monitorControl1.Visible = false;
             sectorControl1.Visible = false;
             notificationControl1.Visible = true;
+            settingControl1.Visible = false;
+        }
+
+        private void SettingsButtonClick(object sender, EventArgs e)
+        {
+            settingControl1.FillSettingFields();
+
+            equipmentControl1.Visible = false;
+            monitorControl1.Visible = false;
+            sectorControl1.Visible = false;
+            notificationControl1.Visible = false;
+            settingControl1.Visible = true;
         }
     }
 }

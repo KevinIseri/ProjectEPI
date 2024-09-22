@@ -8,5 +8,6 @@
         public string Name { get; set; }
         public bool IsActive { get; set; }
         public string? HandlingStatus { get; set; }
+        public DateTime? MaturityDate { get; set; }
     }
 }

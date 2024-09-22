@@ -40,6 +40,7 @@
             LabelMainCurrentNotifications = new Label();
             button2 = new Button();
             panel3 = new Panel();
+            settingControl1 = new Controls.SettingControl();
             notificationControl1 = new Controls.NotificationControl();
             monitorControl1 = new Controls.MonitorControl();
             equipmentControl1 = new Controls.EquipmentControl();
@@ -160,9 +161,11 @@
             button2.TabIndex = 4;
             button2.Text = "Configurações";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += SettingsButtonClick;
             // 
             // panel3
             // 
+            panel3.Controls.Add(settingControl1);
             panel3.Controls.Add(notificationControl1);
             panel3.Controls.Add(monitorControl1);
             panel3.Controls.Add(equipmentControl1);
@@ -172,6 +175,13 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(900, 575);
             panel3.TabIndex = 6;
+            // 
+            // settingControl1
+            // 
+            settingControl1.Location = new Point(0, 0);
+            settingControl1.Name = "settingControl1";
+            settingControl1.Size = new Size(900, 575);
+            settingControl1.TabIndex = 4;
             // 
             // notificationControl1
             // 
@@ -235,5 +245,6 @@
         private Controls.NotificationControl notificationControl1;
         private Label LabelMainCurrentNotifications;
         private Label LabelMainNotificationNumber;
+        private Controls.SettingControl settingControl1;
     }
 }

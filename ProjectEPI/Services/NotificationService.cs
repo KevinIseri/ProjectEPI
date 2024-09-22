@@ -40,7 +40,7 @@ namespace ProjectEPI.Services
                 }
             }
 
-            var notificationNumberUpdated = currentNotifications.Count() + incNotifications;
+            var notificationNumberUpdated = currentNotifications.Count + incNotifications;
             _labelMainNotificationNumber.Text = notificationNumberUpdated.ToString();
         }
 
@@ -76,8 +76,6 @@ namespace ProjectEPI.Services
                 cmd.Parameters.AddWithValue("@handlingstatus", HandlingStatus.PENDING);
                 cmd.Parameters.AddWithValue("@status", EquipmentStatus.EXPIRING);
             });
-
-
         }
 
         public List<long> GetExistingNotificationsIds()

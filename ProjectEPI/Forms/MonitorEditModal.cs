@@ -29,6 +29,7 @@ namespace ProjectEPI.Forms
             FieldMonitorEditModalDescription.Text = _equipment.Description;
             FieldMonitorEditModalHandlingStatus.Text = _equipment?.HandlingStatus;
             FieldMonitorEditModalIsActive.Checked = _equipment.IsActive;
+            FieldMonitorEditModalMaturityDate.Value = _equipment.MaturityDate.Value;
         }
 
         private void MonitorEditModal_Load(object sender, EventArgs e)
@@ -62,17 +63,21 @@ namespace ProjectEPI.Forms
                         }
                     }
 
-                    var queryUpdate = "UPDATE public.equipments SET isactive = @isactive, handling_status = @handlingstatus, updated_date=@updateDate WHERE id=@id;";
+                    var queryUpdate = "UPDATE public.equipments SET isactive = @isactive, handling_status = @handlingstatus, maturity_date = @maturitydate, updated_date=@updateDate WHERE id=@id;";
 
                     _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
                     {
                         cmd.Parameters.AddWithValue("@id", long.Parse(FieldMonitorEditModalId.Text));
                         cmd.Parameters.AddWithValue("@handlingstatus", FieldMonitorEditModalHandlingStatus.Text);
                         cmd.Parameters.AddWithValue("@isactive", FieldMonitorEditModalIsActive.Checked);
+                        cmd.Parameters.AddWithValue("@maturitydate", FieldMonitorEditModalMaturityDate.Value);
                         cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
                     });
 
+                    _notificationService.GenerateNotifications();
+
                     _refreshMonitorGrid();
+
                     MessageBox.Show("Equipamento atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }

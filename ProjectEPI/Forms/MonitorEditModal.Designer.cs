@@ -40,12 +40,16 @@
             FieldMonitorEditModalHandlingStatus = new ComboBox();
             FieldMonitorEditModalId = new TextBox();
             LabelMonitorEditModalId = new Label();
+            LabelMonitorEditModalMaturityDate = new Label();
+            FieldMonitorEditModalMaturityDate = new DateTimePicker();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.HighlightText;
+            panel1.Controls.Add(FieldMonitorEditModalMaturityDate);
+            panel1.Controls.Add(LabelMonitorEditModalMaturityDate);
             panel1.Controls.Add(ButtonUpdate);
             panel1.Controls.Add(ButtonCancel);
             panel1.Controls.Add(FieldMonitorEditModalIsActive);
@@ -166,6 +170,22 @@
             LabelMonitorEditModalId.TabIndex = 0;
             LabelMonitorEditModalId.Text = "Id: ";
             // 
+            // LabelMonitorEditModalMaturityDate
+            // 
+            LabelMonitorEditModalMaturityDate.AutoSize = true;
+            LabelMonitorEditModalMaturityDate.Location = new Point(25, 232);
+            LabelMonitorEditModalMaturityDate.Name = "LabelMonitorEditModalMaturityDate";
+            LabelMonitorEditModalMaturityDate.Size = new Size(54, 15);
+            LabelMonitorEditModalMaturityDate.TabIndex = 11;
+            LabelMonitorEditModalMaturityDate.Text = "Validade:";
+            // 
+            // FieldMonitorEditModalMaturityDate
+            // 
+            FieldMonitorEditModalMaturityDate.Location = new Point(95, 232);
+            FieldMonitorEditModalMaturityDate.Name = "FieldMonitorEditModalMaturityDate";
+            FieldMonitorEditModalMaturityDate.Size = new Size(200, 23);
+            FieldMonitorEditModalMaturityDate.TabIndex = 12;
+            // 
             // MonitorEditModal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -194,5 +214,7 @@
         private CheckBox FieldMonitorEditModalIsActive;
         private Button ButtonCancel;
         private Button ButtonUpdate;
+        private Label LabelMonitorEditModalMaturityDate;
+        private DateTimePicker FieldMonitorEditModalMaturityDate;
     }
 }

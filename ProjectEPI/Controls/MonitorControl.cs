@@ -62,7 +62,8 @@ namespace ProjectEPI.Controls
                         Description = row.Cells["Description"].Value.ToString(),
                         Name = row.Cells["Name"].Value.ToString(),
                         IsActive = (bool)row.Cells["IsActive"].Value,
-                        HandlingStatus = row.Cells["HandlingStatus"].Value.ToString()
+                        HandlingStatus = row.Cells["HandlingStatus"].Value.ToString(),
+                        MaturityDate = (DateTime?)row.Cells["MaturityDate"].Value
                     },
                     _databaseService, 
                     ShowMonitorGrid,
