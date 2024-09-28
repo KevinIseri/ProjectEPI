@@ -106,7 +106,7 @@
             // PictureBoxBackground
             // 
             PictureBoxBackground.Dock = DockStyle.Fill;
-            PictureBoxBackground.Image = Properties.Resources.main_login_bgd;
+            PictureBoxBackground.Image = Properties.Resources.lgn_prp;
             PictureBoxBackground.Location = new Point(0, 0);
             PictureBoxBackground.Name = "PictureBoxBackground";
             PictureBoxBackground.Size = new Size(800, 550);
@@ -122,7 +122,7 @@
             LabelLoginTitle.BackColor = Color.Black;
             LabelLoginTitle.Font = new Font("Verdana", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LabelLoginTitle.ForeColor = Color.White;
-            LabelLoginTitle.Location = new Point(310, 190);
+            LabelLoginTitle.Location = new Point(310, 178);
             LabelLoginTitle.Name = "LabelLoginTitle";
             LabelLoginTitle.Size = new Size(181, 38);
             LabelLoginTitle.TabIndex = 9;
@@ -132,8 +132,8 @@
             // 
             PictureBoxLogo.Anchor = AnchorStyles.None;
             PictureBoxLogo.BackgroundImageLayout = ImageLayout.None;
-            PictureBoxLogo.Image = Properties.Resources.helmet;
-            PictureBoxLogo.Location = new Point(342, 40);
+            PictureBoxLogo.Image = Properties.Resources.helmet_main_prp_logo;
+            PictureBoxLogo.Location = new Point(342, 46);
             PictureBoxLogo.Name = "PictureBoxLogo";
             PictureBoxLogo.Size = new Size(116, 131);
             PictureBoxLogo.SizeMode = PictureBoxSizeMode.Zoom;

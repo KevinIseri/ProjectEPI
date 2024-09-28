@@ -88,7 +88,7 @@ namespace ProjectEPI
                 }
                 else
                 {
-                    MessageBox.Show("Login inválido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Invalid login details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtUser.Clear();
                     txtPassword.Clear();
 
