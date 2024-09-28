@@ -71,20 +71,19 @@
             // txtUser
             // 
             txtUser.Anchor = AnchorStyles.None;
-            txtUser.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUser.Font = new Font("Verdana", 10F);
             txtUser.Location = new Point(290, 279);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(221, 27);
+            txtUser.Size = new Size(221, 24);
             txtUser.TabIndex = 3;
-            txtUser.TextChanged += txtUser_TextChanged;
             // 
             // txtPassword
             // 
             txtPassword.Anchor = AnchorStyles.None;
-            txtPassword.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Font = new Font("Verdana", 10F);
             txtPassword.Location = new Point(290, 343);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(221, 27);
+            txtPassword.Size = new Size(221, 24);
             txtPassword.TabIndex = 4;
             txtPassword.UseSystemPasswordChar = true;
             // 
@@ -182,7 +181,7 @@
             Name = "LoginPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
-            Load += Form1_Load;
+            Load += LoginFormLoad;
             ((System.ComponentModel.ISupportInitialize)PictureBoxBackground).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).EndInit();

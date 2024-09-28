@@ -11,7 +11,12 @@ namespace ProjectEPI
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void LoginFormLoad(object sender, EventArgs e)
+        {
+            RemoveBackground();
+        }
+
+        private void RemoveBackground()
         {
             LabelLoginTitle.Parent = PictureBoxBackground;
             LabelLoginTitle.BackColor = Color.Transparent;
@@ -81,11 +86,6 @@ namespace ProjectEPI
             {
                 conn.Close();
             }
-        }
-
-        private void txtUser_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void MinimizeButtonClick(object sender, EventArgs e)
