@@ -90,12 +90,18 @@
             // 
             // button_login
             // 
-            button_login.Location = new Point(363, 398);
+            button_login.BackColor = Color.FromArgb(86, 63, 223);
+            button_login.Cursor = Cursors.Hand;
+            button_login.FlatAppearance.BorderColor = Color.White;
+            button_login.FlatStyle = FlatStyle.Popup;
+            button_login.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button_login.ForeColor = Color.White;
+            button_login.Location = new Point(325, 400);
             button_login.Name = "button_login";
-            button_login.Size = new Size(75, 23);
+            button_login.Size = new Size(150, 40);
             button_login.TabIndex = 5;
             button_login.Text = "Entrar";
-            button_login.UseVisualStyleBackColor = true;
+            button_login.UseVisualStyleBackColor = false;
             button_login.Click += ButtonLoginClick;
             // 
             // PictureBoxBackground
