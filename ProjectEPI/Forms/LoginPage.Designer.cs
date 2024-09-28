@@ -113,6 +113,8 @@
             PictureBoxBackground.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxBackground.TabIndex = 8;
             PictureBoxBackground.TabStop = false;
+            PictureBoxBackground.MouseDown += MouseDown;
+            PictureBoxBackground.MouseMove += MouseMove;
             // 
             // LabelLoginTitle
             // 

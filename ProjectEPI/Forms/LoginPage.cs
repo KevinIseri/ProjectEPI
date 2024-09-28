@@ -6,6 +6,8 @@ namespace ProjectEPI
 {
     public partial class LoginPage : Form
     {
+        public Point MOUSE_LOCATION;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -35,6 +37,21 @@ namespace ProjectEPI
 
             PictureBoxMinimizeButton.Parent = PictureBoxBackground;
             PictureBoxMinimizeButton.BackColor = Color.Transparent;
+        }
+
+        private void MouseDown(object sender, MouseEventArgs e)
+        {
+            MOUSE_LOCATION = new Point(-e.X, -e.Y);
+        }
+
+        private void MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Point mousePosition = Control.MousePosition;
+                mousePosition.Offset(MOUSE_LOCATION.X, MOUSE_LOCATION.Y);
+                Location = mousePosition;
+            }
         }
 
         private void ButtonLoginClick(object sender, EventArgs e)
