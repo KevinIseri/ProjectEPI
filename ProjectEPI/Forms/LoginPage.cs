@@ -13,7 +13,23 @@ namespace ProjectEPI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LabelLoginTitle.Parent = PictureBoxBackground;
+            LabelLoginTitle.BackColor = Color.Transparent;
 
+            LabelLoginUser.Parent = PictureBoxBackground;
+            LabelLoginUser.BackColor = Color.Transparent;
+
+            LabelLoginPass.Parent = PictureBoxBackground;
+            LabelLoginPass.BackColor = Color.Transparent;
+
+            PictureBoxLogo.Parent = PictureBoxBackground;
+            PictureBoxLogo.BackColor = Color.Transparent;
+
+            PictureBoxCloseButton.Parent = PictureBoxBackground;
+            PictureBoxCloseButton.BackColor = Color.Transparent;
+
+            PictureBoxMinimizeButton.Parent = PictureBoxBackground;
+            PictureBoxMinimizeButton.BackColor = Color.Transparent;
         }
 
         private void ButtonLoginClick(object sender, EventArgs e)
@@ -57,7 +73,7 @@ namespace ProjectEPI
                     txtUser.Focus();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.InnerException?.Message}");
             }
@@ -67,7 +83,17 @@ namespace ProjectEPI
             }
         }
 
-        private void ButtonLoginExitClick(object sender, EventArgs e)
+        private void txtUser_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MinimizeButtonClick(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void CloseButtonClick(object sender, EventArgs e)
         {
             DialogResult res;
 
@@ -81,19 +107,6 @@ namespace ProjectEPI
             {
                 this.Show();
             }
-        }
-
-        private void ButtonLoginClearClick(object sender, EventArgs e)
-        {
-            txtUser.Clear();
-            txtPassword.Clear();
-
-            txtUser.Focus();
-        }
-
-        private void txtUser_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

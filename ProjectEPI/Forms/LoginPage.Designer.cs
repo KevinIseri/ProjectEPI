@@ -28,62 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            labelUser = new Label();
-            labelPass = new Label();
+            LabelLoginUser = new Label();
+            LabelLoginPass = new Label();
             txtUser = new TextBox();
             txtPassword = new TextBox();
             button_login = new Button();
-            button_login_clear = new Button();
-            button_login_exit = new Button();
+            PictureBoxBackground = new PictureBox();
+            LabelLoginTitle = new Label();
+            PictureBoxLogo = new PictureBox();
+            PictureBoxCloseButton = new PictureBox();
+            PictureBoxMinimizeButton = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxBackground).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxLogo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxMinimizeButton).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // LabelLoginUser
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(337, 33);
-            label1.Name = "label1";
-            label1.Size = new Size(120, 24);
-            label1.TabIndex = 0;
-            label1.Text = "Bem-vindo";
+            LabelLoginUser.AutoSize = true;
+            LabelLoginUser.BackColor = Color.Black;
+            LabelLoginUser.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelLoginUser.ForeColor = Color.White;
+            LabelLoginUser.Location = new Point(290, 258);
+            LabelLoginUser.Name = "LabelLoginUser";
+            LabelLoginUser.Size = new Size(70, 18);
+            LabelLoginUser.TabIndex = 1;
+            LabelLoginUser.Text = "Usuário";
             // 
-            // labelUser
+            // LabelLoginPass
             // 
-            labelUser.AutoSize = true;
-            labelUser.Location = new Point(225, 108);
-            labelUser.Name = "labelUser";
-            labelUser.Size = new Size(47, 15);
-            labelUser.TabIndex = 1;
-            labelUser.Text = "Usuário";
-            // 
-            // labelPass
-            // 
-            labelPass.AutoSize = true;
-            labelPass.Location = new Point(225, 149);
-            labelPass.Name = "labelPass";
-            labelPass.Size = new Size(39, 15);
-            labelPass.TabIndex = 2;
-            labelPass.Text = "Senha";
+            LabelLoginPass.AutoSize = true;
+            LabelLoginPass.BackColor = Color.Black;
+            LabelLoginPass.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelLoginPass.ForeColor = Color.White;
+            LabelLoginPass.Location = new Point(290, 322);
+            LabelLoginPass.Name = "LabelLoginPass";
+            LabelLoginPass.Size = new Size(58, 18);
+            LabelLoginPass.TabIndex = 2;
+            LabelLoginPass.Text = "Senha";
             // 
             // txtUser
             // 
-            txtUser.Location = new Point(310, 108);
+            txtUser.Anchor = AnchorStyles.None;
+            txtUser.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUser.Location = new Point(290, 279);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(221, 23);
+            txtUser.Size = new Size(221, 27);
             txtUser.TabIndex = 3;
             txtUser.TextChanged += txtUser_TextChanged;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(310, 146);
+            txtPassword.Anchor = AnchorStyles.None;
+            txtPassword.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Location = new Point(290, 343);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(221, 23);
+            txtPassword.Size = new Size(221, 27);
             txtPassword.TabIndex = 4;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // button_login
             // 
-            button_login.Location = new Point(456, 188);
+            button_login.Location = new Point(363, 398);
             button_login.Name = "button_login";
             button_login.Size = new Size(75, 23);
             button_login.TabIndex = 5;
@@ -91,55 +98,103 @@
             button_login.UseVisualStyleBackColor = true;
             button_login.Click += ButtonLoginClick;
             // 
-            // button_login_clear
+            // PictureBoxBackground
             // 
-            button_login_clear.Location = new Point(310, 188);
-            button_login_clear.Name = "button_login_clear";
-            button_login_clear.Size = new Size(75, 23);
-            button_login_clear.TabIndex = 6;
-            button_login_clear.Text = "Limpar";
-            button_login_clear.UseVisualStyleBackColor = true;
-            button_login_clear.Click += ButtonLoginClearClick;
+            PictureBoxBackground.Dock = DockStyle.Fill;
+            PictureBoxBackground.Image = Properties.Resources.main_login_bgd;
+            PictureBoxBackground.Location = new Point(0, 0);
+            PictureBoxBackground.Name = "PictureBoxBackground";
+            PictureBoxBackground.Size = new Size(800, 550);
+            PictureBoxBackground.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxBackground.TabIndex = 8;
+            PictureBoxBackground.TabStop = false;
             // 
-            // button_login_exit
+            // LabelLoginTitle
             // 
-            button_login_exit.Location = new Point(21, 404);
-            button_login_exit.Name = "button_login_exit";
-            button_login_exit.Size = new Size(75, 23);
-            button_login_exit.TabIndex = 7;
-            button_login_exit.Text = "Sair";
-            button_login_exit.UseVisualStyleBackColor = true;
-            button_login_exit.Click += ButtonLoginExitClick;
+            LabelLoginTitle.AutoSize = true;
+            LabelLoginTitle.BackColor = Color.Black;
+            LabelLoginTitle.Font = new Font("Verdana", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelLoginTitle.ForeColor = Color.White;
+            LabelLoginTitle.Location = new Point(310, 190);
+            LabelLoginTitle.Name = "LabelLoginTitle";
+            LabelLoginTitle.Size = new Size(181, 38);
+            LabelLoginTitle.TabIndex = 9;
+            LabelLoginTitle.Text = "ProjectEPI";
+            // 
+            // PictureBoxLogo
+            // 
+            PictureBoxLogo.Anchor = AnchorStyles.None;
+            PictureBoxLogo.BackgroundImageLayout = ImageLayout.None;
+            PictureBoxLogo.Image = Properties.Resources.helmet;
+            PictureBoxLogo.Location = new Point(342, 40);
+            PictureBoxLogo.Name = "PictureBoxLogo";
+            PictureBoxLogo.Size = new Size(116, 131);
+            PictureBoxLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBoxLogo.TabIndex = 10;
+            PictureBoxLogo.TabStop = false;
+            // 
+            // PictureBoxCloseButton
+            // 
+            PictureBoxCloseButton.Cursor = Cursors.Hand;
+            PictureBoxCloseButton.Image = Properties.Resources.delete;
+            PictureBoxCloseButton.Location = new Point(774, 6);
+            PictureBoxCloseButton.Name = "PictureBoxCloseButton";
+            PictureBoxCloseButton.Size = new Size(20, 18);
+            PictureBoxCloseButton.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBoxCloseButton.TabIndex = 11;
+            PictureBoxCloseButton.TabStop = false;
+            PictureBoxCloseButton.Click += CloseButtonClick;
+            // 
+            // PictureBoxMinimizeButton
+            // 
+            PictureBoxMinimizeButton.Cursor = Cursors.Hand;
+            PictureBoxMinimizeButton.Image = Properties.Resources.minus;
+            PictureBoxMinimizeButton.Location = new Point(750, 6);
+            PictureBoxMinimizeButton.Name = "PictureBoxMinimizeButton";
+            PictureBoxMinimizeButton.Size = new Size(18, 18);
+            PictureBoxMinimizeButton.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBoxMinimizeButton.TabIndex = 12;
+            PictureBoxMinimizeButton.TabStop = false;
+            PictureBoxMinimizeButton.Click += MinimizeButtonClick;
             // 
             // LoginPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button_login_exit);
-            Controls.Add(button_login_clear);
+            ClientSize = new Size(800, 550);
+            Controls.Add(PictureBoxMinimizeButton);
+            Controls.Add(PictureBoxCloseButton);
+            Controls.Add(PictureBoxLogo);
+            Controls.Add(LabelLoginTitle);
             Controls.Add(button_login);
             Controls.Add(txtPassword);
             Controls.Add(txtUser);
-            Controls.Add(labelPass);
-            Controls.Add(labelUser);
-            Controls.Add(label1);
+            Controls.Add(LabelLoginPass);
+            Controls.Add(LabelLoginUser);
+            Controls.Add(PictureBoxBackground);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "LoginPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)PictureBoxBackground).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxLogo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxMinimizeButton).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
-        private Label labelUser;
-        private Label labelPass;
+        private Label LabelLoginUser;
+        private Label LabelLoginPass;
         private TextBox txtUser;
         private TextBox txtPassword;
         private Button button_login;
-        private Button button_login_clear;
-        private Button button_login_exit;
+        private PictureBox PictureBoxBackground;
+        private Label LabelLoginTitle;
+        private PictureBox PictureBoxLogo;
+        private PictureBox PictureBoxCloseButton;
+        private PictureBox PictureBoxMinimizeButton;
     }
 }
