@@ -80,7 +80,7 @@ namespace ProjectEPI
                     username = txtUser.Text;
                     userPassword = txtPassword.Text;
 
-                    MessageBox.Show("Login success", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Login realizado com sucesso", "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     MainPage mainPage = new();
                     mainPage.Show();
@@ -88,7 +88,7 @@ namespace ProjectEPI
                 }
                 else
                 {
-                    MessageBox.Show("Invalid login details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Login inválido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtUser.Clear();
                     txtPassword.Clear();
 
