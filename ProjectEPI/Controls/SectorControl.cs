@@ -1,5 +1,7 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using ProjectEPI.Constants;
 using ProjectEPI.Data;
+using ProjectEPI.Data.Dtos;
+using ProjectEPI.Forms;
 using ProjectEPI.Services;
 
 namespace ProjectEPI.Controls
@@ -25,134 +27,46 @@ namespace ProjectEPI.Controls
         public void ShowSectorsGrid()
         {
             var sectors = _sectorService.GetSectors();
+
             SectorDataGridView.DataSource = sectors;
+
+            SectorDataGridView.Columns["Edit"].DisplayIndex = SectorDataGridView.Columns.Count - 1;
             SectorDataGridView.Columns["Name"].HeaderText = "Nome";
         }
 
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1)
+            if (e.RowIndex != -1 && SectorDataGridView.Columns[e.ColumnIndex].Name == "Edit")
             {
                 DataGridViewRow row = SectorDataGridView.Rows[e.RowIndex];
 
-                FieldSectorId.Text = row.Cells["id"].Value.ToString();
-                FieldSectorName.Text = row.Cells["name"].Value.ToString();
+                SectorModal sectorModal = new(
+                    new SectorDto
+                    {
+                        Id = (long)row.Cells["Id"].Value,
+                        Name = row.Cells["Name"].Value.ToString()
+                    },
+                    _databaseService, 
+                    _sectorService,
+                    ShowSectorsGrid,
+                    ModalConstants.Type.EDIT
+                );
+
+                sectorModal.ShowDialog();
             }
-        }
-
-        private void ClearFields()
-        {
-            FieldSectorId.Text = "";
-            FieldSectorName.Text = "";
-        }
-
-        private bool ValidadeFilledFields(bool checkId = false)
-        {
-            if (checkId && string.IsNullOrEmpty(FieldSectorId.Text))
-            {
-                MessageBox.Show("Por favor, selecione um setor antes de prosseguir.");
-                return false;
-            }
-
-            if (FieldSectorName.Text.IsNullOrEmpty())
-            {
-                MessageBox.Show("Por favor, preencha o campo antes de salvar.",
-                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return false;
-            }
-
-            return true;
-        }
-
-        private static bool ConfirmAction(string action, string id)
-        {
-            var confirmation = MessageBox.Show($"Tem certeza que deseja {action} o Id {id}?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            return confirmation == DialogResult.Yes;
         }
 
         private void ButtonAddClick(object sender, EventArgs e)
         {
-            if (ValidadeFilledFields())
-            {
-                try { 
-                    var queryInsert = "INSERT INTO public.sectors (id, \"name\", created_date, updated_date) " +
-                                      "VALUES(nextval('sectors_id_seq'::regclass), @name, @createdDate, NULL);";
+            SectorModal sectorModal = new(
+                new SectorDto(),
+                _databaseService,
+                _sectorService,
+                ShowSectorsGrid,
+                ModalConstants.Type.ADD
+            );
 
-                    _databaseService.ExecuteNonQuery(queryInsert, cmd =>
-                    {
-                        cmd.Parameters.AddWithValue("@name", FieldSectorName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
-                    });
-
-                    ShowSectorsGrid();
-                    ClearFields();
-                    MessageBox.Show("Setor adicionado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao adicionar o setor: {ex.Message}",
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void ButtonUpdateClick(object sender, EventArgs e)
-        {
-            if (ValidadeFilledFields(checkId: true) && ConfirmAction("atualizar", FieldSectorId.Text))
-            {
-                try
-                {
-                    var queryUpdate = "UPDATE public.sectors SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
-
-                    _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
-                    {
-                        cmd.Parameters.AddWithValue("@name", FieldSectorName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@id", long.Parse(FieldSectorId.Text));
-                        cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
-                    });
-
-                    ShowSectorsGrid();
-                    ClearFields();
-                    MessageBox.Show("Setor atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show($"Erro ao atualizar o setor: {ex.Message}",
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void ButtonDeleteClick(object sender, EventArgs e)
-        {
-            if (ValidadeFilledFields(checkId: true) && ConfirmAction("deletar", FieldSectorId.Text))
-            {
-                try
-                {
-                    var queryDelete = "DELETE FROM public.sectors WHERE id=@id;";
-
-                    _databaseService.ExecuteNonQuery(queryDelete, cmd =>
-                    {
-                        cmd.Parameters.AddWithValue("@id", long.Parse(FieldSectorId.Text));
-                    });
-
-                    ShowSectorsGrid();
-                    ClearFields();
-                    MessageBox.Show("Setor deletado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao deletar o setor: {ex.Message}", 
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void ButtonClearClick(object sender, EventArgs e)
-        {
-            ClearFields();
+             sectorModal.ShowDialog();
         }
     }
 }
