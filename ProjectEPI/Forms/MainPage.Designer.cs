@@ -43,7 +43,6 @@
             pictureBox2 = new PictureBox();
             button2 = new Button();
             panel3 = new Panel();
-            settingControl1 = new Controls.SettingControl();
             panel1 = new Panel();
             PictureBoxMinimizeButton = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -51,6 +50,7 @@
             monitorControl1 = new Controls.MonitorControl();
             equipmentControl1 = new Controls.EquipmentControl();
             sectorControl1 = new Controls.SectorControl();
+            settingControl1 = new Controls.SettingControl();
             ((System.ComponentModel.ISupportInitialize)PictureBoxMainPageLogo).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -258,24 +258,16 @@
             // 
             panel3.BackColor = Color.FromArgb(37, 35, 78);
             panel3.Controls.Add(panel1);
-            panel3.Controls.Add(notificationControl1);
-            panel3.Controls.Add(monitorControl1);
             panel3.Controls.Add(equipmentControl1);
             panel3.Controls.Add(sectorControl1);
             panel3.Controls.Add(settingControl1);
+            panel3.Controls.Add(notificationControl1);
+            panel3.Controls.Add(monitorControl1);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(237, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(1043, 720);
             panel3.TabIndex = 6;
-            // 
-            // settingControl1
-            // 
-            settingControl1.BackColor = Color.FromArgb(37, 35, 78);
-            settingControl1.Location = new Point(0, 25);
-            settingControl1.Name = "settingControl1";
-            settingControl1.Size = new Size(1043, 695);
-            settingControl1.TabIndex = 4;
             // 
             // panel1
             // 
@@ -310,9 +302,10 @@
             // 
             // notificationControl1
             // 
-            notificationControl1.Location = new Point(37, 250);
+            notificationControl1.BackColor = Color.FromArgb(37, 35, 78);
+            notificationControl1.Location = new Point(0, 25);
             notificationControl1.Name = "notificationControl1";
-            notificationControl1.Size = new Size(900, 575);
+            notificationControl1.Size = new Size(1043, 695);
             notificationControl1.TabIndex = 3;
             // 
             // monitorControl1
@@ -332,10 +325,18 @@
             // 
             // sectorControl1
             // 
-            sectorControl1.Location = new Point(81, 91);
+            sectorControl1.Location = new Point(92, 60);
             sectorControl1.Name = "sectorControl1";
             sectorControl1.Size = new Size(900, 575);
             sectorControl1.TabIndex = 0;
+            // 
+            // settingControl1
+            // 
+            settingControl1.BackColor = Color.FromArgb(37, 35, 78);
+            settingControl1.Location = new Point(0, 25);
+            settingControl1.Name = "settingControl1";
+            settingControl1.Size = new Size(1043, 695);
+            settingControl1.TabIndex = 4;
             // 
             // MainPage
             // 
