@@ -49,7 +49,6 @@ namespace ProjectEPI
 
         private void EquipmentsButtonClick(object sender, EventArgs e)
         {
-            //equipmentControl1.ShowSectorsButton();
             sectorControl1.ShowSectorsGrid();
 
             equipmentControl1.Visible = true;

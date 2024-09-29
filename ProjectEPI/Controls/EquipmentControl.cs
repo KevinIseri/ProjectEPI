@@ -1,4 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using ProjectEPI.Constants;
 using ProjectEPI.Data;
 using ProjectEPI.Data.Dtos;
 using ProjectEPI.Forms;
@@ -12,12 +12,9 @@ namespace ProjectEPI.Controls
         private EquipmentService _equipmentService;
         private SectorService _sectorService;
 
-        private readonly List<long> _selectedSectorIds = [];
-
         public EquipmentControl()
         {
             InitializeComponent();
-            //FieldEquipmentSectors.ItemCheck += FieldEquipmentSectorsItemCheck;
         }
 
         public void InitializeServices(DatabaseManager databaseService, EquipmentService equipmentService, SectorService sectorService)
@@ -27,9 +24,7 @@ namespace ProjectEPI.Controls
             _sectorService = sectorService;
 
             ShowEquipmentsGrid();
-            //ShowSectorsButton();
         }
-
 
         private void ShowEquipmentsGrid()
         {
@@ -51,29 +46,6 @@ namespace ProjectEPI.Controls
             EquipmentDataGridView.Columns["MaturityDate"].DefaultCellStyle.Format = "d";
         }
 
-        //private void ClearFields()
-        //{
-        //    FieldEquipmentId.Text = "";
-        //    FieldEquipmentName.Text = "";
-        //    FieldEquipmentCA.Text = "";
-        //    FieldEquipmentDescription.Text = "";
-        //    FieldEquipmentIsActive.Checked = false;
-        //    FieldEquipmentName.Text = "";
-        //    FieldEquipmentStatus.Text = "";
-
-        //    ClearSelectedSectors();
-        //}
-
-        //private void ClearSelectedSectors()
-        //{
-        //    _selectedSectorIds.Clear();
-
-        //    foreach (int index in FieldEquipmentSectors.CheckedIndices)
-        //    {
-        //        FieldEquipmentSectors.SetItemChecked(index, false);
-        //    }
-        //}
-
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1 && EquipmentDataGridView.Columns[e.ColumnIndex].Name == "Edit")
@@ -82,7 +54,7 @@ namespace ProjectEPI.Controls
                 
                 var sectors = row.Cells["SectorsDisplay"].Value as string;
 
-                EquipmentEditModal editModal = new(
+                EquipmentModal equipmentModal = new(
                     new EquipmentDto
                     {
                         Id = (long)row.Cells["Id"].Value,
@@ -93,30 +65,30 @@ namespace ProjectEPI.Controls
                         Status = row.Cells["status"].Value.ToString(),
                         MaturityDate = (DateTime)row.Cells["maturitydate"].Value
                     }, 
-                    _databaseService,
                     ShowEquipmentsGrid, 
+                    _databaseService,
                     _sectorService,
+                    ModalConstants.Type.EDIT,
                     sectors
                 );
 
-                editModal.ShowDialog();
+                equipmentModal.ShowDialog();
             }
         }
 
         private void ButtonAddClick(object sender, EventArgs e)
         {
-        }
+            EquipmentModal equipmentModal = new
+            (
+                new EquipmentDto(),
+                ShowEquipmentsGrid,
+                _databaseService,
+                _sectorService,
+                ModalConstants.Type.ADD,
+                null
+            );
 
-        private void ButtonUpdateClick(object sender, EventArgs e)
-        {
-        }
-
-        private void ButtonDeleteClick(object sender, EventArgs e)
-        {
-        }
-
-        private void ButtonClearClick(object sender, EventArgs e)
-        {
+            equipmentModal.ShowDialog();
         }
     }
 }

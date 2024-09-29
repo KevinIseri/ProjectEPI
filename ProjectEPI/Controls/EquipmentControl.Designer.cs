@@ -28,204 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel2 = new Panel();
-            FieldEquipmentSectors = new CheckedListBox();
-            FieldEquipmentStatus = new ComboBox();
-            FieldEquipmentMaturityDate = new DateTimePicker();
-            LabelEquipmentMaturityDate = new Label();
-            LabelEquipmentoSector = new Label();
-            FieldEquipmentIsActive = new CheckBox();
-            LabelEquipmentStatus = new Label();
-            LabelEquipmentDescription = new Label();
-            FieldEquipmentDescription = new TextBox();
-            LabelEquipmentCA = new Label();
-            FieldEquipmentCA = new TextBox();
-            FieldEquipmentId = new TextBox();
-            LabelEquipmentId = new Label();
-            LabelEquipmentName = new Label();
-            FieldEquipmentName = new TextBox();
-            ButtonClear = new Button();
             ButtonAdd = new Button();
-            ButtonDelete = new Button();
-            ButtonUpdate = new Button();
             panel1 = new Panel();
             LabelGridEquipmentTitle = new Label();
             EquipmentDataGridView = new DataGridView();
             Edit = new DataGridViewImageColumn();
-            panel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)EquipmentDataGridView).BeginInit();
             SuspendLayout();
             // 
-            // panel2
-            // 
-            panel2.BackColor = SystemColors.ButtonHighlight;
-            panel2.Controls.Add(FieldEquipmentSectors);
-            panel2.Controls.Add(FieldEquipmentStatus);
-            panel2.Controls.Add(FieldEquipmentMaturityDate);
-            panel2.Controls.Add(LabelEquipmentMaturityDate);
-            panel2.Controls.Add(LabelEquipmentoSector);
-            panel2.Controls.Add(FieldEquipmentIsActive);
-            panel2.Controls.Add(LabelEquipmentStatus);
-            panel2.Controls.Add(LabelEquipmentDescription);
-            panel2.Controls.Add(FieldEquipmentDescription);
-            panel2.Controls.Add(LabelEquipmentCA);
-            panel2.Controls.Add(FieldEquipmentCA);
-            panel2.Controls.Add(FieldEquipmentId);
-            panel2.Controls.Add(LabelEquipmentId);
-            panel2.Controls.Add(LabelEquipmentName);
-            panel2.Controls.Add(FieldEquipmentName);
-            panel2.Controls.Add(ButtonClear);
-            panel2.Controls.Add(ButtonAdd);
-            panel2.Controls.Add(ButtonDelete);
-            panel2.Controls.Add(ButtonUpdate);
-            panel2.Location = new Point(78, 310);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(745, 202);
-            panel2.TabIndex = 6;
-            // 
-            // FieldEquipmentSectors
-            // 
-            FieldEquipmentSectors.FormattingEnabled = true;
-            FieldEquipmentSectors.Location = new Point(300, 100);
-            FieldEquipmentSectors.Name = "FieldEquipmentSectors";
-            FieldEquipmentSectors.Size = new Size(303, 58);
-            FieldEquipmentSectors.TabIndex = 30;
-            // 
-            // FieldEquipmentStatus
-            // 
-            FieldEquipmentStatus.FormattingEnabled = true;
-            FieldEquipmentStatus.Items.AddRange(new object[] { "Em conformidade", "A vencer", "Vencido" });
-            FieldEquipmentStatus.Location = new Point(82, 64);
-            FieldEquipmentStatus.Name = "FieldEquipmentStatus";
-            FieldEquipmentStatus.Size = new Size(121, 23);
-            FieldEquipmentStatus.TabIndex = 29;
-            // 
-            // FieldEquipmentMaturityDate
-            // 
-            FieldEquipmentMaturityDate.Location = new Point(545, 64);
-            FieldEquipmentMaturityDate.Name = "FieldEquipmentMaturityDate";
-            FieldEquipmentMaturityDate.Size = new Size(167, 23);
-            FieldEquipmentMaturityDate.TabIndex = 28;
-            // 
-            // LabelEquipmentMaturityDate
-            // 
-            LabelEquipmentMaturityDate.AutoSize = true;
-            LabelEquipmentMaturityDate.Location = new Point(486, 67);
-            LabelEquipmentMaturityDate.Name = "LabelEquipmentMaturityDate";
-            LabelEquipmentMaturityDate.Size = new Size(54, 15);
-            LabelEquipmentMaturityDate.TabIndex = 27;
-            LabelEquipmentMaturityDate.Text = "Validade:";
-            // 
-            // LabelEquipmentoSector
-            // 
-            LabelEquipmentoSector.AutoSize = true;
-            LabelEquipmentoSector.Location = new Point(300, 67);
-            LabelEquipmentoSector.Name = "LabelEquipmentoSector";
-            LabelEquipmentoSector.Size = new Size(37, 15);
-            LabelEquipmentoSector.TabIndex = 25;
-            LabelEquipmentoSector.Text = "Setor:";
-            // 
-            // FieldEquipmentIsActive
-            // 
-            FieldEquipmentIsActive.AutoSize = true;
-            FieldEquipmentIsActive.Cursor = Cursors.Hand;
-            FieldEquipmentIsActive.Location = new Point(225, 66);
-            FieldEquipmentIsActive.Name = "FieldEquipmentIsActive";
-            FieldEquipmentIsActive.RightToLeft = RightToLeft.Yes;
-            FieldEquipmentIsActive.Size = new Size(57, 19);
-            FieldEquipmentIsActive.TabIndex = 24;
-            FieldEquipmentIsActive.Text = ":Ativo";
-            FieldEquipmentIsActive.TextAlign = ContentAlignment.MiddleCenter;
-            FieldEquipmentIsActive.UseVisualStyleBackColor = true;
-            // 
-            // LabelEquipmentStatus
-            // 
-            LabelEquipmentStatus.AutoSize = true;
-            LabelEquipmentStatus.Location = new Point(21, 67);
-            LabelEquipmentStatus.Name = "LabelEquipmentStatus";
-            LabelEquipmentStatus.Size = new Size(42, 15);
-            LabelEquipmentStatus.TabIndex = 21;
-            LabelEquipmentStatus.Text = "Status:";
-            // 
-            // LabelEquipmentDescription
-            // 
-            LabelEquipmentDescription.AutoSize = true;
-            LabelEquipmentDescription.Location = new Point(530, 25);
-            LabelEquipmentDescription.Name = "LabelEquipmentDescription";
-            LabelEquipmentDescription.Size = new Size(120, 15);
-            LabelEquipmentDescription.TabIndex = 19;
-            LabelEquipmentDescription.Text = "Descrição (Opcional):";
-            // 
-            // FieldEquipmentDescription
-            // 
-            FieldEquipmentDescription.Location = new Point(656, 22);
-            FieldEquipmentDescription.Name = "FieldEquipmentDescription";
-            FieldEquipmentDescription.Size = new Size(68, 23);
-            FieldEquipmentDescription.TabIndex = 18;
-            // 
-            // LabelEquipmentCA
-            // 
-            LabelEquipmentCA.AutoSize = true;
-            LabelEquipmentCA.Location = new Point(358, 25);
-            LabelEquipmentCA.Name = "LabelEquipmentCA";
-            LabelEquipmentCA.Size = new Size(32, 15);
-            LabelEquipmentCA.TabIndex = 17;
-            LabelEquipmentCA.Text = "C.A.:";
-            // 
-            // FieldEquipmentCA
-            // 
-            FieldEquipmentCA.Location = new Point(396, 22);
-            FieldEquipmentCA.Name = "FieldEquipmentCA";
-            FieldEquipmentCA.Size = new Size(127, 23);
-            FieldEquipmentCA.TabIndex = 16;
-            // 
-            // FieldEquipmentId
-            // 
-            FieldEquipmentId.Location = new Point(48, 22);
-            FieldEquipmentId.Name = "FieldEquipmentId";
-            FieldEquipmentId.ReadOnly = true;
-            FieldEquipmentId.Size = new Size(127, 23);
-            FieldEquipmentId.TabIndex = 17;
-            // 
-            // LabelEquipmentId
-            // 
-            LabelEquipmentId.AutoSize = true;
-            LabelEquipmentId.Location = new Point(22, 25);
-            LabelEquipmentId.Name = "LabelEquipmentId";
-            LabelEquipmentId.Size = new Size(20, 15);
-            LabelEquipmentId.TabIndex = 16;
-            LabelEquipmentId.Text = "Id:";
-            // 
-            // LabelEquipmentName
-            // 
-            LabelEquipmentName.AutoSize = true;
-            LabelEquipmentName.Location = new Point(179, 25);
-            LabelEquipmentName.Name = "LabelEquipmentName";
-            LabelEquipmentName.Size = new Size(43, 15);
-            LabelEquipmentName.TabIndex = 15;
-            LabelEquipmentName.Text = "Nome:";
-            // 
-            // FieldEquipmentName
-            // 
-            FieldEquipmentName.Location = new Point(225, 22);
-            FieldEquipmentName.Name = "FieldEquipmentName";
-            FieldEquipmentName.Size = new Size(127, 23);
-            FieldEquipmentName.TabIndex = 14;
-            // 
-            // ButtonClear
-            // 
-            ButtonClear.Location = new Point(516, 164);
-            ButtonClear.Name = "ButtonClear";
-            ButtonClear.Size = new Size(75, 23);
-            ButtonClear.TabIndex = 13;
-            ButtonClear.Text = "Limpar";
-            ButtonClear.UseVisualStyleBackColor = true;
-            ButtonClear.Click += ButtonClearClick;
-            // 
             // ButtonAdd
             // 
-            ButtonAdd.Location = new Point(121, 164);
+            ButtonAdd.Location = new Point(204, 23);
             ButtonAdd.Name = "ButtonAdd";
             ButtonAdd.Size = new Size(75, 23);
             ButtonAdd.TabIndex = 10;
@@ -233,29 +47,10 @@
             ButtonAdd.UseVisualStyleBackColor = true;
             ButtonAdd.Click += ButtonAddClick;
             // 
-            // ButtonDelete
-            // 
-            ButtonDelete.Location = new Point(390, 164);
-            ButtonDelete.Name = "ButtonDelete";
-            ButtonDelete.Size = new Size(75, 23);
-            ButtonDelete.TabIndex = 12;
-            ButtonDelete.Text = "Deletar";
-            ButtonDelete.UseVisualStyleBackColor = true;
-            ButtonDelete.Click += ButtonDeleteClick;
-            // 
-            // ButtonUpdate
-            // 
-            ButtonUpdate.Location = new Point(254, 164);
-            ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new Size(75, 23);
-            ButtonUpdate.TabIndex = 11;
-            ButtonUpdate.Text = "Atualizar";
-            ButtonUpdate.UseVisualStyleBackColor = true;
-            ButtonUpdate.Click += ButtonUpdateClick;
-            // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
+            panel1.Controls.Add(ButtonAdd);
             panel1.Controls.Add(LabelGridEquipmentTitle);
             panel1.Controls.Add(EquipmentDataGridView);
             panel1.Location = new Point(14, 58);
@@ -300,12 +95,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "EquipmentControl";
             Size = new Size(1043, 695);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)EquipmentDataGridView).EndInit();
@@ -313,30 +105,10 @@
         }
 
         #endregion
-
-        private Panel panel2;
-        private DateTimePicker FieldEquipmentMaturityDate;
-        private Label LabelEquipmentMaturityDate;
-        private Label LabelEquipmentoSector;
-        private CheckBox FieldEquipmentIsActive;
-        private Label LabelEquipmentStatus;
-        private Label LabelEquipmentDescription;
-        private TextBox FieldEquipmentDescription;
-        private Label LabelEquipmentCA;
-        private TextBox FieldEquipmentCA;
-        private TextBox FieldEquipmentId;
-        private Label LabelEquipmentId;
-        private Label LabelEquipmentName;
-        private TextBox FieldEquipmentName;
-        private Button ButtonClear;
         private Button ButtonAdd;
-        private Button ButtonDelete;
-        private Button ButtonUpdate;
         private Panel panel1;
         private Label LabelGridEquipmentTitle;
         private DataGridView EquipmentDataGridView;
-        private ComboBox FieldEquipmentStatus;
-        private CheckedListBox FieldEquipmentSectors;
         private DataGridViewImageColumn Edit;
     }
 }

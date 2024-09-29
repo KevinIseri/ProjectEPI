@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using ProjectEPI.Constants;
 using ProjectEPI.Data;
 using ProjectEPI.Data.Dtos;
 using ProjectEPI.Services;
@@ -6,41 +7,57 @@ using static ProjectEPI.Constants.EquipmentConstants;
 
 namespace ProjectEPI.Forms
 {
-    public partial class EquipmentEditModal : Form
+    public partial class EquipmentModal : Form
     {
         private readonly EquipmentDto _equipment;
         private readonly DatabaseManager _databaseService;
         private readonly Action _refreshMonitorGrid;
         private readonly SectorService _sectorService;
         private readonly string? _sectors;
+        private readonly string _modalType;
 
         private readonly List<long> _selectedSectorIds = [];
 
-        public EquipmentEditModal(
+        public EquipmentModal(
             EquipmentDto equipment,
-            DatabaseManager databaseService,
             Action refreshMonitorGrid,
+            DatabaseManager databaseService,
             SectorService setorService,
-            string? sectors)
+            string modalType,
+            string? sectors 
+            )
         {
             InitializeComponent();
             FieldEquipmentSectors.ItemCheck += FieldEquipmentSectorsItemCheck;
 
             _equipment = equipment;
-            _databaseService = databaseService;
             _refreshMonitorGrid = refreshMonitorGrid;
+            _databaseService = databaseService;
+            _modalType = modalType;
             _sectorService = setorService;
             _sectors = sectors;
 
-            FieldEquipmentEditModalId.Text = _equipment.Id.ToString();
-            FieldEquipmenttEditModalName.Text = _equipment.Name;
-            FieldEquipmenttEditModalCA.Text = _equipment.Ca;
-            FieldEquipmenttEditModalDescription.Text = _equipment.Description;
-            FieldEquipmenttEditModalStatus.Text = _equipment.Status;
-            FieldEquipmenttEditModalIsActive.Checked = _equipment.IsActive;
-            FieldEquipmenttEditModalMaturityDate.Value = _equipment.MaturityDate.Value;
-
             ClearSelectedSectors();
+
+            if (_modalType == ModalConstants.Type.EDIT)
+            {
+                FieldEquipmentModalId.Text = _equipment.Id.ToString();
+                FieldEquipmentModalName.Text = _equipment.Name;
+                FieldEquipmentModalCA.Text = _equipment.Ca;
+                FieldEquipmentModalDescription.Text = _equipment.Description;
+                FieldEquipmentModalStatus.Text = _equipment.Status;
+                FieldEquipmentModalIsActive.Checked = _equipment.IsActive;
+                FieldEquipmentModalMaturityDate.Value = _equipment.MaturityDate.Value;
+
+                ButtonAdd.Visible = false;
+            }
+
+            if (_modalType == ModalConstants.Type.ADD)
+            {
+                ButtonUpdate.Visible = false;
+                ButtonDelete.Visible = false;
+            }
+
             ShowSectorsButton();
 
             if (_sectors != null)
@@ -57,7 +74,6 @@ namespace ProjectEPI.Forms
                     }
                 }
             }
-
         }
 
         private void EquipmentEditModal_Load(object sender, EventArgs e)
@@ -109,13 +125,13 @@ namespace ProjectEPI.Forms
 
         private void ClearFields()
         {
-            FieldEquipmentEditModalId.Text = "";
-            FieldEquipmenttEditModalName.Text = "";
-            FieldEquipmenttEditModalCA.Text = "";
-            FieldEquipmenttEditModalDescription.Text = "";
-            FieldEquipmenttEditModalIsActive.Checked = false;
-            FieldEquipmenttEditModalName.Text = "";
-            FieldEquipmenttEditModalStatus.Text = "";
+            FieldEquipmentModalId.Text = "";
+            FieldEquipmentModalName.Text = "";
+            FieldEquipmentModalCA.Text = "";
+            FieldEquipmentModalDescription.Text = "";
+            FieldEquipmentModalIsActive.Checked = false;
+            FieldEquipmentModalName.Text = "";
+            FieldEquipmentModalStatus.Text = "";
 
             ClearSelectedSectors();
         }
@@ -132,15 +148,15 @@ namespace ProjectEPI.Forms
 
         private bool ValidadeFilledFields(bool checkId = false)
         {
-            if (checkId && string.IsNullOrEmpty(FieldEquipmentEditModalId.Text))
+            if (checkId && string.IsNullOrEmpty(FieldEquipmentModalId.Text))
             {
                 MessageBox.Show("Por favor, selecione um setor antes de prosseguir.");
                 return false;
             }
 
-            if (FieldEquipmenttEditModalName.Text.IsNullOrEmpty() ||
-                FieldEquipmenttEditModalCA.Text.IsNullOrEmpty() ||
-                FieldEquipmenttEditModalStatus.Text.IsNullOrEmpty() ||
+            if (FieldEquipmentModalName.Text.IsNullOrEmpty() ||
+                FieldEquipmentModalCA.Text.IsNullOrEmpty() ||
+                FieldEquipmentModalStatus.Text.IsNullOrEmpty() ||
                 _selectedSectorIds.Count == 0)
             {
                 MessageBox.Show("Por favor, preencha todos os campos antes de salvar.",
@@ -170,13 +186,13 @@ namespace ProjectEPI.Forms
 
                     long equipmentId = _databaseService.ExecuteScalar<long>(queryInsert, cmd =>
                     {
-                        cmd.Parameters.AddWithValue("@ca", FieldEquipmenttEditModalCA.Text);
-                        cmd.Parameters.AddWithValue("@description", FieldEquipmenttEditModalDescription.Text);
-                        cmd.Parameters.AddWithValue("@isactive", FieldEquipmenttEditModalIsActive.Checked);
-                        cmd.Parameters.AddWithValue("@name", FieldEquipmenttEditModalName.Text);
-                        cmd.Parameters.AddWithValue("@status", FieldEquipmenttEditModalStatus.Text);
+                        cmd.Parameters.AddWithValue("@ca", FieldEquipmentModalCA.Text);
+                        cmd.Parameters.AddWithValue("@description", FieldEquipmentModalDescription.Text);
+                        cmd.Parameters.AddWithValue("@isactive", FieldEquipmentModalIsActive.Checked);
+                        cmd.Parameters.AddWithValue("@name", FieldEquipmentModalName.Text);
+                        cmd.Parameters.AddWithValue("@status", FieldEquipmentModalStatus.Text);
                         cmd.Parameters.AddWithValue("@handling_status", HandlingStatus.NONE);
-                        cmd.Parameters.AddWithValue("@maturitydate", FieldEquipmenttEditModalMaturityDate.Value);
+                        cmd.Parameters.AddWithValue("@maturitydate", FieldEquipmentModalMaturityDate.Value);
                         cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
                     });
 
@@ -206,11 +222,11 @@ namespace ProjectEPI.Forms
 
         private void ButtonUpdateClick(object sender, EventArgs e)
         {
-            if (ValidadeFilledFields(checkId: true) && ConfirmAction("atualizar", FieldEquipmentEditModalId.Text))
+            if (ValidadeFilledFields(checkId: true) && ConfirmAction("atualizar", FieldEquipmentModalId.Text))
             {
                 try
                 {
-                    long equipmentId = long.Parse(FieldEquipmentEditModalId.Text);
+                    long equipmentId = long.Parse(FieldEquipmentModalId.Text);
 
                     var queryUpdate = "UPDATE public.equipments " +
                                       "SET ca = @ca, description = @description, isactive = @isactive, name = @name, status = @status, " +
@@ -220,12 +236,12 @@ namespace ProjectEPI.Forms
                     _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
                     {
                         cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
-                        cmd.Parameters.AddWithValue("@ca", FieldEquipmenttEditModalCA.Text);
-                        cmd.Parameters.AddWithValue("@description", FieldEquipmenttEditModalDescription.Text);
-                        cmd.Parameters.AddWithValue("@isactive", FieldEquipmenttEditModalIsActive.Checked);
-                        cmd.Parameters.AddWithValue("@name", FieldEquipmenttEditModalName.Text);
-                        cmd.Parameters.AddWithValue("@status", FieldEquipmenttEditModalStatus.Text);
-                        cmd.Parameters.AddWithValue("@maturitydate", FieldEquipmenttEditModalMaturityDate.Value);
+                        cmd.Parameters.AddWithValue("@ca", FieldEquipmentModalCA.Text);
+                        cmd.Parameters.AddWithValue("@description", FieldEquipmentModalDescription.Text);
+                        cmd.Parameters.AddWithValue("@isactive", FieldEquipmentModalIsActive.Checked);
+                        cmd.Parameters.AddWithValue("@name", FieldEquipmentModalName.Text);
+                        cmd.Parameters.AddWithValue("@status", FieldEquipmentModalStatus.Text);
+                        cmd.Parameters.AddWithValue("@maturitydate", FieldEquipmentModalMaturityDate.Value);
                         cmd.Parameters.AddWithValue("@updatedDate", DateTime.Now);
                     });
 
@@ -260,7 +276,7 @@ namespace ProjectEPI.Forms
 
         private void ButtonDeleteClick(object sender, EventArgs e)
         {
-            if (ValidadeFilledFields(checkId: true) && ConfirmAction("deletar", FieldEquipmentEditModalId.Text))
+            if (ValidadeFilledFields(checkId: true) && ConfirmAction("deletar", FieldEquipmentModalId.Text))
             {
                 try
                 {
@@ -268,7 +284,7 @@ namespace ProjectEPI.Forms
 
                     _databaseService.ExecuteNonQuery(queryDelete, cmd =>
                     {
-                        cmd.Parameters.AddWithValue("@id", long.Parse(FieldEquipmentEditModalId.Text));
+                        cmd.Parameters.AddWithValue("@id", long.Parse(FieldEquipmentModalId.Text));
                     });
 
                     _refreshMonitorGrid();
@@ -282,11 +298,6 @@ namespace ProjectEPI.Forms
                         "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void ButtonClearClick(object sender, EventArgs e)
-        {
-            ClearFields();
         }
     }
 }
