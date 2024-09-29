@@ -50,7 +50,7 @@ namespace ProjectEPI.Controls
 
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && MonitorDataGridView.Columns[e.ColumnIndex].Name == "Edit")
+            if (e.RowIndex != -1 && MonitorDataGridView.Columns[e.ColumnIndex].Name == "Edit")
             {
                 DataGridViewRow row = MonitorDataGridView.Rows[e.RowIndex];
 
