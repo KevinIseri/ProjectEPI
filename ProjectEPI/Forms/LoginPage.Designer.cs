@@ -120,11 +120,11 @@
             // 
             LabelLoginTitle.AutoSize = true;
             LabelLoginTitle.BackColor = Color.Black;
-            LabelLoginTitle.Font = new Font("Verdana", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelLoginTitle.Font = new Font("Verdana", 22F);
             LabelLoginTitle.ForeColor = Color.White;
-            LabelLoginTitle.Location = new Point(310, 178);
+            LabelLoginTitle.Location = new Point(315, 168);
             LabelLoginTitle.Name = "LabelLoginTitle";
-            LabelLoginTitle.Size = new Size(181, 38);
+            LabelLoginTitle.Size = new Size(170, 36);
             LabelLoginTitle.TabIndex = 9;
             LabelLoginTitle.Text = "ProjectEPI";
             // 
@@ -155,7 +155,7 @@
             // PictureBoxMinimizeButton
             // 
             PictureBoxMinimizeButton.Cursor = Cursors.Hand;
-            PictureBoxMinimizeButton.Image = Properties.Resources.minus;
+            PictureBoxMinimizeButton.Image = Properties.Resources.minimize;
             PictureBoxMinimizeButton.Location = new Point(750, 6);
             PictureBoxMinimizeButton.Name = "PictureBoxMinimizeButton";
             PictureBoxMinimizeButton.Size = new Size(18, 18);

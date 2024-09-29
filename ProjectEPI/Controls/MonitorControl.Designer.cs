@@ -31,31 +31,40 @@
             panel1 = new Panel();
             MonitorDataGridView = new DataGridView();
             Edit = new DataGridViewImageColumn();
-            LabelGridMonitorTitle = new Label();
+            panel4 = new Panel();
+            panel3 = new Panel();
+            pictureBox6 = new PictureBox();
+            panel2 = new Panel();
+            LabelSettingTitle = new Label();
+            panel5 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MonitorDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.Window;
             panel1.Controls.Add(MonitorDataGridView);
-            panel1.Controls.Add(LabelGridMonitorTitle);
-            panel1.Location = new Point(21, 35);
+            panel1.Location = new Point(26, 82);
             panel1.Name = "panel1";
-            panel1.Size = new Size(856, 461);
+            panel1.Size = new Size(991, 587);
             panel1.TabIndex = 0;
             // 
             // MonitorDataGridView
             // 
             MonitorDataGridView.AllowUserToAddRows = false;
             MonitorDataGridView.AllowUserToDeleteRows = false;
+            MonitorDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            MonitorDataGridView.BackgroundColor = Color.FromArgb(37, 35, 78);
+            MonitorDataGridView.BorderStyle = BorderStyle.None;
             MonitorDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             MonitorDataGridView.Columns.AddRange(new DataGridViewColumn[] { Edit });
-            MonitorDataGridView.Location = new Point(25, 77);
+            MonitorDataGridView.Location = new Point(0, 0);
             MonitorDataGridView.Name = "MonitorDataGridView";
             MonitorDataGridView.ReadOnly = true;
-            MonitorDataGridView.Size = new Size(813, 343);
+            MonitorDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            MonitorDataGridView.Size = new Size(991, 587);
             MonitorDataGridView.TabIndex = 1;
             MonitorDataGridView.CellClick += DataGridView1CellClick;
             // 
@@ -68,34 +77,91 @@
             Edit.ReadOnly = true;
             Edit.Width = 5;
             // 
-            // LabelGridMonitorTitle
+            // panel4
             // 
-            LabelGridMonitorTitle.AutoSize = true;
-            LabelGridMonitorTitle.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelGridMonitorTitle.Location = new Point(25, 20);
-            LabelGridMonitorTitle.Name = "LabelGridMonitorTitle";
-            LabelGridMonitorTitle.Size = new Size(73, 23);
-            LabelGridMonitorTitle.TabIndex = 0;
-            LabelGridMonitorTitle.Text = "Monitor";
+            panel4.BackColor = Color.White;
+            panel4.Location = new Point(1023, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(20, 241);
+            panel4.TabIndex = 16;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.White;
+            panel3.Location = new Point(0, 56);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1043, 20);
+            panel3.TabIndex = 18;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.FromArgb(33, 32, 70);
+            pictureBox6.Image = Properties.Resources.pulse_f;
+            pictureBox6.Location = new Point(20, 30);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(37, 23);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 17;
+            pictureBox6.TabStop = false;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.White;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(20, 327);
+            panel2.TabIndex = 15;
+            // 
+            // LabelSettingTitle
+            // 
+            LabelSettingTitle.AutoSize = true;
+            LabelSettingTitle.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelSettingTitle.ForeColor = Color.FromArgb(221, 221, 221);
+            LabelSettingTitle.Location = new Point(53, 30);
+            LabelSettingTitle.Name = "LabelSettingTitle";
+            LabelSettingTitle.Size = new Size(83, 23);
+            LabelSettingTitle.TabIndex = 14;
+            LabelSettingTitle.Text = "Monitor";
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.White;
+            panel5.Location = new Point(0, 675);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1043, 20);
+            panel5.TabIndex = 19;
             // 
             // MonitorControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(37, 35, 78);
+            Controls.Add(panel5);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(pictureBox6);
+            Controls.Add(panel2);
+            Controls.Add(LabelSettingTitle);
             Controls.Add(panel1);
             Name = "MonitorControl";
-            Size = new Size(900, 575);
+            Size = new Size(1043, 695);
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)MonitorDataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Panel panel1;
-        private Label LabelGridMonitorTitle;
         private DataGridView MonitorDataGridView;
         private DataGridViewImageColumn Edit;
+        private Panel panel4;
+        private Panel panel3;
+        private PictureBox pictureBox6;
+        private Panel panel2;
+        private Label LabelSettingTitle;
+        private Panel panel5;
     }
 }
