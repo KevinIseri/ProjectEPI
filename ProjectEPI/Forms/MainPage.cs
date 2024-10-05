@@ -62,6 +62,8 @@ namespace ProjectEPI
 
         private void MonitorButtonClick(object sender, EventArgs e)
         {
+            _notificationService.GenerateNotifications();
+
             monitorControl1.ShowMonitorGrid();
 
             equipmentControl1.Visible = false;
@@ -73,6 +75,7 @@ namespace ProjectEPI
 
         private void NotificationsButtonClick(object sender, EventArgs e)
         {
+            _notificationService.GenerateNotifications();
             notificationControl1.ShowNotificationGrid();
 
             equipmentControl1.Visible = false;
