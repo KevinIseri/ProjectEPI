@@ -38,10 +38,27 @@ namespace ProjectEPI.Services
                     CreateNotification(equipment.Id);
                     incNotifications += 1;
                 }
+
+                if (equipment.HandlingStatus != HandlingStatus.FINISHED && 
+                    equipment.Status != EquipmentStatus.EXPIRED &&
+                    DateTime.Today.Date > equipment.MaturityDate.Value.Date)
+                {
+                    ExpireEquipment(equipment);
+                }
             }
 
             var notificationNumberUpdated = currentNotifications.Count + incNotifications;
             _labelMainNotificationNumber.Text = notificationNumberUpdated.ToString();
+        }
+
+        private void ExpireEquipment(EquipmentData equipment)
+        {
+            var queryUpdate = "UPDATE public.equipments SET status = @status WHERE id = @equipmentId";
+            _databaseManager.ExecuteNonQuery(queryUpdate, cmd =>
+            {
+                cmd.Parameters.AddWithValue("@equipmentId", equipment.Id);
+                cmd.Parameters.AddWithValue("@status", EquipmentStatus.EXPIRED);
+            });
         }
 
         private static bool ShouldCreateNotification(EquipmentData equipment, int daysLimit, List<long> currentNotifications)

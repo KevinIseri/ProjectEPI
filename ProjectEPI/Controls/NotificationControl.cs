@@ -24,8 +24,6 @@ namespace ProjectEPI.Controls
 
             NotificationDataGridView.Columns.Clear();
 
-            NotificationDataGridView.Columns.Add("NotificationId", "ID da notificação");
-
             NotificationDataGridView.Columns.Add("EquipmentId", "ID do equipamento");
             NotificationDataGridView.Columns.Add("EquipmentCa", "CA");
             NotificationDataGridView.Columns.Add("EquipmentName", "Nome do equipamento");
@@ -37,15 +35,12 @@ namespace ProjectEPI.Controls
                 var rowIndex = NotificationDataGridView.Rows.Add();
                 var row = NotificationDataGridView.Rows[rowIndex];
 
-                row.Cells["NotificationId"].Value = notification.Id;
-
                 row.Cells["EquipmentId"].Value = notification.Equipment.Id;
                 row.Cells["EquipmentCa"].Value = notification.Equipment.Ca;
                 row.Cells["EquipmentName"].Value = notification.Equipment.Name;
                 row.Cells["EquipmentDescription"].Value = notification.Equipment.Description;
                 row.Cells["EquipmentMaturityDate"].Value = notification.Equipment.MaturityDate?.ToString("dd/MM/yyyy");
             }
-
         }
     }
 }
