@@ -56,7 +56,12 @@ namespace ProjectEPI.Controls
             }
         }
 
-        private void ButtonAddClick(object sender, EventArgs e)
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxAddClick(object sender, EventArgs e)
         {
             SectorModal sectorModal = new(
                 new SectorDto(),
@@ -67,11 +72,6 @@ namespace ProjectEPI.Controls
             );
 
             sectorModal.ShowDialog();
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

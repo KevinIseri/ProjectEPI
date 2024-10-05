@@ -30,9 +30,9 @@
         {
             panel1 = new Panel();
             MonitorDataGridView = new DataGridView();
-            Edit = new DataGridViewImageColumn();
             pictureBox6 = new PictureBox();
             LabelSettingTitle = new Label();
+            Edit = new DataGridViewImageColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MonitorDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -64,15 +64,6 @@
             MonitorDataGridView.TabIndex = 1;
             MonitorDataGridView.CellClick += DataGridView1CellClick;
             // 
-            // Edit
-            // 
-            Edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Edit.HeaderText = "";
-            Edit.Image = Properties.Resources.grid_edit_icon;
-            Edit.Name = "Edit";
-            Edit.ReadOnly = true;
-            Edit.Width = 5;
-            // 
             // pictureBox6
             // 
             pictureBox6.BackColor = Color.FromArgb(37, 35, 78);
@@ -95,6 +86,15 @@
             LabelSettingTitle.TabIndex = 14;
             LabelSettingTitle.Text = "Monitor";
             // 
+            // Edit
+            // 
+            Edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Edit.HeaderText = "";
+            Edit.Image = Properties.Resources.edit_pencil;
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            Edit.Width = 5;
+            // 
             // MonitorControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -116,8 +116,8 @@
 
         private Panel panel1;
         private DataGridView MonitorDataGridView;
-        private DataGridViewImageColumn Edit;
         private PictureBox pictureBox6;
         private Label LabelSettingTitle;
+        private DataGridViewImageColumn Edit;
     }
 }

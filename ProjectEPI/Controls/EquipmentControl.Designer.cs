@@ -28,26 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ButtonAdd = new Button();
             panel1 = new Panel();
             EquipmentDataGridView = new DataGridView();
             Edit = new DataGridViewImageColumn();
             pictureBox6 = new PictureBox();
             LabelSettingTitle = new Label();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)EquipmentDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // ButtonAdd
-            // 
-            ButtonAdd.Location = new Point(202, 27);
-            ButtonAdd.Name = "ButtonAdd";
-            ButtonAdd.Size = new Size(75, 23);
-            ButtonAdd.TabIndex = 10;
-            ButtonAdd.Text = "Adicionar";
-            ButtonAdd.UseVisualStyleBackColor = true;
-            ButtonAdd.Click += ButtonAddClick;
             // 
             // panel1
             // 
@@ -78,7 +69,7 @@
             // Edit
             // 
             Edit.HeaderText = "";
-            Edit.Image = Properties.Resources.grid_edit_icon;
+            Edit.Image = Properties.Resources.edit_pencil;
             Edit.Name = "Edit";
             Edit.ReadOnly = true;
             // 
@@ -104,12 +95,25 @@
             LabelSettingTitle.TabIndex = 24;
             LabelSettingTitle.Text = "Equipamentos";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(37, 35, 78);
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Image = Properties.Resources.addbtn;
+            pictureBox1.Location = new Point(200, 24);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(36, 29);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 34;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += PictureBoxAddClick;
+            // 
             // EquipmentControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(37, 35, 78);
-            Controls.Add(ButtonAdd);
+            Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Controls.Add(pictureBox6);
             Controls.Add(LabelSettingTitle);
@@ -118,16 +122,17 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)EquipmentDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Button ButtonAdd;
         private Panel panel1;
         private DataGridView EquipmentDataGridView;
-        private DataGridViewImageColumn Edit;
         private PictureBox pictureBox6;
         private Label LabelSettingTitle;
+        private DataGridViewImageColumn Edit;
+        private PictureBox pictureBox1;
     }
 }

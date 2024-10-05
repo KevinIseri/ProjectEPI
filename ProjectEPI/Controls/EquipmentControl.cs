@@ -51,7 +51,7 @@ namespace ProjectEPI.Controls
             if (e.RowIndex != -1 && EquipmentDataGridView.Columns[e.ColumnIndex].Name == "Edit")
             {
                 DataGridViewRow row = EquipmentDataGridView.Rows[e.RowIndex];
-                
+
                 var sectors = row.Cells["SectorsDisplay"].Value as string;
 
                 EquipmentModal equipmentModal = new(
@@ -64,8 +64,8 @@ namespace ProjectEPI.Controls
                         IsActive = (bool)row.Cells["IsActive"].Value,
                         Status = row.Cells["status"].Value.ToString(),
                         MaturityDate = (DateTime)row.Cells["maturitydate"].Value
-                    }, 
-                    ShowEquipmentsGrid, 
+                    },
+                    ShowEquipmentsGrid,
                     _databaseService,
                     _sectorService,
                     ModalConstants.Type.EDIT,
@@ -76,7 +76,7 @@ namespace ProjectEPI.Controls
             }
         }
 
-        private void ButtonAddClick(object sender, EventArgs e)
+        private void PictureBoxAddClick(object sender, EventArgs e)
         {
             EquipmentModal equipmentModal = new
             (

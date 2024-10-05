@@ -30,13 +30,14 @@
         {
             panel1 = new Panel();
             SectorDataGridView = new DataGridView();
-            Edit = new DataGridViewImageColumn();
-            ButtonAdd = new Button();
             pictureBox6 = new PictureBox();
             LabelSettingTitle = new Label();
+            pictureBox1 = new PictureBox();
+            Edit = new DataGridViewImageColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SectorDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -65,23 +66,6 @@
             SectorDataGridView.TabIndex = 0;
             SectorDataGridView.CellClick += DataGridView1CellClick;
             // 
-            // Edit
-            // 
-            Edit.HeaderText = "";
-            Edit.Image = Properties.Resources.grid_edit_icon;
-            Edit.Name = "Edit";
-            Edit.ReadOnly = true;
-            // 
-            // ButtonAdd
-            // 
-            ButtonAdd.Location = new Point(140, 27);
-            ButtonAdd.Name = "ButtonAdd";
-            ButtonAdd.Size = new Size(75, 23);
-            ButtonAdd.TabIndex = 10;
-            ButtonAdd.Text = "Adicionar";
-            ButtonAdd.UseVisualStyleBackColor = true;
-            ButtonAdd.Click += ButtonAddClick;
-            // 
             // pictureBox6
             // 
             pictureBox6.BackColor = Color.FromArgb(37, 35, 78);
@@ -105,12 +89,32 @@
             LabelSettingTitle.TabIndex = 29;
             LabelSettingTitle.Text = "Setores";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(37, 35, 78);
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Image = Properties.Resources.addbtn;
+            pictureBox1.Location = new Point(140, 24);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(36, 29);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 33;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += PictureBoxAddClick;
+            // 
+            // Edit
+            // 
+            Edit.HeaderText = "";
+            Edit.Image = Properties.Resources.edit_pencil;
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            // 
             // SectorControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(37, 35, 78);
-            Controls.Add(ButtonAdd);
+            Controls.Add(pictureBox1);
             Controls.Add(pictureBox6);
             Controls.Add(LabelSettingTitle);
             Controls.Add(panel1);
@@ -119,6 +123,7 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)SectorDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -127,9 +132,9 @@
 
         private Panel panel1;
         private DataGridView SectorDataGridView;
-        private Button ButtonAdd;
-        private DataGridViewImageColumn Edit;
         private PictureBox pictureBox6;
         private Label LabelSettingTitle;
+        private PictureBox pictureBox1;
+        private DataGridViewImageColumn Edit;
     }
 }
