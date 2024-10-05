@@ -46,6 +46,8 @@ namespace ProjectEPI.Controls
             MonitorDataGridView.Columns["IsActive"].Visible = false;
 
             MonitorDataGridView.Columns["MaturityDate"].DefaultCellStyle.Format = "d";
+
+            MonitorDataGridView.CellFormatting += MonitorDataGridViewCellColorFormatting;
         }
 
         private void DataGridView1CellClick(object sender, DataGridViewCellEventArgs e)
@@ -71,6 +73,23 @@ namespace ProjectEPI.Controls
                 );
 
                 editModal.ShowDialog();
+            }
+        }
+
+        private void MonitorDataGridViewCellColorFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (MonitorDataGridView.Columns[e.ColumnIndex].Name == "Status")
+            {
+                if (e.Value != null && e.Value.ToString() == "Vencido")
+                {
+                    e.CellStyle.BackColor = Color.Red;
+                    e.CellStyle.ForeColor = Color.White;
+                }
+
+                if (e.Value != null && e.Value.ToString() == "A vencer")
+                {
+                    e.CellStyle.BackColor = Color.Yellow;
+                }
             }
         }
     }

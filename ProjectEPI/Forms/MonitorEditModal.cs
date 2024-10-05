@@ -49,6 +49,8 @@ namespace ProjectEPI.Forms
 
                     if (FieldMonitorEditModalHandlingStatus.Text == Constants.EquipmentConstants.HandlingStatus.FINISHED)
                     {
+                        queryUpdate = "UPDATE public.equipments SET isactive = @isactive, status = 'Em conformidade', handling_status = @handlingstatus, maturity_date = @maturitydate, updated_date=@updateDate WHERE id=@id;";
+                        
                         var currentNotifications = _notificationService.GetExistingNotificationsIds();
 
                         var equipmentId = long.Parse(FieldMonitorEditModalId.Text);
@@ -63,7 +65,6 @@ namespace ProjectEPI.Forms
                             });
                         }
 
-                        queryUpdate = "UPDATE public.equipments SET isactive = @isactive, status = Em conformidade, handling_status = @handlingstatus, maturity_date = @maturitydate, updated_date=@updateDate WHERE id=@id;";
                     }
 
                     _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
