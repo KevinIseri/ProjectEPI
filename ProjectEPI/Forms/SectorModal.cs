@@ -33,6 +33,8 @@ namespace ProjectEPI.Forms
             {
                 FieldSectorId.Text = _sector.Id.ToString();
                 FieldSectorName.Text = _sector.Name;
+
+                ButtonAdd.Visible = false;
             }
 
             if (_modalType == ModalConstants.Type.ADD)
@@ -151,6 +153,11 @@ namespace ProjectEPI.Forms
                         "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void PictureBoxCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

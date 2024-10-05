@@ -11,7 +11,7 @@ namespace ProjectEPI.Services
         private readonly Label _labelMainNotificationNumber;
 
         public NotificationService(
-            DatabaseManager databaseManager , 
+            DatabaseManager databaseManager, 
             EquipmentService equipmentService, 
             SettingService settingService,
             Label labelMainNotificationNumber)

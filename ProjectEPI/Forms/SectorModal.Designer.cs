@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
+            panel1 = new Panel();
+            PictureBoxCloseButton = new PictureBox();
             FieldSectorId = new TextBox();
             LabelSectorId = new Label();
             LabelSectorName = new Label();
@@ -37,11 +39,14 @@
             ButtonDelete = new Button();
             ButtonUpdate = new Button();
             panel2.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).BeginInit();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonHighlight;
+            panel2.Controls.Add(panel1);
             panel2.Controls.Add(FieldSectorId);
             panel2.Controls.Add(LabelSectorId);
             panel2.Controls.Add(LabelSectorName);
@@ -49,23 +54,46 @@
             panel2.Controls.Add(ButtonAdd);
             panel2.Controls.Add(ButtonDelete);
             panel2.Controls.Add(ButtonUpdate);
-            panel2.Location = new Point(12, 82);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(745, 202);
+            panel2.Size = new Size(550, 200);
             panel2.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(161, 99, 245);
+            panel1.Controls.Add(PictureBoxCloseButton);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(550, 25);
+            panel1.TabIndex = 18;
+            // 
+            // PictureBoxCloseButton
+            // 
+            PictureBoxCloseButton.Cursor = Cursors.Hand;
+            PictureBoxCloseButton.Image = Properties.Resources.delete;
+            PictureBoxCloseButton.Location = new Point(518, 4);
+            PictureBoxCloseButton.Name = "PictureBoxCloseButton";
+            PictureBoxCloseButton.Size = new Size(20, 18);
+            PictureBoxCloseButton.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBoxCloseButton.TabIndex = 31;
+            PictureBoxCloseButton.TabStop = false;
+            PictureBoxCloseButton.Click += PictureBoxCloseButtonClick;
             // 
             // FieldSectorId
             // 
-            FieldSectorId.Location = new Point(48, 22);
+            FieldSectorId.Location = new Point(69, 50);
             FieldSectorId.Name = "FieldSectorId";
             FieldSectorId.ReadOnly = true;
-            FieldSectorId.Size = new Size(127, 23);
+            FieldSectorId.Size = new Size(451, 23);
             FieldSectorId.TabIndex = 17;
             // 
             // LabelSectorId
             // 
             LabelSectorId.AutoSize = true;
-            LabelSectorId.Location = new Point(22, 25);
+            LabelSectorId.Location = new Point(20, 50);
             LabelSectorId.Name = "LabelSectorId";
             LabelSectorId.Size = new Size(20, 15);
             LabelSectorId.TabIndex = 16;
@@ -74,7 +102,7 @@
             // LabelSectorName
             // 
             LabelSectorName.AutoSize = true;
-            LabelSectorName.Location = new Point(179, 25);
+            LabelSectorName.Location = new Point(20, 90);
             LabelSectorName.Name = "LabelSectorName";
             LabelSectorName.Size = new Size(43, 15);
             LabelSectorName.TabIndex = 15;
@@ -82,48 +110,64 @@
             // 
             // FieldSectorName
             // 
-            FieldSectorName.Location = new Point(225, 22);
+            FieldSectorName.Location = new Point(69, 90);
             FieldSectorName.Name = "FieldSectorName";
-            FieldSectorName.Size = new Size(127, 23);
+            FieldSectorName.Size = new Size(451, 23);
             FieldSectorName.TabIndex = 14;
             // 
             // ButtonAdd
             // 
-            ButtonAdd.Location = new Point(129, 137);
+            ButtonAdd.BackColor = Color.FromArgb(86, 63, 223);
+            ButtonAdd.FlatStyle = FlatStyle.Flat;
+            ButtonAdd.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            ButtonAdd.ForeColor = Color.White;
+            ButtonAdd.Location = new Point(225, 150);
             ButtonAdd.Name = "ButtonAdd";
-            ButtonAdd.Size = new Size(75, 23);
+            ButtonAdd.Size = new Size(100, 30);
             ButtonAdd.TabIndex = 10;
             ButtonAdd.Text = "Adicionar";
-            ButtonAdd.UseVisualStyleBackColor = true;
+            ButtonAdd.UseVisualStyleBackColor = false;
             // 
             // ButtonDelete
             // 
-            ButtonDelete.Location = new Point(398, 137);
+            ButtonDelete.BackColor = Color.FromArgb(237, 70, 55);
+            ButtonDelete.FlatStyle = FlatStyle.Flat;
+            ButtonDelete.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            ButtonDelete.ForeColor = Color.White;
+            ButtonDelete.Location = new Point(290, 150);
             ButtonDelete.Name = "ButtonDelete";
-            ButtonDelete.Size = new Size(75, 23);
+            ButtonDelete.Size = new Size(100, 30);
             ButtonDelete.TabIndex = 12;
             ButtonDelete.Text = "Deletar";
-            ButtonDelete.UseVisualStyleBackColor = true;
+            ButtonDelete.UseVisualStyleBackColor = false;
             // 
             // ButtonUpdate
             // 
-            ButtonUpdate.Location = new Point(262, 137);
+            ButtonUpdate.BackColor = Color.FromArgb(86, 63, 223);
+            ButtonUpdate.FlatStyle = FlatStyle.Flat;
+            ButtonUpdate.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            ButtonUpdate.ForeColor = Color.White;
+            ButtonUpdate.Location = new Point(160, 150);
             ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new Size(75, 23);
+            ButtonUpdate.Size = new Size(100, 30);
             ButtonUpdate.TabIndex = 11;
             ButtonUpdate.Text = "Atualizar";
-            ButtonUpdate.UseVisualStyleBackColor = true;
+            ButtonUpdate.UseVisualStyleBackColor = false;
             // 
             // SectorModal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(550, 200);
             Controls.Add(panel2);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "SectorModal";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "SectorModal";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).EndInit();
             ResumeLayout(false);
         }
 
@@ -137,5 +181,7 @@
         private Button ButtonAdd;
         private Button ButtonDelete;
         private Button ButtonUpdate;
+        private Panel panel1;
+        private PictureBox PictureBoxCloseButton;
     }
 }
