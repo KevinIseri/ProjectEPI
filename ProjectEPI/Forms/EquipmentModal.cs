@@ -24,7 +24,7 @@ namespace ProjectEPI.Forms
             DatabaseManager databaseService,
             SectorService setorService,
             string modalType,
-            string? sectors 
+            string? sectors
             )
         {
             InitializeComponent();
@@ -298,6 +298,11 @@ namespace ProjectEPI.Forms
                         "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void PictureBoxCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

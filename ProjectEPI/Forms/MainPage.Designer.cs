@@ -271,6 +271,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.FromArgb(27, 26, 62);
             panel1.Controls.Add(PictureBoxMinimizeButton);
             panel1.Controls.Add(pictureBox1);
@@ -278,6 +279,8 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1043, 25);
             panel1.TabIndex = 5;
+            panel1.MouseDown += MouseDown;
+            panel1.MouseMove += MouseMove;
             // 
             // PictureBoxMinimizeButton
             // 
@@ -289,9 +292,11 @@
             PictureBoxMinimizeButton.SizeMode = PictureBoxSizeMode.Zoom;
             PictureBoxMinimizeButton.TabIndex = 13;
             PictureBoxMinimizeButton.TabStop = false;
+            PictureBoxMinimizeButton.Click += PictureBoxMinimizeButtonClick;
             // 
             // pictureBox1
             // 
+            pictureBox1.Cursor = Cursors.Hand;
             pictureBox1.Image = Properties.Resources.delete;
             pictureBox1.Location = new Point(1022, 3);
             pictureBox1.Name = "pictureBox1";
@@ -299,6 +304,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += PictureBoxCloseButtonClick;
             // 
             // equipmentControl1
             // 

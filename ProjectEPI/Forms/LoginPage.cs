@@ -6,7 +6,7 @@ namespace ProjectEPI
 {
     public partial class LoginPage : Form
     {
-        public Point MOUSE_LOCATION;
+        private Point MOUSE_LOCATION;
 
         public LoginPage()
         {

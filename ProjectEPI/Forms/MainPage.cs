@@ -11,6 +11,8 @@ namespace ProjectEPI
         private readonly SectorService _sectorService;
         private readonly SettingService _settingService;
 
+        private Point MOUSE_LOCATION;
+
         public MainPage()
         {
             InitializeComponent();
@@ -89,6 +91,42 @@ namespace ProjectEPI
             sectorControl1.Visible = false;
             notificationControl1.Visible = false;
             settingControl1.Visible = true;
+        }
+
+        private void MouseDown(object sender, MouseEventArgs e)
+        {
+            MOUSE_LOCATION = new Point(-e.X, -e.Y);
+        }
+
+        private void MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Point mousePosition = Control.MousePosition;
+                mousePosition.Offset(MOUSE_LOCATION.X, MOUSE_LOCATION.Y);
+                Location = mousePosition;
+            }
+        }
+
+        private void PictureBoxMinimizeButtonClick(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void PictureBoxCloseButtonClick(object sender, EventArgs e)
+        {
+            DialogResult res;
+
+            res = MessageBox.Show("Deseja sair do aplicativo?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                this.Show();
+            }
         }
     }
 }
