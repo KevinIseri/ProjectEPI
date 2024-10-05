@@ -59,7 +59,7 @@
             MonitorDataGridView.Location = new Point(0, 0);
             MonitorDataGridView.Name = "MonitorDataGridView";
             MonitorDataGridView.ReadOnly = true;
-            MonitorDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            MonitorDataGridView.RowHeadersWidth = 21;
             MonitorDataGridView.Size = new Size(991, 587);
             MonitorDataGridView.TabIndex = 1;
             MonitorDataGridView.CellClick += DataGridView1CellClick;
@@ -77,7 +77,7 @@
             // 
             pictureBox6.BackColor = Color.FromArgb(37, 35, 78);
             pictureBox6.Image = Properties.Resources.pulse_f;
-            pictureBox6.Location = new Point(20, 30);
+            pictureBox6.Location = new Point(21, 27);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(37, 23);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
@@ -89,7 +89,7 @@
             LabelSettingTitle.AutoSize = true;
             LabelSettingTitle.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LabelSettingTitle.ForeColor = Color.FromArgb(221, 221, 221);
-            LabelSettingTitle.Location = new Point(53, 30);
+            LabelSettingTitle.Location = new Point(53, 27);
             LabelSettingTitle.Name = "LabelSettingTitle";
             LabelSettingTitle.Size = new Size(83, 23);
             LabelSettingTitle.TabIndex = 14;

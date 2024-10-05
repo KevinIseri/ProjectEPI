@@ -46,7 +46,7 @@ namespace ProjectEPI.Controls
                         Id = (long)row.Cells["Id"].Value,
                         Name = row.Cells["Name"].Value.ToString()
                     },
-                    _databaseService, 
+                    _databaseService,
                     _sectorService,
                     ShowSectorsGrid,
                     ModalConstants.Type.EDIT
@@ -66,7 +66,12 @@ namespace ProjectEPI.Controls
                 ModalConstants.Type.ADD
             );
 
-             sectorModal.ShowDialog();
+            sectorModal.ShowDialog();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

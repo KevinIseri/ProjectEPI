@@ -29,59 +29,41 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            LabelGridSectorTitle = new Label();
             SectorDataGridView = new DataGridView();
-            ButtonAdd = new Button();
             Edit = new DataGridViewImageColumn();
+            ButtonAdd = new Button();
+            pictureBox6 = new PictureBox();
+            LabelSettingTitle = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SectorDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
-            panel1.Controls.Add(LabelGridSectorTitle);
             panel1.Controls.Add(SectorDataGridView);
-            panel1.Controls.Add(ButtonAdd);
-            panel1.Location = new Point(40, 37);
+            panel1.Location = new Point(26, 82);
             panel1.Name = "panel1";
-            panel1.Size = new Size(745, 202);
+            panel1.Size = new Size(991, 587);
             panel1.TabIndex = 0;
-            // 
-            // LabelGridSectorTitle
-            // 
-            LabelGridSectorTitle.AutoSize = true;
-            LabelGridSectorTitle.Font = new Font("Tahoma", 14F);
-            LabelGridSectorTitle.Location = new Point(21, 20);
-            LabelGridSectorTitle.Name = "LabelGridSectorTitle";
-            LabelGridSectorTitle.Size = new Size(72, 23);
-            LabelGridSectorTitle.TabIndex = 2;
-            LabelGridSectorTitle.Text = "Setores";
             // 
             // SectorDataGridView
             // 
             SectorDataGridView.AllowUserToAddRows = false;
             SectorDataGridView.AllowUserToDeleteRows = false;
             SectorDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            SectorDataGridView.BackgroundColor = Color.FromArgb(37, 35, 78);
+            SectorDataGridView.BorderStyle = BorderStyle.None;
             SectorDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             SectorDataGridView.Columns.AddRange(new DataGridViewColumn[] { Edit });
-            SectorDataGridView.Location = new Point(21, 60);
+            SectorDataGridView.Location = new Point(0, 0);
             SectorDataGridView.Name = "SectorDataGridView";
             SectorDataGridView.ReadOnly = true;
             SectorDataGridView.RowHeadersWidth = 21;
-            SectorDataGridView.Size = new Size(311, 111);
+            SectorDataGridView.Size = new Size(991, 587);
             SectorDataGridView.TabIndex = 0;
             SectorDataGridView.CellClick += DataGridView1CellClick;
-            // 
-            // ButtonAdd
-            // 
-            ButtonAdd.Location = new Point(116, 20);
-            ButtonAdd.Name = "ButtonAdd";
-            ButtonAdd.Size = new Size(75, 23);
-            ButtonAdd.TabIndex = 10;
-            ButtonAdd.Text = "Adicionar";
-            ButtonAdd.UseVisualStyleBackColor = true;
-            ButtonAdd.Click += ButtonAddClick;
             // 
             // Edit
             // 
@@ -90,17 +72,55 @@
             Edit.Name = "Edit";
             Edit.ReadOnly = true;
             // 
+            // ButtonAdd
+            // 
+            ButtonAdd.Location = new Point(140, 27);
+            ButtonAdd.Name = "ButtonAdd";
+            ButtonAdd.Size = new Size(75, 23);
+            ButtonAdd.TabIndex = 10;
+            ButtonAdd.Text = "Adicionar";
+            ButtonAdd.UseVisualStyleBackColor = true;
+            ButtonAdd.Click += ButtonAddClick;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.FromArgb(37, 35, 78);
+            pictureBox6.Image = Properties.Resources.industry_alt;
+            pictureBox6.Location = new Point(21, 27);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(37, 23);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 32;
+            pictureBox6.TabStop = false;
+            pictureBox6.Click += pictureBox6_Click;
+            // 
+            // LabelSettingTitle
+            // 
+            LabelSettingTitle.AutoSize = true;
+            LabelSettingTitle.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelSettingTitle.ForeColor = Color.FromArgb(221, 221, 221);
+            LabelSettingTitle.Location = new Point(52, 27);
+            LabelSettingTitle.Name = "LabelSettingTitle";
+            LabelSettingTitle.Size = new Size(82, 23);
+            LabelSettingTitle.TabIndex = 29;
+            LabelSettingTitle.Text = "Setores";
+            // 
             // SectorControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(37, 35, 78);
+            Controls.Add(ButtonAdd);
+            Controls.Add(pictureBox6);
+            Controls.Add(LabelSettingTitle);
             Controls.Add(panel1);
             Name = "SectorControl";
-            Size = new Size(900, 575);
+            Size = new Size(1043, 695);
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SectorDataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -108,7 +128,8 @@
         private Panel panel1;
         private DataGridView SectorDataGridView;
         private Button ButtonAdd;
-        private Label LabelGridSectorTitle;
         private DataGridViewImageColumn Edit;
+        private PictureBox pictureBox6;
+        private Label LabelSettingTitle;
     }
 }
