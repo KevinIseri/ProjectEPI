@@ -30,6 +30,8 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
+            pictureBox1 = new PictureBox();
+            label1 = new Label();
             PictureBoxCloseButton = new PictureBox();
             FieldMonitorEditModalMaturityDate = new DateTimePicker();
             LabelMonitorEditModalMaturityDate = new Label();
@@ -46,12 +48,14 @@
             LabelMonitorEditModalId = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.HighlightText;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(FieldMonitorEditModalMaturityDate);
             panel1.Controls.Add(LabelMonitorEditModalMaturityDate);
@@ -75,18 +79,42 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(161, 99, 245);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(label1);
             panel2.Controls.Add(PictureBoxCloseButton);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(550, 25);
+            panel2.Size = new Size(548, 30);
             panel2.TabIndex = 13;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Image = Properties.Resources.window_alt;
+            pictureBox1.Location = new Point(20, 6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(20, 18);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 36;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(46, 7);
+            label1.Name = "label1";
+            label1.Size = new Size(58, 17);
+            label1.TabIndex = 35;
+            label1.Text = "Monitor";
             // 
             // PictureBoxCloseButton
             // 
             PictureBoxCloseButton.Cursor = Cursors.Hand;
             PictureBoxCloseButton.Image = Properties.Resources.delete;
-            PictureBoxCloseButton.Location = new Point(518, 4);
+            PictureBoxCloseButton.Location = new Point(518, 7);
             PictureBoxCloseButton.Name = "PictureBoxCloseButton";
             PictureBoxCloseButton.Size = new Size(20, 18);
             PictureBoxCloseButton.SizeMode = PictureBoxSizeMode.Zoom;
@@ -96,6 +124,7 @@
             // 
             // FieldMonitorEditModalMaturityDate
             // 
+            FieldMonitorEditModalMaturityDate.Cursor = Cursors.Hand;
             FieldMonitorEditModalMaturityDate.Format = DateTimePickerFormat.Short;
             FieldMonitorEditModalMaturityDate.Location = new Point(87, 210);
             FieldMonitorEditModalMaturityDate.Name = "FieldMonitorEditModalMaturityDate";
@@ -155,6 +184,7 @@
             // 
             // FieldMonitorEditModalDescription
             // 
+            FieldMonitorEditModalDescription.Cursor = Cursors.No;
             FieldMonitorEditModalDescription.Location = new Point(87, 130);
             FieldMonitorEditModalDescription.Name = "FieldMonitorEditModalDescription";
             FieldMonitorEditModalDescription.ReadOnly = true;
@@ -163,6 +193,7 @@
             // 
             // FieldMonitorEditModalName
             // 
+            FieldMonitorEditModalName.Cursor = Cursors.No;
             FieldMonitorEditModalName.Location = new Point(87, 90);
             FieldMonitorEditModalName.Name = "FieldMonitorEditModalName";
             FieldMonitorEditModalName.ReadOnly = true;
@@ -207,6 +238,7 @@
             // 
             // FieldMonitorEditModalId
             // 
+            FieldMonitorEditModalId.Cursor = Cursors.No;
             FieldMonitorEditModalId.Location = new Point(87, 50);
             FieldMonitorEditModalId.Margin = new Padding(20, 20, 20, 40);
             FieldMonitorEditModalId.Name = "FieldMonitorEditModalId";
@@ -237,6 +269,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).EndInit();
             ResumeLayout(false);
         }
@@ -259,5 +293,7 @@
         private DateTimePicker FieldMonitorEditModalMaturityDate;
         private Panel panel2;
         private PictureBox PictureBoxCloseButton;
+        private PictureBox pictureBox1;
+        private Label label1;
     }
 }

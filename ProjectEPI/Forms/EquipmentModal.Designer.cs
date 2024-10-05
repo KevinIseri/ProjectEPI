@@ -48,15 +48,19 @@
             ButtonAdd = new Button();
             ButtonUpdate = new Button();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
+            label1 = new Label();
             PictureBoxCloseButton = new PictureBox();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).BeginInit();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonHighlight;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(FieldEquipmentSectors);
             panel2.Controls.Add(FieldEquipmentModalStatus);
             panel2.Controls.Add(FieldEquipmentModalMaturityDate);
@@ -182,6 +186,7 @@
             // 
             // FieldEquipmentModalId
             // 
+            FieldEquipmentModalId.Cursor = Cursors.No;
             FieldEquipmentModalId.Location = new Point(148, 50);
             FieldEquipmentModalId.Margin = new Padding(20, 20, 20, 40);
             FieldEquipmentModalId.Name = "FieldEquipmentModalId";
@@ -264,18 +269,42 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(161, 99, 245);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(PictureBoxCloseButton);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(550, 25);
+            panel1.Size = new Size(550, 30);
             panel1.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Image = Properties.Resources.window_alt;
+            pictureBox1.Location = new Point(20, 6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(20, 18);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 32;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(46, 7);
+            label1.Name = "label1";
+            label1.Size = new Size(90, 17);
+            label1.TabIndex = 31;
+            label1.Text = "Equipamento";
             // 
             // PictureBoxCloseButton
             // 
             PictureBoxCloseButton.Cursor = Cursors.Hand;
             PictureBoxCloseButton.Image = Properties.Resources.delete;
-            PictureBoxCloseButton.Location = new Point(518, 4);
+            PictureBoxCloseButton.Location = new Point(518, 6);
             PictureBoxCloseButton.Name = "PictureBoxCloseButton";
             PictureBoxCloseButton.Size = new Size(20, 18);
             PictureBoxCloseButton.SizeMode = PictureBoxSizeMode.Zoom;
@@ -298,6 +327,8 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCloseButton).EndInit();
             ResumeLayout(false);
         }
@@ -325,5 +356,7 @@
         private Button ButtonUpdate;
         private Panel panel1;
         private PictureBox PictureBoxCloseButton;
+        private Label label1;
+        private PictureBox pictureBox1;
     }
 }
