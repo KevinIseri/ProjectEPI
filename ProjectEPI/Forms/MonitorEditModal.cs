@@ -12,8 +12,8 @@ namespace ProjectEPI.Forms
         private readonly Action _refreshMonitorGrid;
 
         public MonitorEditModal(
-            EquipmentDto equipment, 
-            DatabaseManager databaseService, 
+            EquipmentDto equipment,
+            DatabaseManager databaseService,
             Action refreshMonitorGrid,
             NotificationService notificationService)
         {
@@ -97,6 +97,11 @@ namespace ProjectEPI.Forms
             {
                 Close();
             }
+        }
+
+        private void PictureBoxCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

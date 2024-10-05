@@ -45,8 +45,8 @@
             LabelEquipmentName = new Label();
             FieldEquipmentModalName = new TextBox();
             ButtonDelete = new Button();
-            ButtonUpdate = new Button();
             ButtonAdd = new Button();
+            ButtonUpdate = new Button();
             panel1 = new Panel();
             PictureBoxCloseButton = new PictureBox();
             panel2.SuspendLayout();
@@ -83,6 +83,7 @@
             // 
             // FieldEquipmentSectors
             // 
+            FieldEquipmentSectors.Cursor = Cursors.Hand;
             FieldEquipmentSectors.FormattingEnabled = true;
             FieldEquipmentSectors.Location = new Point(148, 290);
             FieldEquipmentSectors.Name = "FieldEquipmentSectors";
@@ -100,6 +101,7 @@
             // 
             // FieldEquipmentModalMaturityDate
             // 
+            FieldEquipmentModalMaturityDate.Format = DateTimePickerFormat.Short;
             FieldEquipmentModalMaturityDate.Location = new Point(148, 250);
             FieldEquipmentModalMaturityDate.Name = "FieldEquipmentModalMaturityDate";
             FieldEquipmentModalMaturityDate.Size = new Size(382, 23);
@@ -229,21 +231,6 @@
             ButtonDelete.UseVisualStyleBackColor = false;
             ButtonDelete.Click += ButtonDeleteClick;
             // 
-            // ButtonUpdate
-            // 
-            ButtonUpdate.BackColor = Color.FromArgb(86, 63, 223);
-            ButtonUpdate.Cursor = Cursors.Hand;
-            ButtonUpdate.FlatStyle = FlatStyle.Flat;
-            ButtonUpdate.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ButtonUpdate.ForeColor = SystemColors.ButtonHighlight;
-            ButtonUpdate.Location = new Point(160, 447);
-            ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new Size(100, 30);
-            ButtonUpdate.TabIndex = 11;
-            ButtonUpdate.Text = "Atualizar";
-            ButtonUpdate.UseVisualStyleBackColor = false;
-            ButtonUpdate.Click += ButtonUpdateClick;
-            // 
             // ButtonAdd
             // 
             ButtonAdd.BackColor = Color.FromArgb(86, 63, 223);
@@ -258,6 +245,21 @@
             ButtonAdd.Text = "Adicionar";
             ButtonAdd.UseVisualStyleBackColor = false;
             ButtonAdd.Click += ButtonAddClick;
+            // 
+            // ButtonUpdate
+            // 
+            ButtonUpdate.BackColor = Color.FromArgb(86, 63, 223);
+            ButtonUpdate.Cursor = Cursors.Hand;
+            ButtonUpdate.FlatStyle = FlatStyle.Flat;
+            ButtonUpdate.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ButtonUpdate.ForeColor = SystemColors.ButtonHighlight;
+            ButtonUpdate.Location = new Point(160, 447);
+            ButtonUpdate.Name = "ButtonUpdate";
+            ButtonUpdate.Size = new Size(100, 30);
+            ButtonUpdate.TabIndex = 11;
+            ButtonUpdate.Text = "Atualizar";
+            ButtonUpdate.UseVisualStyleBackColor = false;
+            ButtonUpdate.Click += ButtonUpdateClick;
             // 
             // panel1
             // 
