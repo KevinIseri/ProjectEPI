@@ -10,6 +10,7 @@ namespace ProjectEPI.Controls
         private DatabaseManager _databaseService;
         private EquipmentService _equipmentService;
         private NotificationService _notificationService;
+        private SettingService _settingService;
 
         public MonitorControl()
         {
@@ -17,13 +18,15 @@ namespace ProjectEPI.Controls
         }
 
         public void InitializeServices(
-            DatabaseManager databaseService, 
+            DatabaseManager databaseService,
             EquipmentService equipmentService,
-            NotificationService notificationService)
+            NotificationService notificationService,
+            SettingService settingService)
         {
             _databaseService = databaseService;
             _equipmentService = equipmentService;
             _notificationService = notificationService;
+            _settingService = settingService;
 
             ShowMonitorGrid();
         }
@@ -65,11 +68,13 @@ namespace ProjectEPI.Controls
                         Name = row.Cells["Name"].Value.ToString(),
                         IsActive = (bool)row.Cells["IsActive"].Value,
                         HandlingStatus = row.Cells["HandlingStatus"].Value.ToString(),
-                        MaturityDate = (DateTime?)row.Cells["MaturityDate"].Value
+                        MaturityDate = (DateTime?)row.Cells["MaturityDate"].Value,
+                        Status = row.Cells["Status"].Value.ToString()
                     },
                     _databaseService, 
                     ShowMonitorGrid,
-                    _notificationService
+                    _notificationService,
+                    _settingService
                 );
 
                 editModal.ShowDialog();

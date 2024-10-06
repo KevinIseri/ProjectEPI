@@ -24,7 +24,7 @@ namespace ProjectEPI
             _notificationService = new NotificationService(_databaseManager, _equipmentService, _settingService, LabelMainNotificationNumber);
 
             equipmentControl1.InitializeServices(_databaseManager, _equipmentService, _sectorService);
-            monitorControl1.InitializeServices(_databaseManager, _equipmentService, _notificationService);
+            monitorControl1.InitializeServices(_databaseManager, _equipmentService, _notificationService, _settingService);
             sectorControl1.InitializeServices(_databaseManager, _sectorService);
             notificationControl1.InitializeServices(_notificationService);
             settingControl1.InitializeServices(_settingService, _databaseManager);

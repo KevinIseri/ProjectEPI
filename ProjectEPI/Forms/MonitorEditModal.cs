@@ -9,13 +9,15 @@ namespace ProjectEPI.Forms
         private readonly EquipmentDto _equipment;
         private readonly DatabaseManager _databaseService;
         private readonly NotificationService _notificationService;
+        private readonly SettingService _settingService;
         private readonly Action _refreshMonitorGrid;
 
         public MonitorEditModal(
             EquipmentDto equipment,
             DatabaseManager databaseService,
             Action refreshMonitorGrid,
-            NotificationService notificationService)
+            NotificationService notificationService,
+            SettingService settingService)
         {
             InitializeComponent();
 
@@ -23,6 +25,7 @@ namespace ProjectEPI.Forms
             _databaseService = databaseService;
             _refreshMonitorGrid = refreshMonitorGrid;
             _notificationService = notificationService;
+            _settingService = settingService;
 
             FieldMonitorEditModalId.Text = _equipment.Id.ToString();
             FieldMonitorEditModalName.Text = _equipment.Name;
@@ -49,22 +52,21 @@ namespace ProjectEPI.Forms
 
                     if (FieldMonitorEditModalHandlingStatus.Text == Constants.EquipmentConstants.HandlingStatus.FINISHED)
                     {
-                        queryUpdate = "UPDATE public.equipments SET isactive = @isactive, status = 'Em conformidade', handling_status = @handlingstatus, maturity_date = @maturitydate, updated_date=@updateDate WHERE id=@id;";
-                        
-                        var currentNotifications = _notificationService.GetExistingNotificationsIds();
+                        queryUpdate = $"UPDATE public.equipments SET isactive = @isactive, status = '{Constants.EquipmentConstants.EquipmentStatus.VALID}', handling_status = @handlingstatus, maturity_date = @maturitydate, updated_date=@updateDate WHERE id=@id;";
 
-                        var equipmentId = long.Parse(FieldMonitorEditModalId.Text);
+                        DeleteCurrentNotification();
+                    }
 
-                        if (currentNotifications.Contains(equipmentId))
+                    if (FieldMonitorEditModalHandlingStatus.Text != Constants.EquipmentConstants.HandlingStatus.FINISHED)
+                    {
+                        var daysLimit = _settingService.GetMaturityIntervalDays();
+                        var remainingDays = (FieldMonitorEditModalMaturityDate.Value.Date - DateTime.Today).Days;
+
+                        if (remainingDays >= daysLimit)
                         {
-                            var queryDelete = "DELETE from public.notifications WHERE equipmentid = @equipmentid";
-
-                            _databaseService.ExecuteNonQuery(queryDelete, cmd =>
-                            {
-                                cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
-                            });
+                            queryUpdate = $"UPDATE public.equipments SET isactive = @isactive, status = '{Constants.EquipmentConstants.EquipmentStatus.VALID}', handling_status = @handlingstatus, maturity_date = @maturitydate, updated_date=@updateDate WHERE id=@id;";
+                            DeleteCurrentNotification();
                         }
-
                     }
 
                     _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
@@ -88,6 +90,23 @@ namespace ProjectEPI.Forms
                     MessageBox.Show($"Erro ao atualizar o setor: {ex.Message}",
                         "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void DeleteCurrentNotification()
+        {
+            var currentNotifications = _notificationService.GetExistingNotificationsIds();
+
+            var equipmentId = long.Parse(FieldMonitorEditModalId.Text);
+
+            if (currentNotifications.Contains(equipmentId))
+            {
+                var queryDelete = "DELETE from public.notifications WHERE equipmentid = @equipmentid";
+
+                _databaseService.ExecuteNonQuery(queryDelete, cmd =>
+                {
+                    cmd.Parameters.AddWithValue("@equipmentId", equipmentId);
+                });
             }
         }
 
