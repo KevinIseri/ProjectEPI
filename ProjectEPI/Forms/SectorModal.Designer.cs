@@ -170,7 +170,7 @@
             ButtonDelete.TabIndex = 12;
             ButtonDelete.Text = "Deletar";
             ButtonDelete.UseVisualStyleBackColor = false;
-            ButtonDelete.Click += ButtonDelete_Click;
+            ButtonDelete.Click += ButtonDeleteClick;
             // 
             // ButtonUpdate
             // 
@@ -184,7 +184,7 @@
             ButtonUpdate.TabIndex = 11;
             ButtonUpdate.Text = "Atualizar";
             ButtonUpdate.UseVisualStyleBackColor = false;
-            ButtonUpdate.Click += ButtonUpdate_Click;
+            ButtonUpdate.Click += ButtonUpdateClick;
             // 
             // SectorModal
             // 

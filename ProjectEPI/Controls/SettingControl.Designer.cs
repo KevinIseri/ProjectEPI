@@ -53,19 +53,22 @@
             // 
             // ButtonUpdate
             // 
-            ButtonUpdate.Location = new Point(347, 46);
+            ButtonUpdate.BackColor = Color.FromArgb(86, 63, 223);
+            ButtonUpdate.FlatStyle = FlatStyle.Flat;
+            ButtonUpdate.ForeColor = Color.White;
+            ButtonUpdate.Location = new Point(329, 46);
             ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new Size(75, 23);
+            ButtonUpdate.Size = new Size(75, 24);
             ButtonUpdate.TabIndex = 4;
             ButtonUpdate.Text = "Atualizar";
-            ButtonUpdate.UseVisualStyleBackColor = true;
+            ButtonUpdate.UseVisualStyleBackColor = false;
             ButtonUpdate.Click += ButtonUpdateClick;
             // 
             // FieldSettingsNotificationsMaturityInterval
             // 
             FieldSettingsNotificationsMaturityInterval.Location = new Point(231, 46);
             FieldSettingsNotificationsMaturityInterval.Name = "FieldSettingsNotificationsMaturityInterval";
-            FieldSettingsNotificationsMaturityInterval.Size = new Size(100, 23);
+            FieldSettingsNotificationsMaturityInterval.Size = new Size(79, 23);
             FieldSettingsNotificationsMaturityInterval.TabIndex = 3;
             // 
             // LabelSettingsNotificationsMaturityInterval

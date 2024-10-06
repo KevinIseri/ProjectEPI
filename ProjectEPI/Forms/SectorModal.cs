@@ -98,6 +98,7 @@ namespace ProjectEPI.Forms
                     _refreshSectorGrid();
                     ClearFields();
                     MessageBox.Show("Setor adicionado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -107,7 +108,7 @@ namespace ProjectEPI.Forms
             }
         }
 
-        private void ButtonUpdate_Click(object sender, EventArgs e)
+        private void ButtonUpdateClick(object sender, EventArgs e)
         {
             if (ValidadeFilledFields(checkId: true) && ConfirmAction("atualizar", FieldSectorId.Text))
             {
@@ -125,7 +126,7 @@ namespace ProjectEPI.Forms
                     _refreshSectorGrid();
                     ClearFields();
                     MessageBox.Show("Setor atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -135,7 +136,7 @@ namespace ProjectEPI.Forms
             }
         }
 
-        private void ButtonDelete_Click(object sender, EventArgs e)
+        private void ButtonDeleteClick(object sender, EventArgs e)
         {
             if (ValidadeFilledFields(checkId: true) && ConfirmAction("deletar", FieldSectorId.Text))
             {
@@ -151,6 +152,7 @@ namespace ProjectEPI.Forms
                     _refreshSectorGrid();
                     ClearFields();
                     MessageBox.Show("Setor deletado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
                 }
                 catch (Exception ex)
                 {
