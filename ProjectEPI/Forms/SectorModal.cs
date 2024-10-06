@@ -75,33 +75,6 @@ namespace ProjectEPI.Forms
             return confirmation == DialogResult.Yes;
         }
 
-        private void ButtonAddClick(object sender, EventArgs e)
-        {
-            if (ValidadeFilledFields())
-            {
-                try
-                {
-                    var queryInsert = "INSERT INTO public.sectors (id, \"name\", created_date, updated_date) " +
-                                      "VALUES(nextval('sectors_id_seq'::regclass), @name, @createdDate, NULL);";
-
-                    _databaseService.ExecuteNonQuery(queryInsert, cmd =>
-                    {
-                        cmd.Parameters.AddWithValue("@name", FieldSectorName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
-                    });
-
-                    _refreshSectorGrid();
-                    ClearFields();
-                    MessageBox.Show("Setor adicionado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao adicionar o setor: {ex.Message}",
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
         private void ButtonUpdateClick(object sender, EventArgs e)
         {
             if (ValidadeFilledFields(checkId: true) && ConfirmAction("atualizar", FieldSectorId.Text))
@@ -158,6 +131,33 @@ namespace ProjectEPI.Forms
         private void PictureBoxCloseButtonClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ButtonAddClick(object sender, EventArgs e)
+        {
+            if (ValidadeFilledFields())
+            {
+                try
+                {
+                    var queryInsert = "INSERT INTO public.sectors (id, \"name\", created_date, updated_date) " +
+                                      "VALUES(nextval('sectors_id_seq'::regclass), @name, @createdDate, NULL);";
+
+                    _databaseService.ExecuteNonQuery(queryInsert, cmd =>
+                    {
+                        cmd.Parameters.AddWithValue("@name", FieldSectorName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@createdDate", DateTime.Now);
+                    });
+
+                    _refreshSectorGrid();
+                    ClearFields();
+                    MessageBox.Show("Setor adicionado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao adicionar o setor: {ex.Message}",
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

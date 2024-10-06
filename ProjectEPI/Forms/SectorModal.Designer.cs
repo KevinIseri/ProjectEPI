@@ -156,6 +156,7 @@
             ButtonAdd.TabIndex = 10;
             ButtonAdd.Text = "Adicionar";
             ButtonAdd.UseVisualStyleBackColor = false;
+            ButtonAdd.Click += ButtonAddClick;
             // 
             // ButtonDelete
             // 
