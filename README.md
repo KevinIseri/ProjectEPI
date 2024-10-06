@@ -1,23 +1,21 @@
 # ProjectEPI
 
-Este é um aplicativo desenvolvido em .NET Windows Forms, integrado com um banco de dados PostgreSQL, com foco no departamento de segurança do trabalho das empresas. Foi criado para facilitar o acompanhamento do status de equipamentos, setores associados, e notificações automáticas baseadas na data de validade dos equipamentos.
+Este é um aplicativo desenvolvido em .NET Windows Forms, integrado com um banco de dados PostgreSQL, com foco no departamento de segurança do trabalho das empresas, criado para facilitar o acompanhamento da validade dos equipamentos de proteção individual.
 
 # Funcionalidades do projeto
 
 - `Cadastro de Equipamentos`: Permite adicionar, editar e visualizar equipamentos, incluindo informações como CA, nome, status, data de vencimento e setores associados;
-- `Gestão de Setores`: Associa setores aos equipamentos, permitindo uma organização mais detalhada.
+- `Cadastro de Setores`: Permite cadastrar setores para associá-los a algum equipamento, facilitando a gestão de forma mais organizada;
 - `Notificações Automáticas`: Gera notificações para equipamentos próximos ao vencimento, de acordo com a configuração de tempo definida;
-- `Tratamento de Status`: Apresenta o status dos equipamentos e permite visualizações claras dos equipamentos vencidos;
-- `Monitor`: Possui visão geral para acompanhar os status dos equipamentos.
+- `Monitor`: Apresenta uma visualização geral para o acompanhamento dos status dos equipamentos.
 
 # Tecnologias utilizadas
 
 - .NET 8.0 / Windows Forms;
 - PostgreSQL;
-- Biblioteca Npgsql (para interação com o banco de dados);
-- Microsoft Data SqlClient.
+- Biblioteca Npgsql (para interação com o banco de dados).
 
-# Configuração Banco de dados
+# Configuração do Banco de dados
 
 CREATE TABLE Users (
 Id BIGSERIAL PRIMARY KEY,
