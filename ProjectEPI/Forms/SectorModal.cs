@@ -75,59 +75,6 @@ namespace ProjectEPI.Forms
             return confirmation == DialogResult.Yes;
         }
 
-        private void ButtonUpdateClick(object sender, EventArgs e)
-        {
-            if (ValidadeFilledFields(checkId: true) && ConfirmAction("atualizar", FieldSectorId.Text))
-            {
-                try
-                {
-                    var queryUpdate = "UPDATE public.sectors SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
-
-                    _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
-                    {
-                        cmd.Parameters.AddWithValue("@name", FieldSectorName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@id", long.Parse(FieldSectorId.Text));
-                        cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
-                    });
-
-                    _refreshSectorGrid();
-                    ClearFields();
-                    MessageBox.Show("Setor atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao atualizar o setor: {ex.Message}",
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void ButtonDeleteClick(object sender, EventArgs e)
-        {
-            if (ValidadeFilledFields(checkId: true) && ConfirmAction("deletar", FieldSectorId.Text))
-            {
-                try
-                {
-                    var queryDelete = "DELETE FROM public.sectors WHERE id=@id;";
-
-                    _databaseService.ExecuteNonQuery(queryDelete, cmd =>
-                    {
-                        cmd.Parameters.AddWithValue("@id", long.Parse(FieldSectorId.Text));
-                    });
-
-                    _refreshSectorGrid();
-                    ClearFields();
-                    MessageBox.Show("Setor deletado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao deletar o setor: {ex.Message}",
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
         private void PictureBoxCloseButtonClick(object sender, EventArgs e)
         {
             Close();
@@ -155,6 +102,59 @@ namespace ProjectEPI.Forms
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erro ao adicionar o setor: {ex.Message}",
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            if (ValidadeFilledFields(checkId: true) && ConfirmAction("atualizar", FieldSectorId.Text))
+            {
+                try
+                {
+                    var queryUpdate = "UPDATE public.sectors SET \"name\"=@name, updated_date=@updateDate WHERE id=@id;";
+
+                    _databaseService.ExecuteNonQuery(queryUpdate, cmd =>
+                    {
+                        cmd.Parameters.AddWithValue("@name", FieldSectorName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@id", long.Parse(FieldSectorId.Text));
+                        cmd.Parameters.AddWithValue("@updateDate", DateTime.Now);
+                    });
+
+                    _refreshSectorGrid();
+                    ClearFields();
+                    MessageBox.Show("Setor atualizado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao atualizar o setor: {ex.Message}",
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (ValidadeFilledFields(checkId: true) && ConfirmAction("deletar", FieldSectorId.Text))
+            {
+                try
+                {
+                    var queryDelete = "DELETE FROM public.sectors WHERE id=@id;";
+
+                    _databaseService.ExecuteNonQuery(queryDelete, cmd =>
+                    {
+                        cmd.Parameters.AddWithValue("@id", long.Parse(FieldSectorId.Text));
+                    });
+
+                    _refreshSectorGrid();
+                    ClearFields();
+                    MessageBox.Show("Setor deletado com sucesso!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao deletar o setor: {ex.Message}",
                         "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
