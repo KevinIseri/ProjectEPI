@@ -1,13 +1,13 @@
 # ProjectEPI
 
-Este é um aplicativo desenvolvido em .NET Windows Forms, integrado com um banco de dados PostgreSQL, com foco no departamento de segurança do trabalho das empresas, criado para facilitar o acompanhamento da validade dos equipamentos de proteção individual.
+Este aplicativo foi desenvolvido em .NET Windows Forms, integrado ao banco de dados PostgreSQL, com o objetivo de atender às necessidades do departamento de segurança do trabalho nas empresas. Ele facilita o gerenciamento e monitoramento da validade dos Equipamentos de Proteção Individual (EPIs), garantindo o acompanhamento contínuo do status e vencimento, além de emitir notificações automáticas para equipamentos próximos ao vencimento, assegurando a conformidade e segurança dos colaboradores.
 
 # Funcionalidades do projeto
 
-- `Cadastro de Equipamentos`: Permite adicionar, editar e visualizar equipamentos, incluindo informações como CA, nome, status, data de vencimento e setores associados;
-- `Cadastro de Setores`: Permite cadastrar setores para associá-los a algum equipamento, facilitando a gestão de forma mais organizada;
+- `Cadastro de Equipamentos`: Permite adicionar, editar e visualizar equipamentos, incluindo informações como identificador "CA", nome, status, data de vencimento e setores associados;
+- `Cadastro de Setores`: Permite cadastrar setores para associá-los a algum equipamento, facilitando a gestão de forma mais organizada e segmentada;
 - `Notificações Automáticas`: Gera notificações para equipamentos próximos ao vencimento, de acordo com a configuração de tempo definida;
-- `Monitor`: Apresenta uma visualização geral para o acompanhamento dos status dos equipamentos.
+- `Monitoramento`:  Oferece uma visão geral do status dos equipamentos, facilitando o acompanhamento em tempo real e a tomada de decisões..
 
 # Tecnologias utilizadas
 
